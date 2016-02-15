@@ -1,0 +1,4 @@
+---
+applications:
+- name:    swift-helloworld
+  memory:  128M
