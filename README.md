@@ -210,7 +210,6 @@ buildpack: Swift
 
      state     since                    cpu    memory         disk          details   
 #0   running   2016-02-11 02:25:52 PM   0.0%   4.9M of 128M   12.6M of 1G      
-Ricardos-MacBook-Pro:swift-helloworld olivieri$
 ```
 
 For a complete list of the Swift versions supported by the Cloud Foundry Swift buildpack, see the buildpack's [manifest](https://github.com/cloudfoundry-community/swift-buildpack/blob/master/manifest.yml) file.
