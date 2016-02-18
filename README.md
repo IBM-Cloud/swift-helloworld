@@ -57,7 +57,7 @@ Getting buildpacks...
 buildpack                                 position   enabled   locked   filename   
 liberty-for-java                          1          true      false    buildpack_liberty-for-java_v2.5-20160209-1336.zip   
 sdk-for-nodejs                            2          true      false    buildpack_sdk-for-nodejs_v3.0-20160125-1224.zip   
-noop-buildpack                            3          true      false       
+noop-buildpack                            3          true      false    noop-buildpack-20140311-1519.zip   
 java_buildpack                            4          true      false    java-buildpack-v3.5.1.zip   
 ruby_buildpack                            5          true      false    ruby_buildpack-cached-v1.6.7.zip   
 nodejs_buildpack                          6          true      false    nodejs_buildpack-cached-v1.5.0.zip   
@@ -66,12 +66,10 @@ python_buildpack                          8          true      false    python_b
 php_buildpack                             9          true      false    php_buildpack-cached-v4.1.5.zip   
 swift_buildpack                           10         true      false    swift_buildpack-v1.0.3.zip   
 aspnet5-experimental                      11         true      false    buildpack_aspnet5-experimental_v0.7-20151022-1257.zip   
-xpages_buildpack                          12         true      false    xpages_buildpack_v9.0.1-bmix-beta-20151214-8000.zip   
-staticfile_buildpack                      13         true      false    staticfile_buildpack-cached-v1.2.1.zip   
-binary_buildpack                          14         true      false    binary_buildpack-cached-v1.0.1.zip   
-aspnet5-experimental_v0_6-20150916-1220   15         true      false    buildpack_aspnet5-experimental_v0.6-20150916-1220.zip   
-liberty-for-java_v2_3-20151208-1311       16         true      false    buildpack_liberty-for-java_v2.3-20151208-1311.zip   
-sdk-for-nodejs_v2_8-20151209-1403         17         true      false    buildpack_sdk-for-nodejs_v2.8-20151209-1403.zip   
+xpages_buildpack                          12         true      false    xpages_buildpack_v9.0.1-bmix-pb-20151217-8000.zip   
+aspnet5-experimental_v0_6-20150916-1220   13         true      false    buildpack_aspnet5-experimental_v0.6-20150916-1220.zip   
+liberty-for-java_v2_3-20151208-1311       14         true      false    buildpack_liberty-for-java_v2.3-20151208-1311.zip   
+sdk-for-nodejs_v2_8-20151209-1403         15         true      false    buildpack_sdk-for-nodejs_v2.8-20151209-1403.zip   
 ```
 
 Looking at the output above, we can see that Swift buildpack is installed on Bluemix.  This will allow a seamless deployment of the starter application to Bluemix. After you have cloned this Git repo, go to its root folder on your system and issue the following command Cloud Foundry command:
