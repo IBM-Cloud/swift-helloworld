@@ -2,7 +2,7 @@
 This project contains a simple Swift hello world application that can be deployed to Bluemix or run locally on your [OS X](http://www.apple.com/osx/) or [Ubuntu Linux](http://www.ubuntu.com/download) system.  This sample application creates a basic server that returns an HTML greeting to the client.  Please note that this is not a production-ready application.  Instead, it is for educational purposes to learn about the types of applications you can develop using the Swift programming language.
 
 ## Application Requirements
-To compile and run this sample application on your system, you need to install the [Swift compiler](https://swift.org/download/) for your platform. Please note that the Swift language is evolving and changing rapidly. We have tested and executed this sample application using several of the different Swift versions that have been released such as [`2.2-SNAPSHOT-2015-12-10-a`](https://swift.org/builds/ubuntu1404/swift-2.2-SNAPSHOT-2015-12-10-a/swift-2.2-SNAPSHOT-2015-12-10-a-ubuntu14.04.tar.gz) and  [`DEVELOPMENT-SNAPSHOT-2016-02-03-a`](https://swift.org/builds/development/ubuntu1404/swift-DEVELOPMENT-SNAPSHOT-2016-02-03-a/swift-DEVELOPMENT-SNAPSHOT-2016-02-03-a-ubuntu14.04.tar.gz).
+To compile and run this sample application on your system, you need to install the [Swift compiler](https://swift.org/download/) for your platform. Please note that the Swift language is evolving and changing rapidly. We have tested and executed this sample application using several of the different Swift versions that have been released such as [`2.2-SNAPSHOT-2015-12-10-a`](https://swift.org/builds/ubuntu1404/swift-2.2-SNAPSHOT-2016-02-08-a/swift-2.2-SNAPSHOT-2016-02-08-a-ubuntu14.04.tar.gz) and  [`DEVELOPMENT-SNAPSHOT-2016-02-03-a`](https://swift.org/builds/development/ubuntu1404/swift-DEVELOPMENT-SNAPSHOT-2016-02-03-a/swift-DEVELOPMENT-SNAPSHOT-2016-02-03-a-ubuntu14.04.tar.gz).
 
 We recommend downloading the [`DEVELOPMENT-SNAPSHOT-2016-02-03-a`](https://swift.org/builds/development/ubuntu1404/swift-DEVELOPMENT-SNAPSHOT-2016-02-03-a/swift-DEVELOPMENT-SNAPSHOT-2016-02-03-a-ubuntu14.04.tar.gz) version of the Swift binaries, which is the latest version of Swift at the time of writing.  You can follow the instructions provided on the [Download Swift](https://swift.org/download/) page for your platform.
 
@@ -147,13 +147,13 @@ Hello from Swift on Linux!
 ```
 
 ## Using a different version of Swift on Bluemix
-If you look closely at the output above returned by the `cf push` command, you will notice that `DEVELOPMENT-SNAPSHOT-2016-02-03-a` was the Swift version used for compiling and running the sample app on Bluemix.  If you would like to use a different version of the Swift language on Bluemix, say `2.2-SNAPSHOT-2015-12-10-a`, you'd need to update the contents of the `.swift-version` file to:
+If you look closely at the output above returned by the `cf push` command, you will notice that `DEVELOPMENT-SNAPSHOT-2016-02-03-a` was the Swift version used for compiling and running the sample app on Bluemix.  If you would like to use a different version of the Swift language on Bluemix, say `2.2-SNAPSHOT-2016-02-08-a`, you'd need to update the contents of the `.swift-version` file to:
 
 ```
-swift-2.2-SNAPSHOT-2015-12-10-a
+swift-2.2-SNAPSHOT-2016-02-08-a
 ```
 
-After updating the `.swift-version` file, you can run the `cf push` command one more time.  This should upload the application to Bluemix and use the `2.2-SNAPSHOT-2015-12-10-a` version of the Swift binaries for compiling and running the starter application as shown below:
+After updating the `.swift-version` file, you can run the `cf push` command one more time.  This should upload the application to Bluemix and use the `2.2-SNAPSHOT-2016-02-08-a` version of the Swift binaries for compiling and running the starter application as shown below:
 
 ```
 Using manifest file /Users/olivieri/git/swift-helloworld/manifest.yml
@@ -174,7 +174,7 @@ Starting app swift-helloworld in org ricardo.olivieri@us.ibm.com / space dev as 
 -----> Downloaded app package (256K)
 -----> Downloaded app buildpack cache (258M)
 -----> Buildpack version 1.0.3
------> Installing Swift 2.2-SNAPSHOT-2015-12-10-a
+-----> Installing Swift 2.2-SNAPSHOT-2016-02-08-a
        Downloaded Swift
 -----> Building Package
        Compiling Swift Module 'Utils' (5 sources)
