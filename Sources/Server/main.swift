@@ -41,7 +41,8 @@ fdSet(server_sockfd, set: &active_fd_set)
 let FD_SETSIZE = Int32(1024)
 
 let httpResponse = "HTTP/1.0 200 OK\n" +
-  "Content-Type: text/html\n\n" +
+  "Content-Type: text/html\n" +
+  "Content-Length: 52\n\n" +
   "<html><body>Hello from Swift on Linux!</body></html>"
 
 var clientname = sockaddr_in()
