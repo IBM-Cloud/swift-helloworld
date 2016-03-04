@@ -22,7 +22,7 @@ public func fdZero(set: inout fd_set) {
 }
 
 /// Replacement for FD_SET macro
-public func fdSet(fd: Int32, set: inout fd_set) {
+public func fdSet(fd: Int32, inout set: fd_set) {
   let intOffset = Int(fd / 16)
   let bitOffset: Int = Int(fd % 16)
   let mask: Int = 1 << bitOffset
@@ -48,7 +48,7 @@ public func fdSet(fd: Int32, set: inout fd_set) {
 }
 
 /// Replacement for FD_CLR macro
-public func fdClr(fd: Int32, set: inout fd_set) {
+public func fdClr(fd: Int32, inout set: fd_set) {
   let intOffset = Int(fd / 16)
   let bitOffset: Int = Int(fd % 16)
   let mask: Int = ~(1 << bitOffset)
@@ -74,7 +74,7 @@ public func fdClr(fd: Int32, set: inout fd_set) {
 }
 
 /// Replacement for FD_ISSET macro
-public func fdIsSet(fd: Int32, set: inout fd_set) -> Bool {
+public func fdIsSet(fd: Int32, inout set: fd_set) -> Bool {
   let intOffset = Int(fd / 16)
   let bitOffset = Int(fd % 16)
   let mask: Int = 1 << bitOffset
@@ -106,7 +106,7 @@ public func fdZero(set: inout fd_set) {
 }
 
 /// Replacement for FD_SET macro
-public func fdSet(fd: Int32, set: inout fd_set) {
+public func fdSet(fd: Int32, inout set: fd_set) {
   let intOffset = Int(fd / 32)
   let bitOffset = fd % 32
   let mask = 1 << bitOffset
@@ -148,7 +148,7 @@ public func fdSet(fd: Int32, set: inout fd_set) {
 }
 
 /// Replacement for FD_CLR macro
-public func fdClr(fd: Int32, set: inout fd_set) {
+public func fdClr(fd: Int32, inout set: fd_set) {
   let intOffset = Int(fd / 32)
   let bitOffset = fd % 32
   let mask = ~(1 << bitOffset)
@@ -190,7 +190,7 @@ public func fdClr(fd: Int32, set: inout fd_set) {
 }
 
 /// Replacement for FD_ISSET macro
-public func fdIsSet(fd: Int32, set: inout fd_set) -> Bool {
+public func fdIsSet(fd: Int32, inout set: fd_set) -> Bool {
   let intOffset = Int(fd / 32)
   let bitOffset = fd % 32
   let mask = 1 << bitOffset
