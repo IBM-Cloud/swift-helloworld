@@ -26,6 +26,7 @@ import Glibc
 import Darwin
 #endif
 import Utils
+import Foundation
 
 // Create server socket
 let address = parseAddress()
