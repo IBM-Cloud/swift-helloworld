@@ -26,6 +26,7 @@ import Glibc
 import Darwin
 #endif
 import Utils
+import Foundation
 
 // Create server socket
 let address = parseAddress()
@@ -40,10 +41,25 @@ fdSet(server_sockfd, set: &active_fd_set)
 
 let FD_SETSIZE = Int32(1024)
 
+// Generate HTTP response
+// Get environment variables
+let environmentVars = NSProcessInfo.processInfo().environment
+var responseBody = "<html><body>Hello from Swift on Linux!" +
+  "<br />" +
+  "<br />" +
+  "<table border=\"1\">" +
+  "<tr><th>Env Variable</th><th>Value</th></tr>"
+
+for (variable, value) in environmentVars {
+    responseBody += "<tr><td>\(variable)</td><td>\(value)</td></tr>\n"
+}
+
+responseBody += "</table></body></html>"
+
 let httpResponse = "HTTP/1.0 200 OK\n" +
   "Content-Type: text/html\n" +
-  "Content-Length: 52\n\n" +
-  "<html><body>Hello from Swift on Linux!</body></html>"
+  "Content-Length: \(responseBody).length \n\n" +
+  responseBody
 
 var clientname = sockaddr_in()
 while true {
