@@ -58,7 +58,7 @@ responseBody += "</table></body></html>"
 
 let httpResponse = "HTTP/1.0 200 OK\n" +
   "Content-Type: text/html\n" +
-  "Content-Length: \(responseBody).length \n\n" +
+  "Content-Length: \(responseBody.length) \n\n" +
   responseBody
 
 var clientname = sockaddr_in()

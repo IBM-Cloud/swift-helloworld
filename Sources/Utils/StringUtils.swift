@@ -19,15 +19,21 @@ import Foundation
 #if os(OSX)
 
 public extension String {
-    func bridge() -> NSString {
-        return self as NSString
-    }
+  func bridge() -> NSString {
+    return self as NSString
+  }
 }
 
 public extension NSString {
-    func bridge() -> String {
-        return self as String
-    }
+  func bridge() -> String {
+    return self as String
+  }
 }
 
 #endif
+
+public extension String {
+    var length: Int {
+        return characters.count
+    }
+}
