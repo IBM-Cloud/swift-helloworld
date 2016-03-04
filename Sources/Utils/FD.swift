@@ -17,7 +17,7 @@
 #if os(Linux)
 import Glibc
 /// Replacement for FD_ZERO macro
-public func fdZero(set: inout fd_set) {
+public func fdZero(inout set: fd_set) {
   set.__fds_bits = (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 }
 
@@ -101,7 +101,7 @@ public func fdIsSet(fd: Int32, inout set: fd_set) -> Bool {
 #else
 import Darwin
 /// Replacement for FD_ZERO macro
-public func fdZero(set: inout fd_set) {
+public func fdZero(inout set: fd_set) {
   set.fds_bits = (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 }
 
