@@ -34,7 +34,8 @@ public func generateHttpResponse(appEnv: AppEnv) -> String {
   responseBody += "</table><br /><br />"
 
   // JSON object for App
-  if appEnv.app {
+  // This conditional is indeed odd... https://github.com/SwiftyJSON/SwiftyJSON/issues/205
+  if appEnv.app.null == nil {
     responseBody += "<table border=\"1\">" +
     "<tr><th>App Property (JSON)</th><th>Value</th></tr>"
 
