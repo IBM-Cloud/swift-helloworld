@@ -34,19 +34,20 @@ public func generateHttpResponse(appEnv: AppEnv) -> String {
   responseBody += "</table><br /><br />"
 
   // JSON object for App
-  responseBody += "<table border=\"1\">" +
-  "<tr><th>App Property (JSON)</th><th>Value</th></tr>"
+  if appEnv.app {
+    responseBody += "<table border=\"1\">" +
+    "<tr><th>App Property (JSON)</th><th>Value</th></tr>"
 
-  for (variable, value) in appEnv.app {
-    responseBody += "<tr><td>\(variable)</td><td>\(value)</td></tr>\n"
+    for (variable, value) in appEnv.app {
+      responseBody += "<tr><td>\(variable)</td><td>\(value)</td></tr>\n"
+    }
+
+    responseBody += "</table>"
+    responseBody += "<br /><br />"
   }
 
-  // Get App and Service objects
+  // Get App object
   let app = appEnv.getApp()
-  let services = appEnv.getServices()
-
-  responseBody += "</table>"
-  responseBody += "<br /><br />"
   responseBody += "<table border=\"1\">"
   responseBody += "<tr><th colspan=\"2\">Application Environment Object</th></tr>\n"
   responseBody += "<tr><td>AppEnv</td><td>isLocal: \(appEnv.isLocal), port: \(appEnv.port), name: \(appEnv.name), bind: \(appEnv.bind), urls: \(appEnv.urls), app: \(appEnv.app), services: \(appEnv.services)</td></tr>\n"
@@ -54,11 +55,14 @@ public func generateHttpResponse(appEnv: AppEnv) -> String {
   responseBody += "<tr><td>App</td><td>\(app)</td></tr>\n"
 
   // Service objects
+  let services = appEnv.getServices()
+  responseBody += "<tr><th colspan=\"2\">Service Objects</th></tr>\n"
   if services.count > 0 {
-    responseBody += "<tr><th colspan=\"2\">Service Objects</th></tr>\n"
     for (name, service) in services {
       responseBody += "<tr><td>\(name)</td><td>\(service)</td></tr>\n"
     }
+  } else {
+    responseBody += "<tr><td colspan=\"2\">[None]</td></tr>\n"
   }
 
   responseBody += "</table>"
