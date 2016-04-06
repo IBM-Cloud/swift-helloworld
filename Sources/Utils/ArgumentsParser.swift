@@ -19,7 +19,11 @@ public func parseAddress() -> Address {
   var port = 9080 // default port
   var ip = "0.0.0.0" // default ip
   if args.count == 2 && args[0] == "-bind" {
-    let tokens = args[1].bridge().componentsSeparatedByString(":")
+    #if os(Linux)
+      let tokens = args[1].bridge().componentsSeparatedByString(":")
+    #else
+      let tokens = args[1].bridge().componentsSeparated(by: ":")
+    #endif
     if (tokens.count == 2) {
       ip = tokens[0]
       if let portNumber = Int(tokens[1]) {
