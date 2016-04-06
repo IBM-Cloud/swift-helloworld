@@ -1,2 +1,4 @@
 .build/*
 Packages/*
+HelloWorldSwift.xcodeproj/xcuserdata/*
+HelloWorldSwift.xcodeproj/project.xcworkspace/xcuserdata/*
