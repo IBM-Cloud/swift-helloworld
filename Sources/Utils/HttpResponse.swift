@@ -51,7 +51,7 @@ public func generateHttpResponse(appEnv: AppEnv) -> String {
   let app = appEnv.getApp()
   responseBody += "<table border=\"1\">"
   responseBody += "<tr><th colspan=\"2\">Application Environment Object</th></tr>\n"
-  responseBody += "<tr><td>AppEnv</td><td>isLocal: \(appEnv.isLocal), port: \(appEnv.port), name: \(appEnv.name), bind: \(appEnv.bind), urls: \(appEnv.urls), app: \(appEnv.app.rawString()), services: \(appEnv.services.rawString())</td></tr>\n"
+  responseBody += "<tr><td>AppEnv</td><td>isLocal: \(appEnv.isLocal), port: \(appEnv.port), name: \(appEnv.name), bind: \(appEnv.bind), urls: \(appEnv.urls), app: \(appEnv.app), services: \(appEnv.services)</td></tr>\n"
   responseBody += "<tr><th colspan=\"2\">Application Object</th></tr>\n"
   responseBody += "<tr><td>App</td><td>\(app)</td></tr>\n"
 
