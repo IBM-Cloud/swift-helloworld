@@ -1,551 +1,581 @@
 // !$*UTF8*$!
 {
-    archiveVersion = 1;
-    classes = {};
-    objectVersion = 46;
-    rootObject = __RootObject_;
-    objects = {
-        __RootObject_ = {
-            isa = PBXProject;
-            attributes = {LastUpgradeCheck = 9999;};
-            buildConfigurationList = ___RootConfs_;
-            compatibilityVersion = 'Xcode 3.2';
-            developmentRegion = English;
-            hasScannedForEncodings = 0;
-            knownRegions = (en);
-            mainGroup = ___RootGroup_;
-            productRefGroup = ____Products_;
-            projectDirPath = '';
-            projectRoot = '';
-            targets = (______Target_SwiftyJSON, ______Target_CFEnvironment, ______Target_CFEnvironmentTestSuite, ______Target_Server, ______Target_Utils);
-        };
-        '__PBXFileRef_Package.swift' = {
-            isa = PBXFileReference;
-            lastKnownFileType = sourcecode.swift;
-            name = 'Package.swift';
-            path = '/Users/olivieri/git/swift-helloworld/Package.swift';
-            sourceTree = '<group>';
-        };
-        ___RootGroup_ = {
-            isa = PBXGroup;
-            children = ('__PBXFileRef_Package.swift', _____Sources_, _______Tests_, ____Products_);
-            sourceTree = '<group>';
-        };
-        _______Group_SwiftyJSON = {
-            isa = PBXGroup;
-            name = SwiftyJSON;
-            path = 'Packages/SwiftyJSON-5.0.0/Source';
-            sourceTree = '<group>';
-            children = ('__PBXFileRef_Packages/SwiftyJSON-5.0.0/Source/LclJSONSerialization.swift', '__PBXFileRef_Packages/SwiftyJSON-5.0.0/Source/SwiftyJSON.swift');
-        };
-        '__PBXFileRef_Packages/SwiftyJSON-5.0.0/Source/LclJSONSerialization.swift' = {
-            isa = PBXFileReference;
-            lastKnownFileType = sourcecode.swift;
-            name = 'LclJSONSerialization.swift';
-            sourceTree = '<group>';
-        };
-        '__PBXFileRef_Packages/SwiftyJSON-5.0.0/Source/SwiftyJSON.swift' = {
-            isa = PBXFileReference;
-            lastKnownFileType = sourcecode.swift;
-            name = 'SwiftyJSON.swift';
-            sourceTree = '<group>';
-        };
-        ______Target_SwiftyJSON = {
-            isa = PBXNativeTarget;
-            buildConfigurationList = _______Confs_SwiftyJSON;
-            buildPhases = (CompilePhase_SwiftyJSON, ___LinkPhase_SwiftyJSON);
-            buildRules = ();
-            dependencies = ();
-            name = SwiftyJSON;
-            productName = SwiftyJSON;
-            productReference = _____Product_SwiftyJSON;
-            productType = 'com.apple.product-type.library.dynamic';
-        };
-        _____Product_SwiftyJSON = {
-            isa = PBXFileReference;
-            explicitFileType = 'compiled.mach-o.dylib';
-            path = 'SwiftyJSON.dylib';
-            sourceTree = BUILT_PRODUCTS_DIR;
-        };
-        CompilePhase_SwiftyJSON = {
-            isa = PBXSourcesBuildPhase;
-            files = ('__src_cc_ref_Packages/SwiftyJSON-5.0.0/Source/LclJSONSerialization.swift', '__src_cc_ref_Packages/SwiftyJSON-5.0.0/Source/SwiftyJSON.swift');
-            runOnlyForDeploymentPostprocessing = 0;
-        };
-        ___LinkPhase_SwiftyJSON = {
-            isa = PBXFrameworksBuildPhase;
-            files = ();
-            runOnlyForDeploymentPostprocessing = 0;
-        };
-        '__src_cc_ref_Packages/SwiftyJSON-5.0.0/Source/LclJSONSerialization.swift' = {
-            isa = PBXBuildFile;
-            fileRef = '__PBXFileRef_Packages/SwiftyJSON-5.0.0/Source/LclJSONSerialization.swift';
-        };
-        '__src_cc_ref_Packages/SwiftyJSON-5.0.0/Source/SwiftyJSON.swift' = {
-            isa = PBXBuildFile;
-            fileRef = '__PBXFileRef_Packages/SwiftyJSON-5.0.0/Source/SwiftyJSON.swift';
-        };
-        _LinkFileRef_SwiftyJSON = {
-            isa = PBXBuildFile;
-            fileRef = _____Product_SwiftyJSON;
-        };
-        _______Confs_SwiftyJSON = {
-            isa = XCConfigurationList;
-            buildConfigurations = (___DebugConf_SwiftyJSON, _ReleaseConf_SwiftyJSON);
-            defaultConfigurationIsVisible = 0;
-            defaultConfigurationName = Debug;
-        };
-        ___DebugConf_SwiftyJSON = {
-            isa = XCBuildConfiguration;
-            buildSettings = { DYLIB_INSTALL_NAME_BASE = '$(CONFIGURATION_BUILD_DIR)'; LD_RUNPATH_SEARCH_PATHS = '$(TOOLCHAIN_DIR)/usr/lib/swift/macosx'; PRODUCT_MODULE_NAME = SwiftyJSON; ENABLE_TESTABILITY = YES; OTHER_SWIFT_FLAGS = -DXcode; COMBINE_HIDPI_IMAGES = YES; MACOSX_DEPLOYMENT_TARGET = '10.10'; SWIFT_OPTIMIZATION_LEVEL = -Onone; PRODUCT_NAME = 'lib$(TARGET_NAME)'; };
-            name = Debug;
-        };
-        _ReleaseConf_SwiftyJSON = {
-            isa = XCBuildConfiguration;
-            buildSettings = { DYLIB_INSTALL_NAME_BASE = '$(CONFIGURATION_BUILD_DIR)'; LD_RUNPATH_SEARCH_PATHS = '$(TOOLCHAIN_DIR)/usr/lib/swift/macosx'; PRODUCT_MODULE_NAME = SwiftyJSON; ENABLE_TESTABILITY = YES; OTHER_SWIFT_FLAGS = -DXcode; COMBINE_HIDPI_IMAGES = YES; MACOSX_DEPLOYMENT_TARGET = '10.10'; PRODUCT_NAME = 'lib$(TARGET_NAME)'; };
-            name = Release;
-        };
-        __Dependency_SwiftyJSON = {
-            isa = PBXTargetDependency;
-            target = ______Target_SwiftyJSON;
-        };
-        _______Group_CFEnvironment = {
-            isa = PBXGroup;
-            name = CFEnvironment;
-            path = 'Packages/CFEnvironment-1.0.0/Sources/CFEnvironment';
-            sourceTree = '<group>';
-            children = ('__PBXFileRef_Packages/CFEnvironment-1.0.0/Sources/CFEnvironment/App.swift', '__PBXFileRef_Packages/CFEnvironment-1.0.0/Sources/CFEnvironment/AppEnv.swift', '__PBXFileRef_Packages/CFEnvironment-1.0.0/Sources/CFEnvironment/CFEnvironment.swift', '__PBXFileRef_Packages/CFEnvironment-1.0.0/Sources/CFEnvironment/CFEnvironmentError.swift', '__PBXFileRef_Packages/CFEnvironment-1.0.0/Sources/CFEnvironment/DateUtils.swift', '__PBXFileRef_Packages/CFEnvironment-1.0.0/Sources/CFEnvironment/JSONUtils.swift', '__PBXFileRef_Packages/CFEnvironment-1.0.0/Sources/CFEnvironment/Service.swift');
-        };
-        '__PBXFileRef_Packages/CFEnvironment-1.0.0/Sources/CFEnvironment/App.swift' = {
-            isa = PBXFileReference;
-            lastKnownFileType = sourcecode.swift;
-            name = 'App.swift';
-            sourceTree = '<group>';
-        };
-        '__PBXFileRef_Packages/CFEnvironment-1.0.0/Sources/CFEnvironment/AppEnv.swift' = {
-            isa = PBXFileReference;
-            lastKnownFileType = sourcecode.swift;
-            name = 'AppEnv.swift';
-            sourceTree = '<group>';
-        };
-        '__PBXFileRef_Packages/CFEnvironment-1.0.0/Sources/CFEnvironment/CFEnvironment.swift' = {
-            isa = PBXFileReference;
-            lastKnownFileType = sourcecode.swift;
-            name = 'CFEnvironment.swift';
-            sourceTree = '<group>';
-        };
-        '__PBXFileRef_Packages/CFEnvironment-1.0.0/Sources/CFEnvironment/CFEnvironmentError.swift' = {
-            isa = PBXFileReference;
-            lastKnownFileType = sourcecode.swift;
-            name = 'CFEnvironmentError.swift';
-            sourceTree = '<group>';
-        };
-        '__PBXFileRef_Packages/CFEnvironment-1.0.0/Sources/CFEnvironment/DateUtils.swift' = {
-            isa = PBXFileReference;
-            lastKnownFileType = sourcecode.swift;
-            name = 'DateUtils.swift';
-            sourceTree = '<group>';
-        };
-        '__PBXFileRef_Packages/CFEnvironment-1.0.0/Sources/CFEnvironment/JSONUtils.swift' = {
-            isa = PBXFileReference;
-            lastKnownFileType = sourcecode.swift;
-            name = 'JSONUtils.swift';
-            sourceTree = '<group>';
-        };
-        '__PBXFileRef_Packages/CFEnvironment-1.0.0/Sources/CFEnvironment/Service.swift' = {
-            isa = PBXFileReference;
-            lastKnownFileType = sourcecode.swift;
-            name = 'Service.swift';
-            sourceTree = '<group>';
-        };
-        ______Target_CFEnvironment = {
-            isa = PBXNativeTarget;
-            buildConfigurationList = _______Confs_CFEnvironment;
-            buildPhases = (CompilePhase_CFEnvironment, ___LinkPhase_CFEnvironment);
-            buildRules = ();
-            dependencies = (__Dependency_SwiftyJSON);
-            name = CFEnvironment;
-            productName = CFEnvironment;
-            productReference = _____Product_CFEnvironment;
-            productType = 'com.apple.product-type.library.dynamic';
-        };
-        _____Product_CFEnvironment = {
-            isa = PBXFileReference;
-            explicitFileType = 'compiled.mach-o.dylib';
-            path = 'CFEnvironment.dylib';
-            sourceTree = BUILT_PRODUCTS_DIR;
-        };
-        CompilePhase_CFEnvironment = {
-            isa = PBXSourcesBuildPhase;
-            files = ('__src_cc_ref_Packages/CFEnvironment-1.0.0/Sources/CFEnvironment/App.swift', '__src_cc_ref_Packages/CFEnvironment-1.0.0/Sources/CFEnvironment/AppEnv.swift', '__src_cc_ref_Packages/CFEnvironment-1.0.0/Sources/CFEnvironment/CFEnvironment.swift', '__src_cc_ref_Packages/CFEnvironment-1.0.0/Sources/CFEnvironment/CFEnvironmentError.swift', '__src_cc_ref_Packages/CFEnvironment-1.0.0/Sources/CFEnvironment/DateUtils.swift', '__src_cc_ref_Packages/CFEnvironment-1.0.0/Sources/CFEnvironment/JSONUtils.swift', '__src_cc_ref_Packages/CFEnvironment-1.0.0/Sources/CFEnvironment/Service.swift');
-            runOnlyForDeploymentPostprocessing = 0;
-        };
-        ___LinkPhase_CFEnvironment = {
-            isa = PBXFrameworksBuildPhase;
-            files = (_LinkFileRef_SwiftyJSON);
-            runOnlyForDeploymentPostprocessing = 0;
-        };
-        '__src_cc_ref_Packages/CFEnvironment-1.0.0/Sources/CFEnvironment/App.swift' = {
-            isa = PBXBuildFile;
-            fileRef = '__PBXFileRef_Packages/CFEnvironment-1.0.0/Sources/CFEnvironment/App.swift';
-        };
-        '__src_cc_ref_Packages/CFEnvironment-1.0.0/Sources/CFEnvironment/AppEnv.swift' = {
-            isa = PBXBuildFile;
-            fileRef = '__PBXFileRef_Packages/CFEnvironment-1.0.0/Sources/CFEnvironment/AppEnv.swift';
-        };
-        '__src_cc_ref_Packages/CFEnvironment-1.0.0/Sources/CFEnvironment/CFEnvironment.swift' = {
-            isa = PBXBuildFile;
-            fileRef = '__PBXFileRef_Packages/CFEnvironment-1.0.0/Sources/CFEnvironment/CFEnvironment.swift';
-        };
-        '__src_cc_ref_Packages/CFEnvironment-1.0.0/Sources/CFEnvironment/CFEnvironmentError.swift' = {
-            isa = PBXBuildFile;
-            fileRef = '__PBXFileRef_Packages/CFEnvironment-1.0.0/Sources/CFEnvironment/CFEnvironmentError.swift';
-        };
-        '__src_cc_ref_Packages/CFEnvironment-1.0.0/Sources/CFEnvironment/DateUtils.swift' = {
-            isa = PBXBuildFile;
-            fileRef = '__PBXFileRef_Packages/CFEnvironment-1.0.0/Sources/CFEnvironment/DateUtils.swift';
-        };
-        '__src_cc_ref_Packages/CFEnvironment-1.0.0/Sources/CFEnvironment/JSONUtils.swift' = {
-            isa = PBXBuildFile;
-            fileRef = '__PBXFileRef_Packages/CFEnvironment-1.0.0/Sources/CFEnvironment/JSONUtils.swift';
-        };
-        '__src_cc_ref_Packages/CFEnvironment-1.0.0/Sources/CFEnvironment/Service.swift' = {
-            isa = PBXBuildFile;
-            fileRef = '__PBXFileRef_Packages/CFEnvironment-1.0.0/Sources/CFEnvironment/Service.swift';
-        };
-        _LinkFileRef_CFEnvironment = {
-            isa = PBXBuildFile;
-            fileRef = _____Product_CFEnvironment;
-        };
-        _______Confs_CFEnvironment = {
-            isa = XCConfigurationList;
-            buildConfigurations = (___DebugConf_CFEnvironment, _ReleaseConf_CFEnvironment);
-            defaultConfigurationIsVisible = 0;
-            defaultConfigurationName = Debug;
-        };
-        ___DebugConf_CFEnvironment = {
-            isa = XCBuildConfiguration;
-            buildSettings = { DYLIB_INSTALL_NAME_BASE = '$(CONFIGURATION_BUILD_DIR)'; LD_RUNPATH_SEARCH_PATHS = '$(TOOLCHAIN_DIR)/usr/lib/swift/macosx'; PRODUCT_MODULE_NAME = CFEnvironment; ENABLE_TESTABILITY = YES; OTHER_SWIFT_FLAGS = -DXcode; COMBINE_HIDPI_IMAGES = YES; MACOSX_DEPLOYMENT_TARGET = '10.10'; SWIFT_OPTIMIZATION_LEVEL = -Onone; PRODUCT_NAME = 'lib$(TARGET_NAME)'; };
-            name = Debug;
-        };
-        _ReleaseConf_CFEnvironment = {
-            isa = XCBuildConfiguration;
-            buildSettings = { DYLIB_INSTALL_NAME_BASE = '$(CONFIGURATION_BUILD_DIR)'; LD_RUNPATH_SEARCH_PATHS = '$(TOOLCHAIN_DIR)/usr/lib/swift/macosx'; PRODUCT_MODULE_NAME = CFEnvironment; ENABLE_TESTABILITY = YES; OTHER_SWIFT_FLAGS = -DXcode; COMBINE_HIDPI_IMAGES = YES; MACOSX_DEPLOYMENT_TARGET = '10.10'; PRODUCT_NAME = 'lib$(TARGET_NAME)'; };
-            name = Release;
-        };
-        __Dependency_CFEnvironment = {
-            isa = PBXTargetDependency;
-            target = ______Target_CFEnvironment;
-        };
-        _______Group_CFEnvironmentTestSuite = {
-            isa = PBXGroup;
-            name = CFEnvironment.testsuite;
-            path = 'Packages/CFEnvironment-1.0.0/Tests/CFEnvironment';
-            sourceTree = '<group>';
-            children = ('__PBXFileRef_Packages/CFEnvironment-1.0.0/Tests/CFEnvironment/MainTests.swift', '__PBXFileRef_Packages/CFEnvironment-1.0.0/Tests/CFEnvironment/UtilsTests.swift');
-        };
-        '__PBXFileRef_Packages/CFEnvironment-1.0.0/Tests/CFEnvironment/MainTests.swift' = {
-            isa = PBXFileReference;
-            lastKnownFileType = sourcecode.swift;
-            name = 'MainTests.swift';
-            sourceTree = '<group>';
-        };
-        '__PBXFileRef_Packages/CFEnvironment-1.0.0/Tests/CFEnvironment/UtilsTests.swift' = {
-            isa = PBXFileReference;
-            lastKnownFileType = sourcecode.swift;
-            name = 'UtilsTests.swift';
-            sourceTree = '<group>';
-        };
-        ______Target_CFEnvironmentTestSuite = {
-            isa = PBXNativeTarget;
-            buildConfigurationList = _______Confs_CFEnvironmentTestSuite;
-            buildPhases = (CompilePhase_CFEnvironmentTestSuite, ___LinkPhase_CFEnvironmentTestSuite);
-            buildRules = ();
-            dependencies = (__Dependency_SwiftyJSON, __Dependency_CFEnvironment);
-            name = CFEnvironment.testsuite;
-            productName = CFEnvironmentTestSuite;
-            productReference = _____Product_CFEnvironmentTestSuite;
-            productType = 'com.apple.product-type.bundle.unit-test';
-        };
-        _____Product_CFEnvironmentTestSuite = {
-            isa = PBXFileReference;
-            explicitFileType = 'compiled.mach-o.wrapper.cfbundle';
-            path = 'CFEnvironmentTestSuite.xctest';
-            sourceTree = BUILT_PRODUCTS_DIR;
-        };
-        CompilePhase_CFEnvironmentTestSuite = {
-            isa = PBXSourcesBuildPhase;
-            files = ('__src_cc_ref_Packages/CFEnvironment-1.0.0/Tests/CFEnvironment/MainTests.swift', '__src_cc_ref_Packages/CFEnvironment-1.0.0/Tests/CFEnvironment/UtilsTests.swift');
-            runOnlyForDeploymentPostprocessing = 0;
-        };
-        ___LinkPhase_CFEnvironmentTestSuite = {
-            isa = PBXFrameworksBuildPhase;
-            files = (_LinkFileRef_SwiftyJSON, _LinkFileRef_CFEnvironment);
-            runOnlyForDeploymentPostprocessing = 0;
-        };
-        '__src_cc_ref_Packages/CFEnvironment-1.0.0/Tests/CFEnvironment/MainTests.swift' = {
-            isa = PBXBuildFile;
-            fileRef = '__PBXFileRef_Packages/CFEnvironment-1.0.0/Tests/CFEnvironment/MainTests.swift';
-        };
-        '__src_cc_ref_Packages/CFEnvironment-1.0.0/Tests/CFEnvironment/UtilsTests.swift' = {
-            isa = PBXBuildFile;
-            fileRef = '__PBXFileRef_Packages/CFEnvironment-1.0.0/Tests/CFEnvironment/UtilsTests.swift';
-        };
-        _LinkFileRef_CFEnvironmentTestSuite = {
-            isa = PBXBuildFile;
-            fileRef = _____Product_CFEnvironmentTestSuite;
-        };
-        _______Confs_CFEnvironmentTestSuite = {
-            isa = XCConfigurationList;
-            buildConfigurations = (___DebugConf_CFEnvironmentTestSuite, _ReleaseConf_CFEnvironmentTestSuite);
-            defaultConfigurationIsVisible = 0;
-            defaultConfigurationName = Debug;
-        };
-        ___DebugConf_CFEnvironmentTestSuite = {
-            isa = XCBuildConfiguration;
-            buildSettings = { LD_RUNPATH_SEARCH_PATHS = '@loader_path/../Frameworks'; PRODUCT_MODULE_NAME = CFEnvironmentTestSuite; OTHER_SWIFT_FLAGS = -DXcode; COMBINE_HIDPI_IMAGES = YES; MACOSX_DEPLOYMENT_TARGET = '10.10'; SWIFT_OPTIMIZATION_LEVEL = -Onone; EMBEDDED_CONTENT_CONTAINS_SWIFT = YES; PRODUCT_NAME = '$(TARGET_NAME)'; };
-            name = Debug;
-        };
-        _ReleaseConf_CFEnvironmentTestSuite = {
-            isa = XCBuildConfiguration;
-            buildSettings = { LD_RUNPATH_SEARCH_PATHS = '@loader_path/../Frameworks'; PRODUCT_MODULE_NAME = CFEnvironmentTestSuite; OTHER_SWIFT_FLAGS = -DXcode; COMBINE_HIDPI_IMAGES = YES; MACOSX_DEPLOYMENT_TARGET = '10.10'; EMBEDDED_CONTENT_CONTAINS_SWIFT = YES; PRODUCT_NAME = '$(TARGET_NAME)'; };
-            name = Release;
-        };
-        __Dependency_CFEnvironmentTestSuite = {
-            isa = PBXTargetDependency;
-            target = ______Target_CFEnvironmentTestSuite;
-        };
-        _______Group_Server = {
-            isa = PBXGroup;
-            name = Server;
-            path = 'Sources/Server';
-            sourceTree = '<group>';
-            children = ('__PBXFileRef_Sources/Server/main.swift');
-        };
-        '__PBXFileRef_Sources/Server/main.swift' = {
-            isa = PBXFileReference;
-            lastKnownFileType = sourcecode.swift;
-            name = 'main.swift';
-            sourceTree = '<group>';
-        };
-        ______Target_Server = {
-            isa = PBXNativeTarget;
-            buildConfigurationList = _______Confs_Server;
-            buildPhases = (CompilePhase_Server, ___LinkPhase_Server);
-            buildRules = ();
-            dependencies = (__Dependency_SwiftyJSON, __Dependency_CFEnvironment, __Dependency_Utils);
-            name = Server;
-            productName = Server;
-            productReference = _____Product_Server;
-            productType = 'com.apple.product-type.tool';
-        };
-        _____Product_Server = {
-            isa = PBXFileReference;
-            explicitFileType = 'compiled.mach-o.executable';
-            path = 'Server';
-            sourceTree = BUILT_PRODUCTS_DIR;
-        };
-        CompilePhase_Server = {
-            isa = PBXSourcesBuildPhase;
-            files = ('__src_cc_ref_Sources/Server/main.swift');
-            runOnlyForDeploymentPostprocessing = 0;
-        };
-        ___LinkPhase_Server = {
-            isa = PBXFrameworksBuildPhase;
-            files = (_LinkFileRef_SwiftyJSON, _LinkFileRef_CFEnvironment, _LinkFileRef_Utils);
-            runOnlyForDeploymentPostprocessing = 0;
-        };
-        '__src_cc_ref_Sources/Server/main.swift' = {
-            isa = PBXBuildFile;
-            fileRef = '__PBXFileRef_Sources/Server/main.swift';
-        };
-        _LinkFileRef_Server = {
-            isa = PBXBuildFile;
-            fileRef = _____Product_Server;
-        };
-        _______Confs_Server = {
-            isa = XCConfigurationList;
-            buildConfigurations = (___DebugConf_Server, _ReleaseConf_Server);
-            defaultConfigurationIsVisible = 0;
-            defaultConfigurationName = Debug;
-        };
-        ___DebugConf_Server = {
-            isa = XCBuildConfiguration;
-            buildSettings = { LD_RUNPATH_SEARCH_PATHS = '$(TOOLCHAIN_DIR)/usr/lib/swift/macosx'; PRODUCT_MODULE_NAME = Server; OTHER_SWIFT_FLAGS = -DXcode; COMBINE_HIDPI_IMAGES = YES; MACOSX_DEPLOYMENT_TARGET = '10.10'; SWIFT_FORCE_STATIC_LINK_STDLIB = NO; SWIFT_FORCE_DYNAMIC_LINK_STDLIB = YES; SWIFT_OPTIMIZATION_LEVEL = -Onone; PRODUCT_NAME = '$(TARGET_NAME)'; };
-            name = Debug;
-        };
-        _ReleaseConf_Server = {
-            isa = XCBuildConfiguration;
-            buildSettings = { LD_RUNPATH_SEARCH_PATHS = '$(TOOLCHAIN_DIR)/usr/lib/swift/macosx'; PRODUCT_MODULE_NAME = Server; OTHER_SWIFT_FLAGS = -DXcode; COMBINE_HIDPI_IMAGES = YES; MACOSX_DEPLOYMENT_TARGET = '10.10'; SWIFT_FORCE_STATIC_LINK_STDLIB = NO; SWIFT_FORCE_DYNAMIC_LINK_STDLIB = YES; PRODUCT_NAME = '$(TARGET_NAME)'; };
-            name = Release;
-        };
-        __Dependency_Server = {
-            isa = PBXTargetDependency;
-            target = ______Target_Server;
-        };
-        _______Group_Utils = {
-            isa = PBXGroup;
-            name = Utils;
-            path = 'Sources/Utils';
-            sourceTree = '<group>';
-            children = ('__PBXFileRef_Sources/Utils/Address.swift', '__PBXFileRef_Sources/Utils/ArgumentsParser.swift', '__PBXFileRef_Sources/Utils/FD.swift', '__PBXFileRef_Sources/Utils/HttpResponse.swift', '__PBXFileRef_Sources/Utils/Socket.swift', '__PBXFileRef_Sources/Utils/StringUtils.swift');
-        };
-        '__PBXFileRef_Sources/Utils/Address.swift' = {
-            isa = PBXFileReference;
-            lastKnownFileType = sourcecode.swift;
-            name = 'Address.swift';
-            sourceTree = '<group>';
-        };
-        '__PBXFileRef_Sources/Utils/ArgumentsParser.swift' = {
-            isa = PBXFileReference;
-            lastKnownFileType = sourcecode.swift;
-            name = 'ArgumentsParser.swift';
-            sourceTree = '<group>';
-        };
-        '__PBXFileRef_Sources/Utils/FD.swift' = {
-            isa = PBXFileReference;
-            lastKnownFileType = sourcecode.swift;
-            name = 'FD.swift';
-            sourceTree = '<group>';
-        };
-        '__PBXFileRef_Sources/Utils/HttpResponse.swift' = {
-            isa = PBXFileReference;
-            lastKnownFileType = sourcecode.swift;
-            name = 'HttpResponse.swift';
-            sourceTree = '<group>';
-        };
-        '__PBXFileRef_Sources/Utils/Socket.swift' = {
-            isa = PBXFileReference;
-            lastKnownFileType = sourcecode.swift;
-            name = 'Socket.swift';
-            sourceTree = '<group>';
-        };
-        '__PBXFileRef_Sources/Utils/StringUtils.swift' = {
-            isa = PBXFileReference;
-            lastKnownFileType = sourcecode.swift;
-            name = 'StringUtils.swift';
-            sourceTree = '<group>';
-        };
-        ______Target_Utils = {
-            isa = PBXNativeTarget;
-            buildConfigurationList = _______Confs_Utils;
-            buildPhases = (CompilePhase_Utils, ___LinkPhase_Utils);
-            buildRules = ();
-            dependencies = (__Dependency_SwiftyJSON, __Dependency_CFEnvironment);
-            name = Utils;
-            productName = Utils;
-            productReference = _____Product_Utils;
-            productType = 'com.apple.product-type.library.dynamic';
-        };
-        _____Product_Utils = {
-            isa = PBXFileReference;
-            explicitFileType = 'compiled.mach-o.dylib';
-            path = 'Utils.dylib';
-            sourceTree = BUILT_PRODUCTS_DIR;
-        };
-        CompilePhase_Utils = {
-            isa = PBXSourcesBuildPhase;
-            files = ('__src_cc_ref_Sources/Utils/Address.swift', '__src_cc_ref_Sources/Utils/ArgumentsParser.swift', '__src_cc_ref_Sources/Utils/FD.swift', '__src_cc_ref_Sources/Utils/HttpResponse.swift', '__src_cc_ref_Sources/Utils/Socket.swift', '__src_cc_ref_Sources/Utils/StringUtils.swift');
-            runOnlyForDeploymentPostprocessing = 0;
-        };
-        ___LinkPhase_Utils = {
-            isa = PBXFrameworksBuildPhase;
-            files = (_LinkFileRef_SwiftyJSON, _LinkFileRef_CFEnvironment);
-            runOnlyForDeploymentPostprocessing = 0;
-        };
-        '__src_cc_ref_Sources/Utils/Address.swift' = {
-            isa = PBXBuildFile;
-            fileRef = '__PBXFileRef_Sources/Utils/Address.swift';
-        };
-        '__src_cc_ref_Sources/Utils/ArgumentsParser.swift' = {
-            isa = PBXBuildFile;
-            fileRef = '__PBXFileRef_Sources/Utils/ArgumentsParser.swift';
-        };
-        '__src_cc_ref_Sources/Utils/FD.swift' = {
-            isa = PBXBuildFile;
-            fileRef = '__PBXFileRef_Sources/Utils/FD.swift';
-        };
-        '__src_cc_ref_Sources/Utils/HttpResponse.swift' = {
-            isa = PBXBuildFile;
-            fileRef = '__PBXFileRef_Sources/Utils/HttpResponse.swift';
-        };
-        '__src_cc_ref_Sources/Utils/Socket.swift' = {
-            isa = PBXBuildFile;
-            fileRef = '__PBXFileRef_Sources/Utils/Socket.swift';
-        };
-        '__src_cc_ref_Sources/Utils/StringUtils.swift' = {
-            isa = PBXBuildFile;
-            fileRef = '__PBXFileRef_Sources/Utils/StringUtils.swift';
-        };
-        _LinkFileRef_Utils = {
-            isa = PBXBuildFile;
-            fileRef = _____Product_Utils;
-        };
-        _______Confs_Utils = {
-            isa = XCConfigurationList;
-            buildConfigurations = (___DebugConf_Utils, _ReleaseConf_Utils);
-            defaultConfigurationIsVisible = 0;
-            defaultConfigurationName = Debug;
-        };
-        ___DebugConf_Utils = {
-            isa = XCBuildConfiguration;
-            buildSettings = { DYLIB_INSTALL_NAME_BASE = '$(CONFIGURATION_BUILD_DIR)'; LD_RUNPATH_SEARCH_PATHS = '$(TOOLCHAIN_DIR)/usr/lib/swift/macosx'; PRODUCT_MODULE_NAME = Utils; ENABLE_TESTABILITY = YES; OTHER_SWIFT_FLAGS = -DXcode; COMBINE_HIDPI_IMAGES = YES; MACOSX_DEPLOYMENT_TARGET = '10.10'; SWIFT_OPTIMIZATION_LEVEL = -Onone; PRODUCT_NAME = 'lib$(TARGET_NAME)'; };
-            name = Debug;
-        };
-        _ReleaseConf_Utils = {
-            isa = XCBuildConfiguration;
-            buildSettings = { DYLIB_INSTALL_NAME_BASE = '$(CONFIGURATION_BUILD_DIR)'; LD_RUNPATH_SEARCH_PATHS = '$(TOOLCHAIN_DIR)/usr/lib/swift/macosx'; PRODUCT_MODULE_NAME = Utils; ENABLE_TESTABILITY = YES; OTHER_SWIFT_FLAGS = -DXcode; COMBINE_HIDPI_IMAGES = YES; MACOSX_DEPLOYMENT_TARGET = '10.10'; PRODUCT_NAME = 'lib$(TARGET_NAME)'; };
-            name = Release;
-        };
-        __Dependency_Utils = {
-            isa = PBXTargetDependency;
-            target = ______Target_Utils;
-        };
-        _____Sources_ = {
-            isa = PBXGroup;
-            children = (_______Group_SwiftyJSON, _______Group_CFEnvironment, _______Group_Server, _______Group_Utils);
-            name = Sources;
-            sourceTree = '<group>';
-        };
-        _______Tests_ = {
-            isa = PBXGroup;
-            children = (_______Group_CFEnvironmentTestSuite);
-            name = Tests;
-            sourceTree = '<group>';
-        };
-        _______Tests_ = {
-            isa = PBXGroup;
-            children = (_______Group_CFEnvironmentTestSuite);
-            name = Tests;
-            sourceTree = '<group>';
-        };
-       TestProducts_ = {
-            isa = PBXGroup;
-            children = (_____Product_CFEnvironmentTestSuite);
-            name = Tests;
-            sourceTree = '<group>';
-        };
-        ____Products_ = {
-            isa = PBXGroup;
-            children = (TestProducts_, _____Product_SwiftyJSON, _____Product_CFEnvironment, _____Product_Server, _____Product_Utils);
-            name = Products;
-            sourceTree = '<group>';
-        };
-        _______Debug_ = {
-            isa = XCBuildConfiguration;
-            buildSettings = {};
-            name = Debug;
-        };
-        _____Release_ = {
-            isa = XCBuildConfiguration;
-            buildSettings = {};
-            name = Release;
-        };
-        ___RootConfs_ = {
-            isa = XCConfigurationList;
-            buildConfigurations = (_______Debug_, _____Release_);
-            defaultConfigurationIsVisible = 0;
-            defaultConfigurationName = Debug;
-        };
-    };
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4946DE5C1CC29474007DA3DF /* libSwiftyJSON.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_SwiftyJSON" /* libSwiftyJSON.dylib */; };
+		4946DE5D1CC29474007DA3DF /* libCFEnvironment.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_CFEnvironment" /* libCFEnvironment.dylib */; };
+		4946DE5E1CC29474007DA3DF /* libSwiftyJSON.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_SwiftyJSON" /* libSwiftyJSON.dylib */; };
+		_LinkFileRef_CFEnvironment /* libCFEnvironment.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_CFEnvironment" /* libCFEnvironment.dylib */; };
+		_LinkFileRef_SwiftyJSON /* libSwiftyJSON.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_SwiftyJSON" /* libSwiftyJSON.dylib */; };
+		_LinkFileRef_Utils /* libUtils.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_Utils" /* libUtils.dylib */; };
+		"__src_cc_ref_Packages/CFEnvironment-1.0.0/Sources/CFEnvironment/App.swift" /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/CFEnvironment-1.0.0/Sources/CFEnvironment/App.swift" /* App.swift */; };
+		"__src_cc_ref_Packages/CFEnvironment-1.0.0/Sources/CFEnvironment/AppEnv.swift" /* AppEnv.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/CFEnvironment-1.0.0/Sources/CFEnvironment/AppEnv.swift" /* AppEnv.swift */; };
+		"__src_cc_ref_Packages/CFEnvironment-1.0.0/Sources/CFEnvironment/CFEnvironment.swift" /* CFEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/CFEnvironment-1.0.0/Sources/CFEnvironment/CFEnvironment.swift" /* CFEnvironment.swift */; };
+		"__src_cc_ref_Packages/CFEnvironment-1.0.0/Sources/CFEnvironment/CFEnvironmentError.swift" /* CFEnvironmentError.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/CFEnvironment-1.0.0/Sources/CFEnvironment/CFEnvironmentError.swift" /* CFEnvironmentError.swift */; };
+		"__src_cc_ref_Packages/CFEnvironment-1.0.0/Sources/CFEnvironment/DateUtils.swift" /* DateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/CFEnvironment-1.0.0/Sources/CFEnvironment/DateUtils.swift" /* DateUtils.swift */; };
+		"__src_cc_ref_Packages/CFEnvironment-1.0.0/Sources/CFEnvironment/JSONUtils.swift" /* JSONUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/CFEnvironment-1.0.0/Sources/CFEnvironment/JSONUtils.swift" /* JSONUtils.swift */; };
+		"__src_cc_ref_Packages/CFEnvironment-1.0.0/Sources/CFEnvironment/Service.swift" /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/CFEnvironment-1.0.0/Sources/CFEnvironment/Service.swift" /* Service.swift */; };
+		"__src_cc_ref_Packages/SwiftyJSON-6.0.0/Source/LclJSONSerialization.swift" /* LclJSONSerialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/SwiftyJSON-6.0.0/Source/LclJSONSerialization.swift" /* LclJSONSerialization.swift */; };
+		"__src_cc_ref_Packages/SwiftyJSON-6.0.0/Source/NSExtension.swift" /* NSExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/SwiftyJSON-6.0.0/Source/NSExtension.swift" /* NSExtension.swift */; };
+		"__src_cc_ref_Packages/SwiftyJSON-6.0.0/Source/SwiftyJSON.swift" /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/SwiftyJSON-6.0.0/Source/SwiftyJSON.swift" /* SwiftyJSON.swift */; };
+		__src_cc_ref_Sources/Server/main.swift /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/Server/main.swift /* main.swift */; };
+		__src_cc_ref_Sources/Utils/Address.swift /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/Utils/Address.swift /* Address.swift */; };
+		__src_cc_ref_Sources/Utils/ArgumentsParser.swift /* ArgumentsParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/Utils/ArgumentsParser.swift /* ArgumentsParser.swift */; };
+		__src_cc_ref_Sources/Utils/FD.swift /* FD.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/Utils/FD.swift /* FD.swift */; };
+		__src_cc_ref_Sources/Utils/HttpResponse.swift /* HttpResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/Utils/HttpResponse.swift /* HttpResponse.swift */; };
+		__src_cc_ref_Sources/Utils/Socket.swift /* Socket.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/Utils/Socket.swift /* Socket.swift */; };
+		__src_cc_ref_Sources/Utils/StringUtils.swift /* StringUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/Utils/StringUtils.swift /* StringUtils.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		4946DE5F1CC29474007DA3DF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = __RootObject_ /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "______Target_SwiftyJSON";
+			remoteInfo = SwiftyJSON;
+		};
+		4946DE601CC29474007DA3DF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = __RootObject_ /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "______Target_CFEnvironment";
+			remoteInfo = CFEnvironment;
+		};
+		4946DE611CC29474007DA3DF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = __RootObject_ /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "______Target_Utils";
+			remoteInfo = Utils;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		__PBXFileRef_Package.swift /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Package.swift; path = "/Users/olivieri/git/swift-helloworld/Package.swift"; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/CFEnvironment-1.0.0/Sources/CFEnvironment/App.swift" /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/CFEnvironment-1.0.0/Sources/CFEnvironment/AppEnv.swift" /* AppEnv.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEnv.swift; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/CFEnvironment-1.0.0/Sources/CFEnvironment/CFEnvironment.swift" /* CFEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFEnvironment.swift; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/CFEnvironment-1.0.0/Sources/CFEnvironment/CFEnvironmentError.swift" /* CFEnvironmentError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFEnvironmentError.swift; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/CFEnvironment-1.0.0/Sources/CFEnvironment/DateUtils.swift" /* DateUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtils.swift; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/CFEnvironment-1.0.0/Sources/CFEnvironment/JSONUtils.swift" /* JSONUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONUtils.swift; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/CFEnvironment-1.0.0/Sources/CFEnvironment/Service.swift" /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/SwiftyJSON-6.0.0/Source/LclJSONSerialization.swift" /* LclJSONSerialization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LclJSONSerialization.swift; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/SwiftyJSON-6.0.0/Source/NSExtension.swift" /* NSExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSExtension.swift; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/SwiftyJSON-6.0.0/Source/SwiftyJSON.swift" /* SwiftyJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
+		__PBXFileRef_Sources/Server/main.swift /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		__PBXFileRef_Sources/Utils/Address.swift /* Address.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
+		__PBXFileRef_Sources/Utils/ArgumentsParser.swift /* ArgumentsParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArgumentsParser.swift; sourceTree = "<group>"; };
+		__PBXFileRef_Sources/Utils/FD.swift /* FD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FD.swift; sourceTree = "<group>"; };
+		__PBXFileRef_Sources/Utils/HttpResponse.swift /* HttpResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpResponse.swift; sourceTree = "<group>"; };
+		__PBXFileRef_Sources/Utils/Socket.swift /* Socket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Socket.swift; sourceTree = "<group>"; };
+		__PBXFileRef_Sources/Utils/StringUtils.swift /* StringUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringUtils.swift; sourceTree = "<group>"; };
+		"_____Product_CFEnvironment" /* libCFEnvironment.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libCFEnvironment.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		"_____Product_Server" /* Server */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; path = Server; sourceTree = BUILT_PRODUCTS_DIR; };
+		"_____Product_SwiftyJSON" /* libSwiftyJSON.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libSwiftyJSON.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		"_____Product_Utils" /* libUtils.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libUtils.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		"___LinkPhase_CFEnvironment" /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 0;
+			files = (
+				_LinkFileRef_SwiftyJSON /* libSwiftyJSON.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		"___LinkPhase_Server" /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 0;
+			files = (
+				4946DE5C1CC29474007DA3DF /* libSwiftyJSON.dylib in Frameworks */,
+				4946DE5D1CC29474007DA3DF /* libCFEnvironment.dylib in Frameworks */,
+				_LinkFileRef_Utils /* libUtils.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		"___LinkPhase_SwiftyJSON" /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		"___LinkPhase_Utils" /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 0;
+			files = (
+				4946DE5E1CC29474007DA3DF /* libSwiftyJSON.dylib in Frameworks */,
+				_LinkFileRef_CFEnvironment /* libCFEnvironment.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		Dependencies_ /* Dependencies */ = {
+			isa = PBXGroup;
+			children = (
+				"_______Group_SwiftyJSON" /* SwiftyJSON */,
+				"_______Group_CFEnvironment" /* CFEnvironment */,
+			);
+			name = Dependencies;
+			sourceTree = "<group>";
+		};
+		"___RootGroup_" = {
+			isa = PBXGroup;
+			children = (
+				__PBXFileRef_Package.swift /* Package.swift */,
+				"_____Sources_" /* Sources */,
+				Dependencies_ /* Dependencies */,
+				"_______Tests_" /* Tests */,
+				"____Products_" /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		"____Products_" /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				"_____Product_SwiftyJSON" /* libSwiftyJSON.dylib */,
+				"_____Product_CFEnvironment" /* libCFEnvironment.dylib */,
+				"_____Product_Server" /* Server */,
+				"_____Product_Utils" /* libUtils.dylib */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		"_____Sources_" /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				"_______Group_Server" /* Server */,
+				"_______Group_Utils" /* Utils */,
+			);
+			name = Sources;
+			sourceTree = "<group>";
+		};
+		"_______Group_CFEnvironment" /* CFEnvironment */ = {
+			isa = PBXGroup;
+			children = (
+				"__PBXFileRef_Packages/CFEnvironment-1.0.0/Sources/CFEnvironment/App.swift" /* App.swift */,
+				"__PBXFileRef_Packages/CFEnvironment-1.0.0/Sources/CFEnvironment/AppEnv.swift" /* AppEnv.swift */,
+				"__PBXFileRef_Packages/CFEnvironment-1.0.0/Sources/CFEnvironment/CFEnvironment.swift" /* CFEnvironment.swift */,
+				"__PBXFileRef_Packages/CFEnvironment-1.0.0/Sources/CFEnvironment/CFEnvironmentError.swift" /* CFEnvironmentError.swift */,
+				"__PBXFileRef_Packages/CFEnvironment-1.0.0/Sources/CFEnvironment/DateUtils.swift" /* DateUtils.swift */,
+				"__PBXFileRef_Packages/CFEnvironment-1.0.0/Sources/CFEnvironment/JSONUtils.swift" /* JSONUtils.swift */,
+				"__PBXFileRef_Packages/CFEnvironment-1.0.0/Sources/CFEnvironment/Service.swift" /* Service.swift */,
+			);
+			name = CFEnvironment;
+			path = "Packages/CFEnvironment-1.0.0/Sources/CFEnvironment";
+			sourceTree = "<group>";
+		};
+		"_______Group_Server" /* Server */ = {
+			isa = PBXGroup;
+			children = (
+				__PBXFileRef_Sources/Server/main.swift /* main.swift */,
+			);
+			name = Server;
+			path = Sources/Server;
+			sourceTree = "<group>";
+		};
+		"_______Group_SwiftyJSON" /* SwiftyJSON */ = {
+			isa = PBXGroup;
+			children = (
+				"__PBXFileRef_Packages/SwiftyJSON-6.0.0/Source/LclJSONSerialization.swift" /* LclJSONSerialization.swift */,
+				"__PBXFileRef_Packages/SwiftyJSON-6.0.0/Source/NSExtension.swift" /* NSExtension.swift */,
+				"__PBXFileRef_Packages/SwiftyJSON-6.0.0/Source/SwiftyJSON.swift" /* SwiftyJSON.swift */,
+			);
+			name = SwiftyJSON;
+			path = "Packages/SwiftyJSON-6.0.0/Source";
+			sourceTree = "<group>";
+		};
+		"_______Group_Utils" /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				__PBXFileRef_Sources/Utils/Address.swift /* Address.swift */,
+				__PBXFileRef_Sources/Utils/ArgumentsParser.swift /* ArgumentsParser.swift */,
+				__PBXFileRef_Sources/Utils/FD.swift /* FD.swift */,
+				__PBXFileRef_Sources/Utils/HttpResponse.swift /* HttpResponse.swift */,
+				__PBXFileRef_Sources/Utils/Socket.swift /* Socket.swift */,
+				__PBXFileRef_Sources/Utils/StringUtils.swift /* StringUtils.swift */,
+			);
+			name = Utils;
+			path = Sources/Utils;
+			sourceTree = "<group>";
+		};
+		"_______Tests_" /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Tests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		"______Target_CFEnvironment" /* CFEnvironment */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = "_______Confs_CFEnvironment" /* Build configuration list for PBXNativeTarget "CFEnvironment" */;
+			buildPhases = (
+				CompilePhase_CFEnvironment /* Sources */,
+				"___LinkPhase_CFEnvironment" /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				__Dependency_SwiftyJSON /* PBXTargetDependency */,
+			);
+			name = CFEnvironment;
+			productName = CFEnvironment;
+			productReference = "_____Product_CFEnvironment" /* libCFEnvironment.dylib */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
+		"______Target_Server" /* Server */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = "_______Confs_Server" /* Build configuration list for PBXNativeTarget "Server" */;
+			buildPhases = (
+				CompilePhase_Server /* Sources */,
+				"___LinkPhase_Server" /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				__Dependency_SwiftyJSON /* PBXTargetDependency */,
+				__Dependency_CFEnvironment /* PBXTargetDependency */,
+				__Dependency_Utils /* PBXTargetDependency */,
+			);
+			name = Server;
+			productName = Server;
+			productReference = "_____Product_Server" /* Server */;
+			productType = "com.apple.product-type.tool";
+		};
+		"______Target_SwiftyJSON" /* SwiftyJSON */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = "_______Confs_SwiftyJSON" /* Build configuration list for PBXNativeTarget "SwiftyJSON" */;
+			buildPhases = (
+				CompilePhase_SwiftyJSON /* Sources */,
+				"___LinkPhase_SwiftyJSON" /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SwiftyJSON;
+			productName = SwiftyJSON;
+			productReference = "_____Product_SwiftyJSON" /* libSwiftyJSON.dylib */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
+		"______Target_Utils" /* Utils */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = "_______Confs_Utils" /* Build configuration list for PBXNativeTarget "Utils" */;
+			buildPhases = (
+				CompilePhase_Utils /* Sources */,
+				"___LinkPhase_Utils" /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				__Dependency_SwiftyJSON /* PBXTargetDependency */,
+				__Dependency_CFEnvironment /* PBXTargetDependency */,
+			);
+			name = Utils;
+			productName = Utils;
+			productReference = "_____Product_Utils" /* libUtils.dylib */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		__RootObject_ /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 9999;
+			};
+			buildConfigurationList = "___RootConfs_" /* Build configuration list for PBXProject "HelloWorldSwift" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = "___RootGroup_";
+			productRefGroup = "____Products_" /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				"______Target_SwiftyJSON" /* SwiftyJSON */,
+				"______Target_CFEnvironment" /* CFEnvironment */,
+				"______Target_Server" /* Server */,
+				"______Target_Utils" /* Utils */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CompilePhase_CFEnvironment /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				"__src_cc_ref_Packages/CFEnvironment-1.0.0/Sources/CFEnvironment/App.swift" /* App.swift in Sources */,
+				"__src_cc_ref_Packages/CFEnvironment-1.0.0/Sources/CFEnvironment/AppEnv.swift" /* AppEnv.swift in Sources */,
+				"__src_cc_ref_Packages/CFEnvironment-1.0.0/Sources/CFEnvironment/CFEnvironment.swift" /* CFEnvironment.swift in Sources */,
+				"__src_cc_ref_Packages/CFEnvironment-1.0.0/Sources/CFEnvironment/CFEnvironmentError.swift" /* CFEnvironmentError.swift in Sources */,
+				"__src_cc_ref_Packages/CFEnvironment-1.0.0/Sources/CFEnvironment/DateUtils.swift" /* DateUtils.swift in Sources */,
+				"__src_cc_ref_Packages/CFEnvironment-1.0.0/Sources/CFEnvironment/JSONUtils.swift" /* JSONUtils.swift in Sources */,
+				"__src_cc_ref_Packages/CFEnvironment-1.0.0/Sources/CFEnvironment/Service.swift" /* Service.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CompilePhase_Server /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				__src_cc_ref_Sources/Server/main.swift /* main.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CompilePhase_SwiftyJSON /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				"__src_cc_ref_Packages/SwiftyJSON-6.0.0/Source/LclJSONSerialization.swift" /* LclJSONSerialization.swift in Sources */,
+				"__src_cc_ref_Packages/SwiftyJSON-6.0.0/Source/NSExtension.swift" /* NSExtension.swift in Sources */,
+				"__src_cc_ref_Packages/SwiftyJSON-6.0.0/Source/SwiftyJSON.swift" /* SwiftyJSON.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CompilePhase_Utils /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				__src_cc_ref_Sources/Utils/Address.swift /* Address.swift in Sources */,
+				__src_cc_ref_Sources/Utils/ArgumentsParser.swift /* ArgumentsParser.swift in Sources */,
+				__src_cc_ref_Sources/Utils/FD.swift /* FD.swift in Sources */,
+				__src_cc_ref_Sources/Utils/HttpResponse.swift /* HttpResponse.swift in Sources */,
+				__src_cc_ref_Sources/Utils/Socket.swift /* Socket.swift in Sources */,
+				__src_cc_ref_Sources/Utils/StringUtils.swift /* StringUtils.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		__Dependency_CFEnvironment /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "______Target_CFEnvironment" /* CFEnvironment */;
+			targetProxy = 4946DE601CC29474007DA3DF /* PBXContainerItemProxy */;
+		};
+		__Dependency_SwiftyJSON /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "______Target_SwiftyJSON" /* SwiftyJSON */;
+			targetProxy = 4946DE5F1CC29474007DA3DF /* PBXContainerItemProxy */;
+		};
+		__Dependency_Utils /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "______Target_Utils" /* Utils */;
+			targetProxy = 4946DE611CC29474007DA3DF /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		_ReleaseConf_CFEnvironment /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DYLIB_INSTALL_NAME_BASE = "$(CONFIGURATION_BUILD_DIR)";
+				ENABLE_TESTABILITY = YES;
+				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				OTHER_SWIFT_FLAGS = "-DXcode";
+				PRODUCT_MODULE_NAME = CFEnvironment;
+				PRODUCT_NAME = "lib$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		_ReleaseConf_Server /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				OTHER_SWIFT_FLAGS = "-DXcode";
+				PRODUCT_MODULE_NAME = Server;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_FORCE_DYNAMIC_LINK_STDLIB = YES;
+				SWIFT_FORCE_STATIC_LINK_STDLIB = NO;
+			};
+			name = Release;
+		};
+		_ReleaseConf_SwiftyJSON /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DYLIB_INSTALL_NAME_BASE = "$(CONFIGURATION_BUILD_DIR)";
+				ENABLE_TESTABILITY = YES;
+				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				OTHER_SWIFT_FLAGS = "-DXcode";
+				PRODUCT_MODULE_NAME = SwiftyJSON;
+				PRODUCT_NAME = "lib$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		_ReleaseConf_Utils /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DYLIB_INSTALL_NAME_BASE = "$(CONFIGURATION_BUILD_DIR)";
+				ENABLE_TESTABILITY = YES;
+				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				OTHER_SWIFT_FLAGS = "-DXcode";
+				PRODUCT_MODULE_NAME = Utils;
+				PRODUCT_NAME = "lib$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		"___DebugConf_CFEnvironment" /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DYLIB_INSTALL_NAME_BASE = "$(CONFIGURATION_BUILD_DIR)";
+				ENABLE_TESTABILITY = YES;
+				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				OTHER_SWIFT_FLAGS = "-DXcode";
+				PRODUCT_MODULE_NAME = CFEnvironment;
+				PRODUCT_NAME = "lib$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		"___DebugConf_Server" /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				OTHER_SWIFT_FLAGS = "-DXcode";
+				PRODUCT_MODULE_NAME = Server;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_FORCE_DYNAMIC_LINK_STDLIB = YES;
+				SWIFT_FORCE_STATIC_LINK_STDLIB = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		"___DebugConf_SwiftyJSON" /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DYLIB_INSTALL_NAME_BASE = "$(CONFIGURATION_BUILD_DIR)";
+				ENABLE_TESTABILITY = YES;
+				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				OTHER_SWIFT_FLAGS = "-DXcode";
+				PRODUCT_MODULE_NAME = SwiftyJSON;
+				PRODUCT_NAME = "lib$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		"___DebugConf_Utils" /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DYLIB_INSTALL_NAME_BASE = "$(CONFIGURATION_BUILD_DIR)";
+				ENABLE_TESTABILITY = YES;
+				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				OTHER_SWIFT_FLAGS = "-DXcode";
+				PRODUCT_MODULE_NAME = Utils;
+				PRODUCT_NAME = "lib$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		"_____Release_" /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Release;
+		};
+		"_______Debug_" /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		"___RootConfs_" /* Build configuration list for PBXProject "HelloWorldSwift" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				"_______Debug_" /* Debug */,
+				"_____Release_" /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		"_______Confs_CFEnvironment" /* Build configuration list for PBXNativeTarget "CFEnvironment" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				"___DebugConf_CFEnvironment" /* Debug */,
+				_ReleaseConf_CFEnvironment /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		"_______Confs_Server" /* Build configuration list for PBXNativeTarget "Server" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				"___DebugConf_Server" /* Debug */,
+				_ReleaseConf_Server /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		"_______Confs_SwiftyJSON" /* Build configuration list for PBXNativeTarget "SwiftyJSON" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				"___DebugConf_SwiftyJSON" /* Debug */,
+				_ReleaseConf_SwiftyJSON /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		"_______Confs_Utils" /* Build configuration list for PBXNativeTarget "Utils" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				"___DebugConf_Utils" /* Debug */,
+				_ReleaseConf_Utils /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = __RootObject_ /* Project object */;
 }

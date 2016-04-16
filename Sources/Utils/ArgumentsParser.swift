@@ -22,7 +22,7 @@ public func parseAddress() -> Address {
     #if os(Linux)
       let tokens = args[1].bridge().componentsSeparatedByString(":")
     #else
-      let tokens = args[1].bridge().componentsSeparated(by: ":")
+      let tokens = args[1].components(separatedBy: ":")
     #endif
     if (tokens.count == 2) {
       ip = tokens[0]

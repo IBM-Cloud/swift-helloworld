@@ -46,16 +46,6 @@
     selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
     shouldUseLaunchSchemeArgsEnv = "YES">
     <Testables>
-    <TestableReference
-      skipped = "NO">
-      <BuildableReference
-        BuildableIdentifier = "primary"
-        BlueprintIdentifier = "______Target_CFEnvironmentTestSuite"
-        BuildableName = "CFEnvironmentTestSuite.xctest"
-        BlueprintName = "CFEnvironment.testsuite"
-        ReferencedContainer = "container:HelloWorldSwift.xcodeproj">
-      </BuildableReference>
-    </TestableReference>
     </Testables>
   </TestAction>
 </Scheme>

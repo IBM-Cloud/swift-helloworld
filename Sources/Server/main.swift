@@ -32,12 +32,12 @@ import Utils
 // Generate HTTP response
 do {
   let appEnv = try CFEnvironment.getAppEnv()
-  let httpResponse = generateHttpResponse(appEnv)
+  let httpResponse = generateHttpResponse(appEnv: appEnv)
 
   // Create server socket
   //let address = parseAddress()
   let address = Address(ip: appEnv.bind, port: UInt16(appEnv.port))
-  let server_sockfd = createSocket(address)
+  let server_sockfd = createSocket(address: address)
   // Listen on socket with queue of 5
   listen(server_sockfd, 5)
   var active_fd_set = fd_set()
@@ -45,7 +45,7 @@ do {
   print("Server is listening on port: \(address.port)\n")
 
   // Initialize the set of active sockets
-  fdSet(server_sockfd, set: &active_fd_set)
+  fdSet(fd: server_sockfd, set: &active_fd_set)
 
   let FD_SETSIZE = Int32(1024)
 
@@ -56,7 +56,7 @@ do {
     select(FD_SETSIZE, &read_fd_set, nil, nil, nil)
     // Service all the sockets with input pending
     for i in 0..<FD_SETSIZE {
-      if fdIsSet(i,set: &read_fd_set) {
+        if fdIsSet(fd: i, set: &read_fd_set) {
         if i == server_sockfd {
           // Connection request on original socket
           var size = sizeof(sockaddr_in)
@@ -64,7 +64,7 @@ do {
           withUnsafeMutablePointers(&clientname, &size) { up1, up2 in
             var client_sockfd = accept(server_sockfd, UnsafeMutablePointer(up1), UnsafeMutablePointer(up2))
             print("Received connection request from client: " + String(inet_ntoa (clientname.sin_addr)) + ", port " + String(UInt16(clientname.sin_port).bigEndian))
-            fdSet(client_sockfd, set: &active_fd_set)
+            fdSet(fd: client_sockfd, set: &active_fd_set)
           }
         }
         else {
@@ -72,7 +72,7 @@ do {
           write(i, httpResponse, httpResponse.characters.count)
           // Close client socket
           close(i)
-          fdClr(i, set: &active_fd_set)
+          fdClr(fd: i, set: &active_fd_set)
         }
       }
     }
