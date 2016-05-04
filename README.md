@@ -86,10 +86,10 @@ Using manifest file /Users/olivieri/git/swift-helloworld/manifest.yml
 Creating app swift-helloworld in org john_doe@us.ibm.com / space dev as john_doe@us.ibm.com...
 OK
 
-Creating route swift-helloworld.stage1.mybluemix.net...
+Creating route swift-helloworld.mybluemix.net...
 OK
 
-Binding swift-helloworld.stage1.mybluemix.net to swift-helloworld...
+Binding swift-helloworld.mybluemix.net to swift-helloworld...
 OK
 
 Uploading swift-helloworld...
@@ -132,7 +132,7 @@ OK
 requested state: started
 instances: 1/1
 usage: 128M x 1 instances
-urls: swift-helloworld.stage1.mybluemix.net
+urls: swift-helloworld.mybluemix.net
 last uploaded: Thu Feb 11 16:25:08 UTC 2016
 stack: cflinuxfs2
 buildpack: Swift
@@ -141,7 +141,7 @@ buildpack: Swift
 #0   running   2016-02-11 10:27:43 AM   0.0%   6.4M of 128M   14M of 1G      
 ```
 
-Once the sample application is pushed to Bluemix, you can access it using its route. You can log on to your [Bluemix account](https://console.ng.bluemix.net) to find the route of your application or you can inspect the output from the execution of the `cf push` command.  The string value (e.g. swift-helloworld.stage1.mybluemix.net) shown next to the urls should contain the route.  Use that route as the URL to access the sample server using the browser of your choice.  The browser should render an HTML page with the following message:
+Once the sample application is pushed to Bluemix, you can access it using its route. You can log on to your [Bluemix account](https://console.ng.bluemix.net) to find the route of your application or you can inspect the output from the execution of the `cf push` command.  The string value (e.g. swift-helloworld.mybluemix.net) shown next to the urls should contain the route.  Use that route as the URL to access the sample server using the browser of your choice.  The browser should render an HTML page with the following message:
 ```
 Hello from Swift on Linux!
 ```
@@ -203,7 +203,7 @@ OK
 requested state: started
 instances: 1/1
 usage: 128M x 1 instances
-urls: swift-helloworld.stage1.mybluemix.net
+urls: swift-helloworld.mybluemix.net
 last uploaded: Thu Feb 11 20:22:04 UTC 2016
 stack: cflinuxfs2
 buildpack: Swift
