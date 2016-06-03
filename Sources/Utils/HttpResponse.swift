@@ -15,7 +15,7 @@
 **/
 
 import Foundation
-import CFEnvironment
+import CloudEnvironment
 
 public func generateHttpResponse(appEnv: AppEnv) -> String {
   var responseBody = "<html><body>Hello from Swift on Linux!" +

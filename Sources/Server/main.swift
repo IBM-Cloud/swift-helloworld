@@ -26,12 +26,12 @@ import Glibc
 import Darwin
 #endif
 
-import CFEnvironment
+import CloudEnvironment
 import Utils
 
 // Generate HTTP response
 do {
-  let appEnv = try CFEnvironment.getAppEnv()
+  let appEnv = try CloudEnvironment.getAppEnv()
   let httpResponse = generateHttpResponse(appEnv: appEnv)
 
   // Create server socket
@@ -77,6 +77,6 @@ do {
       }
     }
   }
-} catch CFEnvironmentError.InvalidValue {
+} catch CloudEnvironmentError.InvalidValue {
   print("Oops, something went wrong... Server did not start!")
 }
