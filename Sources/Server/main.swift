@@ -56,14 +56,14 @@ do {
     select(FD_SETSIZE, &read_fd_set, nil, nil, nil)
     // Service all the sockets with input pending
     for i in 0..<FD_SETSIZE {
-        if fdIsSet(fd: i, set: &read_fd_set) {
+      if fdIsSet(fd: i, set: &read_fd_set) {
         if i == server_sockfd {
           // Connection request on original socket
           var size = sizeof(sockaddr_in)
           // Accept request and assign socket
           withUnsafeMutablePointers(&clientname, &size) { up1, up2 in
             var client_sockfd = accept(server_sockfd, UnsafeMutablePointer(up1), UnsafeMutablePointer(up2))
-            print("Received connection request from client: " + String(inet_ntoa (clientname.sin_addr)) + ", port " + String(UInt16(clientname.sin_port).bigEndian))
+            print("Received connection request from client: " + String(cString: inet_ntoa (clientname.sin_addr)) + ", port " + String(UInt16(clientname.sin_port).bigEndian))
             fdSet(fd: client_sockfd, set: &active_fd_set)
           }
         }
