@@ -216,9 +216,9 @@ If you look closely at the output above returned by the `cf push` command, you w
 DEVELOPMENT-SNAPSHOT-2016-04-25-a
 ```
 
-After updating the `.swift-version` file, you can run the `cf push -b https://github.com/IBM-Swift/swift-buildpack` command.  Note that you'd need to add the `-b https://github.com/IBM-Swift/swift-buildpack` parameter for the execution of the `push` command.  This action should upload your application to Bluemix and use the `DEVELOPMENT-SNAPSHOT-2016-04-25-a` version of the Swift binaries for compiling and running your application as shown.
+After updating the `.swift-version` file, you can run the `cf push -b https://github.com/IBM-Swift/swift-buildpack` command.  Note that if using a version of the Swift binaries other than `DEVELOPMENT-SNAPSHOT-2016-05-03-a`, you'd need to add the `-b https://github.com/IBM-Swift/swift-buildpack` parameter for the execution of the `push` command.  This action should upload your application to Bluemix and use the `DEVELOPMENT-SNAPSHOT-2016-04-25-a` version of the Swift binaries for compiling and running your application as shown.
 
-For a complete list of the Swift versions currently supported by the Swift buildpack for Bluemix, see the buildpack's [manifest](https://github.com/IBM-Swift/swift-buildpack/blob/bluemix-buildpack/manifest.yml) file.
+For a complete list of the Swift versions currently supported by the Swift buildpack for Bluemix, see the buildpack's [manifest](https://github.com/IBM-Swift/swift-buildpack/blob/bluemix-buildpack/manifest.yml) file.  If you cannot find the version of the Swift binaries you are looking for in this file, then that version is not currently supported.
 
 ## What's next?
 As new releases of the Swift binaries are made available at (Swift.org)[https://swift.org/], our team will update the (Swift buildpack)[https://github.com/IBM-Swift/swift-buildpack] for Bluemix.  Also, our team is currently working on a much more advanced version of this HTTP server that will be available soon.  We also plan to provide Swift packages that will allow developers communicate with middleware services such as CouchDB and Cloudant.  Stay tuned for updates!
