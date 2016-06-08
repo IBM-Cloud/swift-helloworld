@@ -22,5 +22,8 @@ let package = Package(
     Target(name: "Utils", dependencies: []),
     Target(name: "Server", dependencies: [.Target(name: "Utils")])
   ],
-  dependencies: []
+  dependencies: [
+      .Package(url: "https://github.com/IBM-Swift/Swift-cfenv.git", majorVersion: 1, minor: 1),
+    ],
+  testDependencies: []
 )
