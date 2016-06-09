@@ -14,7 +14,7 @@ $ swift build
 You should see an output similar to the following:
 ```
 Compile Swift Module 'SwiftyJSON' (2 sources)
-Compile Swift Module 'CloudEnvironment' (7 sources)
+Compile Swift Module 'CloudFoundryEnv' (7 sources)
 Compile Swift Module 'Utils' (6 sources)
 Compile Swift Module 'Server' (1 sources)
 Linking .build/debug/Server
@@ -168,7 +168,7 @@ Reading package lists...
        Cloning https://github.com/IBM-Swift/SwiftyJSON.git
        Resolved version: 7.0.4
        Compile SwiftyJSON
-       Compile CloudEnvironment
+       Compile CloudFoundryEnv
        Compile Utils
        Compile Server
        Linking .build/release/Server
