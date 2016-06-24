@@ -2,7 +2,7 @@
 This project contains a simple Swift hello world application that can be deployed to Bluemix or run locally on your [OS X](http://www.apple.com/osx/) or [Ubuntu Linux](http://www.ubuntu.com/download) system.  This sample application creates a basic server that returns an HTML greeting to the client.  Please note that this is not a production-ready application.  Instead, it is for educational purposes to learn about the types of applications you can develop using the Swift programming language.
 
 ## Application Requirements
-To compile and run this sample application on your system, you need to install the [Swift compiler](https://swift.org/download/) for your platform. Please note that the Swift language is evolving and changing rapidly. The latest version of this Swift application works with the `DEVELOPMENT-SNAPSHOT-2016-05-03-a` version of the Swift binaries. You can download this version of the Swift binaries by following this [link](https://swift.org/download/).
+To compile and run this sample application on your system, you need to install the [Swift compiler](https://swift.org/download/) for your platform. Please note that the Swift language is evolving and changing rapidly. The latest version of this Swift application works with the `DEVELOPMENT-SNAPSHOT-2016-06-06-a` version of the Swift binaries. You can download this version of the Swift binaries by following this [link](https://swift.org/download/).
 
 If you are interested in manually deploying the application to Bluemix, you'd need to install the Cloud Foundry [command line](https://docs.cloudfoundry.org/devguide/cf-cli/install-go-cli.html) on your system.  Once it is installed, you can use it to [authenticate and access](https://www.ng.bluemix.net/docs/starters/install_cli.html) your Bluemix organization(s) and spaces.  You can find further details on how to deploy this sample application to Bluemix in the following sections.
 
@@ -91,39 +91,40 @@ Executing the Cloud Foundry push command will parse the contents of the manifest
 ```
 Using manifest file /Users/olivieri/git/swift-helloworld/manifest.yml
 
-Creating app swift-helloworld in org john_doe@us.ibm.com / space dev as john_doe@us.ibm.com...
+Creating app swift-helloworld in org roliv@us.ibm.com / space dev as roliv@us.ibm.com...
 OK
 
-Creating route swift-helloworld-shadowgraphic-insomnolence.mybluemix.net...
+Creating route swift-helloworld-molal-kaleidoscope.mybluemix.net...
 OK
 
-Binding swift-helloworld-shadowgraphic-insomnolence.mybluemix.net to swift-helloworld...
+Binding swift-helloworld-molal-kaleidoscope.mybluemix.net to swift-helloworld...
 OK
 
 Uploading swift-helloworld...
 Uploading app files from: /Users/olivieri/git/swift-helloworld
-Uploading 46.8K, 18 files
+Uploading 47.5K, 17 files
 Done uploading               
 OK
 
-Starting app swift-helloworld in org john_doe@us.ibm.com / space dev as john_doe@us.ibm.com...
+Starting app swift-helloworld in org roliv@us.ibm.com / space dev as roliv@us.ibm.com...
 -----> Downloaded app package (20K)
+Cloning into '/tmp/buildpacks/swift-buildpack'...
 -----> Installing system level dependencies...
 Ign http://archive.ubuntu.com trusty InRelease
 Get:1 http://archive.ubuntu.com trusty-updates InRelease [65.9 kB]
 Get:2 http://archive.ubuntu.com trusty-security InRelease [65.9 kB]
 Get:3 http://archive.ubuntu.com trusty Release.gpg [933 B]
 Get:4 http://archive.ubuntu.com trusty Release [58.5 kB]
-Get:5 http://archive.ubuntu.com trusty-updates/main amd64 Packages [970 kB]
-Get:6 http://archive.ubuntu.com trusty-updates/universe amd64 Packages [467 kB]
+Get:5 http://archive.ubuntu.com trusty-updates/main amd64 Packages [979 kB]
+Get:6 http://archive.ubuntu.com trusty-updates/universe amd64 Packages [468 kB]
 Get:7 http://archive.ubuntu.com trusty-updates/multiverse amd64 Packages [14.3 kB]
-Get:8 http://archive.ubuntu.com trusty-security/main amd64 Packages [609 kB]
+Get:8 http://archive.ubuntu.com trusty-security/main amd64 Packages [618 kB]
 Get:9 http://archive.ubuntu.com trusty-security/universe amd64 Packages [169 kB]
-Get:10 http://archive.ubuntu.com trusty-security/multiverse amd64 Packages [4,853 B]
+Get:10 http://archive.ubuntu.com trusty-security/multiverse amd64 Packages [4,857 B]
 Get:11 http://archive.ubuntu.com trusty/main amd64 Packages [1,743 kB]
 Get:12 http://archive.ubuntu.com trusty/universe amd64 Packages [7,589 kB]
 Get:13 http://archive.ubuntu.com trusty/multiverse amd64 Packages [169 kB]
-Fetched 11.9 MB in 8s (1,398 kB/s)
+Fetched 11.9 MB in 14s (798 kB/s)
 Reading package lists...
        Reading package lists...
        Building dependency tree...
@@ -135,7 +136,7 @@ Reading package lists...
          libblocksruntime-dev libblocksruntime0 libkqueue0
        The following packages will be upgraded:
          libssl-dev libssl1.0.0 openssl
-       3 upgraded, 3 newly installed, 1 reinstalled, 0 to remove and 103 not upgraded.
+       3 upgraded, 3 newly installed, 1 reinstalled, 0 to remove and 104 not upgraded.
        Need to get 2,600 kB of archives.
        After this operation, 229 kB of additional disk space will be used.
        Get:1 http://archive.ubuntu.com/ubuntu/ trusty-updates/main libssl-dev amd64 1.0.1f-1ubuntu2.19 [1,073 kB]
@@ -145,7 +146,7 @@ Reading package lists...
        Get:5 http://archive.ubuntu.com/ubuntu/ trusty/universe libblocksruntime0 amd64 0.1-1 [8,128 B]
        Get:6 http://archive.ubuntu.com/ubuntu/ trusty/universe libblocksruntime-dev amd64 0.1-1 [4,660 B]
        Get:7 http://archive.ubuntu.com/ubuntu/ trusty/universe libkqueue0 amd64 1.0.4-2ubuntu1 [23.4 kB]
-       Fetched 2,600 kB in 3s (750 kB/s)
+       Fetched 2,600 kB in 3s (762 kB/s)
        Download complete and in download only mode
 -----> Downloaded DEB files...
 -----> Installing libblocksruntime0_0.1-1_amd64.deb
@@ -156,27 +157,29 @@ Reading package lists...
 -----> Installing libssl-dev_1.0.1f-1ubuntu2.19_amd64.deb
 -----> Installing openssl_1.0.1f-1ubuntu2.19_amd64.deb
 -----> Writing profile script...
------> Buildpack version 1.1.1
------> Installing Swift DEVELOPMENT-SNAPSHOT-2016-05-03-a
+-----> Buildpack version 1.1.2
+-----> Installing Swift DEVELOPMENT-SNAPSHOT-2016-06-06-a
        Downloaded Swift
 -----> Installing Clang 3.7.0
        Downloaded Clang
 -----> Adding libdispatch binaries...
 -----> Building Package...
        Cloning https://github.com/IBM-Swift/Swift-cfenv.git
-       Resolved version: 1.1.0
+       HEAD is now at eefdf83 Migrating code to swift 06-06.
+       Resolved version: 1.3.0
        Cloning https://github.com/IBM-Swift/SwiftyJSON.git
-       Resolved version: 7.0.4
-       Compile SwiftyJSON
-       Compile CloudFoundryEnv
-       Compile Utils
-       Compile Server
+       HEAD is now at 3dc35da IBM-Swift/Kitura#504 updates to work on linux os for 31-05 migration (#5)
+       Resolved version: 9.0.0
+       Compile Swift Module 'SwiftyJSON' (2 sources)
+       Compile Swift Module 'CloudFoundryEnv' (7 sources)
+       Compile Swift Module 'Utils' (6 sources)
+       Compile Swift Module 'Server' (1 sources)
        Linking .build/release/Server
 -----> Copying dynamic libraries
 -----> Copying binaries to 'bin'
 -----> Cleaning up build files
-
------> Uploading droplet (9.4M)
+-----> Cleaning up cache folder
+-----> Uploading droplet (9.3M)
 
 0 of 1 instances running, 1 starting
 1 of 1 instances running
@@ -188,19 +191,19 @@ OK
 
 App swift-helloworld was started using this command `Server`
 
-Showing health and status for app swift-helloworld in org john_doe@us.ibm.com / space dev as john_doe@us.ibm.com...
+Showing health and status for app swift-helloworld in org roliv@us.ibm.com / space dev as roliv@us.ibm.com...
 OK
 
 requested state: started
 instances: 1/1
 usage: 128M x 1 instances
-urls: swift-helloworld-shadowgraphic-insomnolence.mybluemix.net
-last uploaded: Wed Jun 8 18:47:30 UTC 2016
+urls: swift-helloworld-molal-kaleidoscope.mybluemix.net
+last uploaded: Fri Jun 24 03:50:09 UTC 2016
 stack: unknown
-buildpack: Swift
+buildpack: https://github.com/IBM-Swift/swift-buildpack.git#develop
 
      state     since                    cpu    memory          disk          details   
-#0   running   2016-06-08 01:51:07 PM   0.0%   12.1M of 128M   34.1M of 1G      
+#0   running   2016-06-23 10:53:31 PM   0.0%   13.5M of 128M   31.5M of 1G      
 ```
 
 Once the sample application is pushed to Bluemix, you can access it using its route. You can log on to your [Bluemix account](https://console.ng.bluemix.net) to find the route of your application or you can inspect the output from the execution of the `cf push` command.  The string value (e.g. swift-helloworld.mybluemix.net) shown next to the urls should contain the route.  Use that route as the URL to access the sample server using the browser of your choice.  The browser should render an HTML page with the following message at the top:
@@ -210,13 +213,13 @@ Hello from Swift on Linux!
 ```
 
 ## Using a different version of Swift on Bluemix for your application
-If you look closely at the output above returned by the `cf push` command, you will notice that `DEVELOPMENT-SNAPSHOT-2016-05-03-a` was the Swift version used for compiling and running the sample app on Bluemix.  If you have a Swift application that compiles with a different version of the Swift binaries, say `DEVELOPMENT-SNAPSHOT-2016-04-25-a`, you'd need to update the contents of the `.swift-version` file to:
+If you look closely at the output above returned by the `cf push` command, you will notice that `DEVELOPMENT-SNAPSHOT-2016-06-06-a` was the Swift version used for compiling and running the sample app on Bluemix.  If you have a Swift application that compiles with a different version of the Swift binaries, say `DEVELOPMENT-SNAPSHOT-2016-04-25-a`, you'd need to update the contents of the `.swift-version` file to:
 
 ```
 DEVELOPMENT-SNAPSHOT-2016-04-25-a
 ```
 
-After updating the `.swift-version` file, you can run the `cf push -b https://github.com/IBM-Swift/swift-buildpack` command.  Note that if using a version of the Swift binaries other than `DEVELOPMENT-SNAPSHOT-2016-05-03-a`, you'd need to add the `-b https://github.com/IBM-Swift/swift-buildpack` parameter for the execution of the `push` command.  This action should upload your application to Bluemix and use the `DEVELOPMENT-SNAPSHOT-2016-04-25-a` version of the Swift binaries for compiling and running your application as shown.
+After updating the `.swift-version` file, you can run the `cf push -b https://github.com/IBM-Swift/swift-buildpack` command.  Note that if using a version of the Swift binaries other than `DEVELOPMENT-SNAPSHOT-2016-06-06-a`, you'd need to add the `-b https://github.com/IBM-Swift/swift-buildpack` parameter for the execution of the `push` command.  This action should upload your application to Bluemix and use the `DEVELOPMENT-SNAPSHOT-2016-04-25-a` version of the Swift binaries for compiling and running your application as shown.
 
 For a complete list of the Swift versions currently supported by the Swift buildpack for Bluemix, see the buildpack's [manifest](https://github.com/IBM-Swift/swift-buildpack/blob/bluemix-buildpack/manifest.yml) file.  If you cannot find the version of the Swift binaries you are looking for in this file, then that version is not currently supported.
 
