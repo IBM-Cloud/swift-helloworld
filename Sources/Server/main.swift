@@ -29,6 +29,9 @@ import Darwin
 import CloudFoundryEnv
 import Utils
 
+// Disable all buffering on stdout
+setbuf(stdout, nil)
+
 // Generate HTTP response
 do {
   let appEnv = try CloudFoundryEnv.getAppEnv()
@@ -38,11 +41,13 @@ do {
   //let address = parseAddress()
   let address = Address(ip: appEnv.bind, port: UInt16(appEnv.port))
   let server_sockfd = createSocket(address: address)
-  // Listen on socket with queue of 5
-  listen(server_sockfd, 5)
+
+  // Listen on socket with queue of 10
+  listen(server_sockfd, 10)
   var active_fd_set = fd_set()
   print("Server is starting on \(appEnv.url).")
-  print("Server is listening on port: \(address.port)\n")
+  print("Server is listening on port: \(address.port)")
+  print("<<<<<<<<<<<<<<<<<<")
 
   // Initialize the set of active sockets
   fdSet(fd: server_sockfd, set: &active_fd_set)
@@ -73,6 +78,8 @@ do {
           // Close client socket
           close(i)
           fdClr(fd: i, set: &active_fd_set)
+          print("Sent http response to client...")
+          print("<<<<<<<<<<<<<<<<<<")
         }
       }
     }
