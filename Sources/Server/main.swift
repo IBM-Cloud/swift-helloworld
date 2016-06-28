@@ -74,11 +74,16 @@ do {
         }
         else {
           // Send HTTP response back to client
-          write(i, httpResponse, httpResponse.characters.count)
+          let numberOfBytes = write(i, httpResponse, httpResponse.characters.count)
           // Close client socket
           close(i)
           fdClr(fd: i, set: &active_fd_set)
-          print("Sent http response to client...")
+          if numberOfBytes == -1 {
+            print("Oops... something went wrong.")
+            print("errno = $errno")
+          } else {
+            print("Sent http response to client...")
+          }
           print("<<<<<<<<<<<<<<<<<<")
         }
       }
