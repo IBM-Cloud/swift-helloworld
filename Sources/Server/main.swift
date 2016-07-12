@@ -40,11 +40,6 @@ do {
   let httpResponse = generateHttpResponse()
   // Create server/listening socket
   var socket = try Socket.create()
-  // guard let socket = listenSocket else {
-  //   let msg = "Failed to create Socket instance."
-  //   print(msg)
-  //   throw ServerError.Configuration(msg)
-  // }
   try socket.listen(on: appEnv.port, maxPendingConnections: 10)
   print("Server is starting on \(appEnv.url).")
   print("Server is listening on port: \(appEnv.port).\n")
@@ -52,15 +47,19 @@ do {
   while true {
     // Replace the listening socket with the newly accepted connection...
     let clientSocket = try socket.acceptClientConnection()
+    // Read data from client before writing to the socket
+    var data = NSMutableData()
+    let numberOfBytes = try clientSocket.read(into: data)
     counter = counter + 1
     print("<<<<<<<<<<<<<<<<<<")
     print("Request #: \(counter).")
     print("Accepted connection from: \(clientSocket.remoteHostname) on port \(clientSocket.remotePort).")
+    print("Number of bytes receieved from client: \(numberOfBytes)")
     try clientSocket.write(from: httpResponse)
     clientSocket.close()
     print("Sent http response to client...")
     print(">>>>>>>>>>>>>>>>>>>")
   }
-} catch CloudFoundryEnvError.InvalidValue {
-  print("Oops, something went wrong... Server did not start!")
+} catch {
+  print("Oops, something went wrong... Server did not start (or has died)!")
 }
