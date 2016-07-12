@@ -26,10 +26,10 @@ import Glibc
 import Darwin
 #endif
 
+import Foundation
 import Socket
 import CloudFoundryEnv
 import Utils
-import Foundation
 
 // Disable all buffering on stdout
 setbuf(stdout, nil)
