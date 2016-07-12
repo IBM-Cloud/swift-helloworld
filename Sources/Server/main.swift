@@ -35,7 +35,7 @@ setbuf(stdout, nil)
 // Generate HTTP response
 do {
   let appEnv = try CloudFoundryEnv.getAppEnv()
-  let httpResponse = generateHttpResponse(appEnv: appEnv)
+  let httpResponse = generateHttpResponse()
 
   // Create server socket
   //let address = parseAddress()
@@ -75,6 +75,7 @@ do {
         else {
           // Send HTTP response back to client
           let numberOfBytes = write(i, httpResponse, httpResponse.characters.count)
+          print("Number of bytes written: \(numberOfBytes)")
           // Close client socket
           close(i)
           fdClr(fd: i, set: &active_fd_set)
