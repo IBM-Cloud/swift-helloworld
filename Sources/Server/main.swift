@@ -26,8 +26,10 @@ import Glibc
 import Darwin
 #endif
 
+import Socket
 import CloudFoundryEnv
 import Utils
+import Foundation
 
 // Disable all buffering on stdout
 setbuf(stdout, nil)
@@ -36,59 +38,28 @@ setbuf(stdout, nil)
 do {
   let appEnv = try CloudFoundryEnv.getAppEnv()
   let httpResponse = generateHttpResponse()
-
-  // Create server socket
-  //let address = parseAddress()
-  let address = Address(ip: appEnv.bind, port: UInt16(appEnv.port))
-  let server_sockfd = createSocket(address: address)
-
-  // Listen on socket with queue of 10
-  listen(server_sockfd, 10)
-  var active_fd_set = fd_set()
+  // Create server/listening socket
+  var socket = try Socket.create()
+  // guard let socket = listenSocket else {
+  //   let msg = "Failed to create Socket instance."
+  //   print(msg)
+  //   throw ServerError.Configuration(msg)
+  // }
+  try socket.listen(on: appEnv.port, maxPendingConnections: 10)
   print("Server is starting on \(appEnv.url).")
-  print("Server is listening on port: \(address.port)")
-  print("<<<<<<<<<<<<<<<<<<")
-
-  // Initialize the set of active sockets
-  fdSet(fd: server_sockfd, set: &active_fd_set)
-
-  let FD_SETSIZE = Int32(1024)
-
-  var clientname = sockaddr_in()
+  print("Server is listening on port: \(appEnv.port).\n")
+  var counter = 0
   while true {
-    // Block until input arrives on one or more active sockets
-    var read_fd_set = active_fd_set;
-    select(FD_SETSIZE, &read_fd_set, nil, nil, nil)
-    // Service all the sockets with input pending
-    for i in 0..<FD_SETSIZE {
-      if fdIsSet(fd: i, set: &read_fd_set) {
-        if i == server_sockfd {
-          // Connection request on original socket
-          var size = sizeof(sockaddr_in)
-          // Accept request and assign socket
-          withUnsafeMutablePointers(&clientname, &size) { up1, up2 in
-            var client_sockfd = accept(server_sockfd, UnsafeMutablePointer(up1), UnsafeMutablePointer(up2))
-            print("Received connection request from client: " + String(cString: inet_ntoa (clientname.sin_addr)) + ", port " + String(UInt16(clientname.sin_port).bigEndian))
-            fdSet(fd: client_sockfd, set: &active_fd_set)
-          }
-        }
-        else {
-          // Send HTTP response back to client
-          let numberOfBytes = write(i, httpResponse, httpResponse.characters.count)
-          print("Number of bytes written: \(numberOfBytes)")
-          // Close client socket
-          close(i)
-          fdClr(fd: i, set: &active_fd_set)
-          if numberOfBytes == -1 {
-            print("Oops... something went wrong.")
-            print("errno = $errno")
-          } else {
-            print("Sent http response to client...")
-          }
-          print("<<<<<<<<<<<<<<<<<<")
-        }
-      }
-    }
+    // Replace the listening socket with the newly accepted connection...
+    let clientSocket = try socket.acceptClientConnection()
+    counter = counter + 1
+    print("<<<<<<<<<<<<<<<<<<")
+    print("Request #: \(counter).")
+    print("Accepted connection from: \(clientSocket.remoteHostname) on port \(clientSocket.remotePort).")
+    try clientSocket.write(from: httpResponse)
+    clientSocket.close()
+    print("Sent http response to client...")
+    print(">>>>>>>>>>>>>>>>>>>")
   }
 } catch CloudFoundryEnvError.InvalidValue {
   print("Oops, something went wrong... Server did not start!")

@@ -14,17 +14,6 @@
  * limitations under the License.
  **/
 
-import PackageDescription
-
-let package = Package(
-  name: "HelloWorldSwift",
-  targets: [
-    Target(name: "Utils", dependencies: []),
-    Target(name: "Server", dependencies: [.Target(name: "Utils")])
-  ],
-  dependencies: [
-      .Package(url: "https://github.com/IBM-Swift/Swift-cfenv.git", majorVersion: 1, minor: 3),
-      .Package(url: "https://github.com/IBM-Swift/BlueSocket.git", majorVersion: 0, minor: 5)
-    ],
-  testDependencies: []
-)
+public enum ServerError: ErrorProtocol {
+  case Configuration(String)
+}
