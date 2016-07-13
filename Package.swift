@@ -24,6 +24,7 @@ let package = Package(
   ],
   dependencies: [
       .Package(url: "https://github.com/IBM-Swift/Swift-cfenv.git", majorVersion: 1, minor: 3),
+      .Package(url: "https://github.com/IBM-Swift/BlueSocket.git", majorVersion: 0, minor: 5)
     ],
   testDependencies: []
 )

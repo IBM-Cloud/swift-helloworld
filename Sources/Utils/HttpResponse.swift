@@ -70,7 +70,7 @@ public func generateHttpResponse(appEnv: AppEnv) -> String {
   responseBody += "</html>"
 
   let httpResponse = "HTTP/1.0 200 OK\n" +
-  "Content-Type: text/html\n" +
+  "Content-Type: text/html; charset=UTF-8\n" +
   "Content-Length: \(responseBody.length) \n\n" +
   responseBody
 
