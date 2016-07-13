@@ -14,12 +14,12 @@
 * limitations under the License.
 **/
 
-public func parseAddress() -> Address {
+public func parseAddress() -> (String, Int) {
   let args = Array(Process.arguments[1..<Process.arguments.count])
   var port = 9080 // default port
   var ip = "0.0.0.0" // default ip
   if args.count == 2 && args[0] == "-bind" {
-    let tokens = args[1].components(separatedBy: ":")    
+    let tokens = args[1].components(separatedBy: ":")
     if (tokens.count == 2) {
       ip = tokens[0]
       if let portNumber = Int(tokens[1]) {
@@ -27,6 +27,5 @@ public func parseAddress() -> Address {
       }
     }
   }
-  let address = Address(ip: ip, port: UInt16(port))
-  return address
+  return (ip, port)
 }

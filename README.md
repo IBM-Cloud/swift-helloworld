@@ -13,9 +13,10 @@ $ swift build
 ```
 You should see an output similar to the following:
 ```
+Compile Swift Module 'Socket' (3 sources)
 Compile Swift Module 'SwiftyJSON' (2 sources)
 Compile Swift Module 'CloudFoundryEnv' (7 sources)
-Compile Swift Module 'Utils' (6 sources)
+Compile Swift Module 'Utils' (2 sources)
 Compile Swift Module 'Server' (1 sources)
 Linking .build/debug/Server
 ```
@@ -34,8 +35,6 @@ To connect to the server, you can use the browser of your preference (e.g. Firef
 ```
 Hello from Swift on Linux!
 ```
-
-Below the greeting message, you should also see an HTML table that displays the environment variables for the app.
 
 ## Running the app on Bluemix
 ### Using the magical button

@@ -34,7 +34,16 @@ import Utils
 // Disable all buffering on stdout
 setbuf(stdout, nil)
 
-// Generate HTTP response
+// Generate HTTP response for clients
+func generateHttpResponse() -> String {
+  let responseBody = "Hello from Swift on Linux!\n"
+  let httpResponse = "HTTP/1.0 200 OK\n" +
+  "Content-Type: text/plain; charset=UTF-8\n\n" +
+  responseBody
+  return httpResponse
+}
+
+// Main functionality
 do {
   let appEnv = try CloudFoundryEnv.getAppEnv()
   let httpResponse = generateHttpResponse()
