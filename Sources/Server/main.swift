@@ -37,7 +37,7 @@ setbuf(stdout, nil)
 // Main functionality
 do {
   let appEnv = try CloudFoundryEnv.getAppEnv()
-  let httpResponse = generateHttpResponse()
+  let httpResponse = generateHttpResponse(appEnv: appEnv)
   // Create server/listening socket
   var socket = try Socket.create()
   try socket.listen(on: appEnv.port, maxPendingConnections: 10)
