@@ -91,73 +91,30 @@ Executing the Cloud Foundry push command will parse the contents of the manifest
 ```
 Using manifest file /Users/olivieri/git/swift-helloworld/manifest.yml
 
-Creating app swift-helloworld in org roliv@us.ibm.com / space dev as roliv@us.ibm.com...
-OK
-
-Creating route swift-helloworld-molal-kaleidoscope.mybluemix.net...
-OK
-
-Binding swift-helloworld-molal-kaleidoscope.mybluemix.net to swift-helloworld...
+Updating app swift-helloworld in org roliv@us.ibm.com / space dev as roliv@us.ibm.com...
 OK
 
 Uploading swift-helloworld...
 Uploading app files from: /Users/olivieri/git/swift-helloworld
-Uploading 47.5K, 17 files
+Uploading 34.8K, 14 files
 Done uploading               
 OK
 
+Stopping app swift-helloworld in org roliv@us.ibm.com / space dev as roliv@us.ibm.com...
+OK
+
 Starting app swift-helloworld in org roliv@us.ibm.com / space dev as roliv@us.ibm.com...
------> Downloaded app package (20K)
+-----> Downloaded app package (16K)
 Cloning into '/tmp/buildpacks/swift-buildpack'...
 -----> Installing system level dependencies...
-Ign http://archive.ubuntu.com trusty InRelease
-Get:1 http://archive.ubuntu.com trusty-updates InRelease [65.9 kB]
-Get:2 http://archive.ubuntu.com trusty-security InRelease [65.9 kB]
-Get:3 http://archive.ubuntu.com trusty Release.gpg [933 B]
-Get:4 http://archive.ubuntu.com trusty Release [58.5 kB]
-Get:5 http://archive.ubuntu.com trusty-updates/main amd64 Packages [979 kB]
-Get:6 http://archive.ubuntu.com trusty-updates/universe amd64 Packages [468 kB]
-Get:7 http://archive.ubuntu.com trusty-updates/multiverse amd64 Packages [14.3 kB]
-Get:8 http://archive.ubuntu.com trusty-security/main amd64 Packages [618 kB]
-Get:9 http://archive.ubuntu.com trusty-security/universe amd64 Packages [169 kB]
-Get:10 http://archive.ubuntu.com trusty-security/multiverse amd64 Packages [4,857 B]
-Get:11 http://archive.ubuntu.com trusty/main amd64 Packages [1,743 kB]
-Get:12 http://archive.ubuntu.com trusty/universe amd64 Packages [7,589 kB]
-Get:13 http://archive.ubuntu.com trusty/multiverse amd64 Packages [169 kB]
-Fetched 11.9 MB in 14s (798 kB/s)
-Reading package lists...
-       Reading package lists...
-       Building dependency tree...
-       The following extra packages will be installed:
-         libblocksruntime0 libssl1.0.0
-       Recommended packages:
-         libssl-doc
-       The following NEW packages will be installed:
-         libblocksruntime-dev libblocksruntime0 libkqueue0
-       The following packages will be upgraded:
-         libssl-dev libssl1.0.0 openssl
-       3 upgraded, 3 newly installed, 1 reinstalled, 0 to remove and 104 not upgraded.
-       Need to get 2,600 kB of archives.
-       After this operation, 229 kB of additional disk space will be used.
-       Get:1 http://archive.ubuntu.com/ubuntu/ trusty-updates/main libssl-dev amd64 1.0.1f-1ubuntu2.19 [1,073 kB]
-       Get:2 http://archive.ubuntu.com/ubuntu/ trusty-updates/main libssl1.0.0 amd64 1.0.1f-1ubuntu2.19 [828 kB]
-       Get:3 http://archive.ubuntu.com/ubuntu/ trusty-updates/main libcurl3 amd64 7.35.0-1ubuntu2.6 [172 kB]
-       Get:4 http://archive.ubuntu.com/ubuntu/ trusty-updates/main openssl amd64 1.0.1f-1ubuntu2.19 [490 kB]
-       Get:5 http://archive.ubuntu.com/ubuntu/ trusty/universe libblocksruntime0 amd64 0.1-1 [8,128 B]
-       Get:6 http://archive.ubuntu.com/ubuntu/ trusty/universe libblocksruntime-dev amd64 0.1-1 [4,660 B]
-       Get:7 http://archive.ubuntu.com/ubuntu/ trusty/universe libkqueue0 amd64 1.0.4-2ubuntu1 [23.4 kB]
-       Fetched 2,600 kB in 3s (762 kB/s)
-       Download complete and in download only mode
------> Downloaded DEB files...
 -----> Installing libblocksruntime0_0.1-1_amd64.deb
 -----> Installing libblocksruntime-dev_0.1-1_amd64.deb
 -----> Installing libcurl3_7.35.0-1ubuntu2.6_amd64.deb
 -----> Installing libkqueue0_1.0.4-2ubuntu1_amd64.deb
------> Installing libssl1.0.0_1.0.1f-1ubuntu2.19_amd64.deb
 -----> Installing libssl-dev_1.0.1f-1ubuntu2.19_amd64.deb
 -----> Installing openssl_1.0.1f-1ubuntu2.19_amd64.deb
 -----> Writing profile script...
------> Buildpack version 1.1.2
+-----> Buildpack version 1.1.4
 -----> Installing Swift DEVELOPMENT-SNAPSHOT-2016-06-06-a
        Downloaded Swift
 -----> Installing Clang 3.7.0
@@ -170,16 +127,19 @@ Reading package lists...
        Cloning https://github.com/IBM-Swift/SwiftyJSON.git
        HEAD is now at 3dc35da IBM-Swift/Kitura#504 updates to work on linux os for 31-05 migration (#5)
        Resolved version: 9.0.0
+       Cloning https://github.com/IBM-Swift/BlueSocket.git
+       HEAD is now at 6e8915c Added blurb about BlueSSLService add-on.
+       Resolved version: 0.5.20
        Compile Swift Module 'SwiftyJSON' (2 sources)
+       Compile Swift Module 'Socket' (3 sources)
        Compile Swift Module 'CloudFoundryEnv' (7 sources)
-       Compile Swift Module 'Utils' (6 sources)
+       Compile Swift Module 'Utils' (3 sources)
        Compile Swift Module 'Server' (1 sources)
        Linking .build/release/Server
 -----> Copying dynamic libraries
 -----> Copying binaries to 'bin'
 -----> Cleaning up build files
 -----> Cleaning up cache folder
------> Uploading droplet (9.3M)
 
 0 of 1 instances running, 1 starting
 1 of 1 instances running
@@ -197,13 +157,14 @@ OK
 requested state: started
 instances: 1/1
 usage: 128M x 1 instances
-urls: swift-helloworld-molal-kaleidoscope.mybluemix.net
-last uploaded: Fri Jun 24 03:50:09 UTC 2016
+urls: swift-helloworld-leptophyllous-redbone.mybluemix.net
+last uploaded: Wed Jul 13 15:38:05 UTC 2016
 stack: unknown
 buildpack: https://github.com/IBM-Swift/swift-buildpack.git#develop
 
      state     since                    cpu    memory          disk          details   
-#0   running   2016-06-23 10:53:31 PM   0.0%   13.5M of 128M   31.5M of 1G      
+#0   running   2016-07-13 10:41:00 AM   0.0%   12.2M of 128M   30.7M of 1G      
+Ricardos-MacBook-Pro:swift-helloworld olivieri$
 ```
 
 Once the sample application is pushed to Bluemix, you can access it using its route. You can log on to your [Bluemix account](https://console.ng.bluemix.net) to find the route of your application or you can inspect the output from the execution of the `cf push` command.  The string value (e.g. swift-helloworld.mybluemix.net) shown next to the urls should contain the route.  Use that route as the URL to access the sample server using the browser of your choice.  The browser should render an HTML page with the following message at the top:
@@ -224,4 +185,4 @@ After updating the `.swift-version` file, you can run the `cf push -b https://gi
 For a complete list of the Swift versions currently supported by the Swift buildpack for Bluemix, see the buildpack's [manifest](https://github.com/IBM-Swift/swift-buildpack/blob/bluemix-buildpack/manifest.yml) file.  If you cannot find the version of the Swift binaries you are looking for in this file, then that version is not currently supported.
 
 ## What's next?
-As new releases of the Swift binaries are made available at (Swift.org)[https://swift.org/], our team will update the (Swift buildpack)[https://github.com/IBM-Swift/swift-buildpack] for Bluemix.  Also, our team is currently working on a much more advanced version of this HTTP server that will be available soon.  We also plan to provide Swift packages that will allow developers communicate with middleware services such as CouchDB and Cloudant.  Stay tuned for updates!
+As new releases of the Swift binaries are made available at (Swift.org)[https://swift.org/], our team will update the (Swift buildpack)[https://github.com/IBM-Swift/swift-buildpack] for Bluemix and this sample app.  Stay tuned for updates!
