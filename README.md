@@ -164,7 +164,7 @@ usage: 128M x 1 instances
 urls: swift-helloworld-leptophyllous-redbone.mybluemix.net
 last uploaded: Wed Jul 13 15:38:05 UTC 2016
 stack: unknown
-buildpack: https://github.com/IBM-Swift/swift-buildpack.git#develop
+buildpack: Swift
 
      state     since                    cpu    memory          disk          details   
 #0   running   2016-07-13 10:41:00 AM   0.0%   12.2M of 128M   30.7M of 1G      
