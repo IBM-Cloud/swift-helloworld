@@ -40,7 +40,7 @@ do {
   let httpResponse = generateHttpResponse(appEnv: appEnv)
   // Create server/listening socket
   var socket = try Socket.create()
-  try socket.listen(on: appEnv.port, maxPendingConnections: 10)
+  try socket.listen(on: appEnv.port, maxBacklogSize: 10)
   print("Server is starting on \(appEnv.url).")
   print("Server is listening on port: \(appEnv.port).\n")
   var counter = 0

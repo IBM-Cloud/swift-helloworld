@@ -1,0 +1,8 @@
+# docker-compose up
+app:
+  image: ibmcom/kitura-ubuntu:latest
+  ports:
+    - "8090:8090"
+  volumes:
+    - .:/root/swift-helloworld
+  command: bash -c "cd /root/swift-helloworld && rm -rf Packages && swift build --clean && swift build && .build/debug/Server"
