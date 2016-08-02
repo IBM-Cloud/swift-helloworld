@@ -17,10 +17,10 @@ $ swift build
 ```
 You should see an output similar to the following:
 ```
-Compile Swift Module 'Socket' (3 sources)
 Compile Swift Module 'SwiftyJSON' (2 sources)
-Compile Swift Module 'CloudFoundryEnv' (7 sources)
+Compile Swift Module 'Socket' (3 sources)
 Compile Swift Module 'Utils' (2 sources)
+Compile Swift Module 'CloudFoundryEnv' (7 sources)
 Compile Swift Module 'Server' (1 sources)
 Linking .build/debug/Server
 ```
@@ -62,25 +62,27 @@ Executing the above command should result in output similar to the following:
 ```
 Getting buildpacks...
 
-buildpack                                 position   enabled   locked   filename   
-liberty-for-java                          1          true      false    buildpack_liberty-for-java_v2.9-20160519-1249.zip   
-sdk-for-nodejs                            2          true      false    buildpack_sdk-for-nodejs_v3.4-20160518-1653.zip   
-noop-buildpack                            3          true      false    noop-buildpack-20140311-1519.zip   
-java_buildpack                            4          true      false    java-buildpack-v3.5.1.zip   
-ruby_buildpack                            5          true      false    ruby_buildpack-cached-v1.6.9.zip   
-nodejs_buildpack                          6          true      false    nodejs_buildpack-cached-v1.5.3.zip   
-go_buildpack                              7          true      false    go_buildpack-cached-v1.7.0.zip   
-python_buildpack                          8          true      false    python_buildpack-cached-v1.5.2.zip   
-php_buildpack                             9          true      false    php_buildpack-cached-v4.3.0.zip   
-swift_buildpack                           10         true      false    swift_buildpack-cached-v1.1.1.zip   
-aspnet5-experimental                      11         true      false    buildpack_aspnet5-experimental_v0.7-20151022-1257.zip   
-xpages_buildpack                          12         true      false    xpages_buildpack_v1.1.1-20160518-0936.zip   
-aspnet5-experimental_v0_6-20150916-1220   13         true      false    buildpack_aspnet5-experimental_v0.6-20150916-1220.zip   
-liberty-for-java_v2_3-20151208-1311       14         true      false    liberty-for-java_v2.3-20151208-1311.zip   
-sdk-for-nodejs_v3_3-20160428-1409         15         true      false    buildpack_sdk-for-nodejs_v3.3-20160428-1409.zip   
-liberty_for_java_v2_8-20160430-1011       16         true      false    buildpack_liberty-for-java_v2.8-20160430-1011.zip   
-xpages_buildpack_v1_0_0-20160310-1442     17         true      false    xpages_buildpack_v1.0.0-20160310-1442.zip   
-swift_buildpack-cached-v1_0_3             18         true      false    swift_buildpack-cached-v1.0.3.zip
+buildpack                               position   enabled   locked   filename   
+liberty-for-java                        1          true      false    buildpack_liberty-for-java_v3.1-20160717-2254.zip   
+sdk-for-nodejs                          2          true      false    buildpack_sdk-for-nodejs_v3.6-20160715-0749.zip   
+dotnet-core                             3          true      false    buildpack_dotnet-core_v0.9-20160706-1603.zip   
+noop-buildpack                          4          true      false    noop-buildpack-20140311-1519.zip   
+java_buildpack                          5          true      false    java-buildpack-v3.6.zip   
+ruby_buildpack                          6          true      false    ruby_buildpack-cached-v1.6.16.zip   
+nodejs_buildpack                        7          true      false    nodejs_buildpack-cached-v1.5.11.zip   
+go_buildpack                            8          true      false    go_buildpack-cached-v1.7.5.zip   
+python_buildpack                        9          true      false    python_buildpack-cached-v1.5.5.zip   
+php_buildpack                           10         true      false    php_buildpack-cached-v4.3.10.zip   
+swift_buildpack                         11         true      false    swift_buildpack-cached-v1.1.4.zip   
+xpages_buildpack                        12         true      false    xpages_buildpack_v1.1.1-20160518-0936.zip   
+liberty-for-java_v2_3-20151208-1311     13         true      false    liberty-for-java_v2.3-20151208-1311.zip   
+xpages_buildpack_v1_0_0-20160310-1442   14         true      false    xpages_buildpack_v1.0.0-20160310-1442.zip   
+staticfile_buildpack                    15         true      false    staticfile_buildpack-cached-v1.3.6.zip   
+binary_buildpack                        16         true      false    binary_buildpack-cached-v1.0.1.zip   
+dotnet-core_v0_9-20160629-1646          17         true      false    buildpack_dotnet-core_v0.9-20160629-1646.zip   
+swift_buildpack-cached-v1_1_2           18         true      false    swift_buildpack-cached-v1.1.2.zip   
+liberty-for-java_v3_0-20160608-1450     19         true      false    buildpack_liberty-for-java_v3_0-20160608-1450.zip   
+sdk-for-nodejs_v3_5-20160609-1608       20         true      false    buildpack_sdk-for-nodejs_v3.5-20160609-1608.zip   
 ```
 
 Looking at the output above, we can see that the Swift buildpack (v1.1.1) is installed on Bluemix.  This will allow a seamless deployment of the starter application to Bluemix. After you have cloned this Git repo, go to its root folder on your system and issue the following command Cloud Foundry command:
@@ -97,55 +99,46 @@ Using manifest file /Users/olivieri/git/swift-helloworld/manifest.yml
 Creating app swift-helloworld-estado in org roliv@us.ibm.com / space dev as roliv@us.ibm.com...
 OK
 
-Creating route swift-helloworld-estado-macrurous-sophrosyne.mybluemix.net...
+Creating route swift-helloworld-estado-unquestioned-itinerarium.mybluemix.net...
 OK
 
-Binding swift-helloworld-estado-macrurous-sophrosyne.mybluemix.net to swift-helloworld-estado...
+Binding swift-helloworld-estado-unquestioned-itinerarium.mybluemix.net to swift-helloworld-estado...
 OK
 
 Uploading swift-helloworld-estado...
 Uploading app files from: /Users/olivieri/git/swift-helloworld
-Uploading 32.1K, 13 files
+Uploading 182.3K, 32 files
 Done uploading               
 OK
 
 Starting app swift-helloworld-estado in org roliv@us.ibm.com / space dev as roliv@us.ibm.com...
------> Downloaded app package (16K)
-Cloning into '/tmp/buildpacks/swift-buildpack'...
+-----> Downloaded app package (48K)
 -----> Installing system level dependencies...
 -----> Installing libblocksruntime0_0.1-1_amd64.deb
 -----> Installing libblocksruntime-dev_0.1-1_amd64.deb
------> Installing libcurl3_7.35.0-1ubuntu2.6_amd64.deb
 -----> Installing libkqueue0_1.0.4-2ubuntu1_amd64.deb
 -----> Installing libssl-dev_1.0.1f-1ubuntu2.19_amd64.deb
 -----> Installing openssl_1.0.1f-1ubuntu2.19_amd64.deb
 -----> Writing profile script...
+-----> Buildpack version 1.1.4
 -----> Installing Swift DEVELOPMENT-SNAPSHOT-2016-06-06-a
-       Downloaded Swift
+      Downloaded Swift
 -----> Installing Clang 3.7.0
-       Downloaded Clang
+      Downloaded Clang
 -----> Adding libdispatch binaries...
 -----> Building Package...
-       Cloning https://github.com/IBM-Swift/Swift-cfenv.git
-       HEAD is now at eefdf83 Migrating code to swift 06-06.
-       Resolved version: 1.3.0
-       Cloning https://github.com/IBM-Swift/SwiftyJSON.git
-       HEAD is now at 3dc35da IBM-Swift/Kitura#504 updates to work on linux os for 31-05 migration (#5)
-       Resolved version: 9.0.0
-       Cloning https://github.com/IBM-Swift/BlueSocket.git
-       HEAD is now at 6e8915c Added blurb about BlueSSLService add-on.
-       Resolved version: 0.5.20
-       Compile Swift Module 'SwiftyJSON' (2 sources)
-       Compile Swift Module 'Socket' (3 sources)
-       Compile Swift Module 'CloudFoundryEnv' (7 sources)
-       Compile Swift Module 'Utils' (2 sources)
-       Compile Swift Module 'Server' (1 sources)
-       Linking .build/release/Server
+      Compile Swift Module 'SwiftyJSON' (2 sources)
+      Compile Swift Module 'Socket' (3 sources)
+      Compile Swift Module 'Utils' (2 sources)
+      Compile Swift Module 'CloudFoundryEnv' (7 sources)
+      Compile Swift Module 'Server' (1 sources)
+      Linking .build/release/Server
 -----> Copying dynamic libraries
 -----> Copying binaries to 'bin'
 -----> Cleaning up build files
 -----> Cleaning up cache folder
------> Uploading droplet (9.0M)
+
+-----> Uploading droplet (7.4M)
 
 0 of 1 instances running, 1 starting
 1 of 1 instances running
@@ -163,13 +156,13 @@ OK
 requested state: started
 instances: 1/1
 usage: 128M x 1 instances
-urls: swift-helloworld-estado-macrurous-sophrosyne.mybluemix.net
-last uploaded: Wed Jul 13 15:06:48 UTC 2016
+urls: swift-helloworld-estado-unquestioned-itinerarium.mybluemix.net
+last uploaded: Tue Aug 2 18:58:47 UTC 2016
 stack: unknown
-buildpack: https://github.com/IBM-Swift/swift-buildpack.git#develop
+buildpack: Swift
 
-     state     since                    cpu    memory          disk          details   
-#0   running   2016-07-13 10:10:24 AM   0.0%   10.6M of 128M   30.7M of 1G
+    state     since                    cpu    memory          disk          details   
+#0   running   2016-08-02 01:59:48 PM   0.0%   10.8M of 128M   26.7M of 1G      
 ```
 
 Once the sample application is pushed to Bluemix, you can access it using its route. You can log on to your [Bluemix account](https://console.ng.bluemix.net) to find the route of your application or you can inspect the output from the execution of the `cf push` command.  The string value (e.g. swift-helloworld.mybluemix.net) shown next to the urls should contain the route.  Use that route as the URL to access the sample server using the browser of your choice.  The browser should render an HTML page with the following message at the top:

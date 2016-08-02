@@ -27,9 +27,9 @@ import Darwin
 #endif
 
 import Foundation
+import Utils
 import Socket
 import CloudFoundryEnv
-import Utils
 
 // Disable all buffering on stdout
 setbuf(stdout, nil)
