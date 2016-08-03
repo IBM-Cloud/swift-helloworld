@@ -29,7 +29,6 @@ import Darwin
 import Foundation
 import Utils
 import Socket
-import CloudFoundryEnv
 
 // Disable all buffering on stdout
 setbuf(stdout, nil)
@@ -45,13 +44,13 @@ func generateHttpResponse() -> String {
 
 // Main functionality
 do {
-  let appEnv = try CloudFoundryEnv.getAppEnv()
+  let (ip, port) = parseAddress()
   let httpResponse = generateHttpResponse()
   // Create server/listening socket
   var socket = try Socket.create()
-  try socket.listen(on: appEnv.port, maxPendingConnections: 10)
-  print("Server is starting on \(appEnv.url).")
-  print("Server is listening on port: \(appEnv.port).\n")
+  try socket.listen(on: port, maxPendingConnections: 10)
+  print("Server is starting...")
+  print("Server is listening on port: \(port).\n")
   var counter = 0
   while true {
     // Replace the listening socket with the newly accepted connection...
