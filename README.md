@@ -6,7 +6,7 @@
 This project contains a simple Swift hello world application that can be deployed to Bluemix or run locally on your [OS X](http://www.apple.com/osx/) or [Ubuntu Linux](http://www.ubuntu.com/download) system.  This sample application creates a basic server that returns an HTML greeting to the client.  Please note that this is not a production-ready application.  Instead, it is for educational purposes to learn about the types of applications you can develop using the Swift programming language.
 
 ## Application Requirements
-To compile and run this sample application on your system, you need to install the [Swift compiler](https://swift.org/download/) for your platform. Please note that the Swift language is evolving and changing rapidly. The latest version of this Swift application works with the `DEVELOPMENT-SNAPSHOT-2016-06-06-a` version of the Swift binaries. You can download this version of the Swift binaries by following this [link](https://swift.org/download/).
+To compile and run this sample application on your system, you need to install the [Swift compiler](https://swift.org/download/) for your platform. Please note that the Swift language is evolving and changing rapidly. The latest version of this Swift application works with the `DEVELOPMENT-SNAPSHOT-2016-06-20-a` version of the Swift binaries. You can download this version of the Swift binaries by following this [link](https://swift.org/download/).
 
 If you are interested in manually deploying the application to Bluemix, you'd need to install the Cloud Foundry [command line](https://docs.cloudfoundry.org/devguide/cf-cli/install-go-cli.html) on your system.  Once it is installed, you can use it to [authenticate and access](https://www.ng.bluemix.net/docs/starters/install_cli.html) your Bluemix organization(s) and spaces.  You can find further details on how to deploy this sample application to Bluemix in the following sections.
 
@@ -119,7 +119,7 @@ Cloning into '/tmp/buildpacks/swift-buildpack'...
 -----> Installing openssl_1.0.1f-1ubuntu2.19_amd64.deb
 -----> Writing profile script...
 -----> Buildpack version 1.1.4
------> Installing Swift DEVELOPMENT-SNAPSHOT-2016-06-06-a
+-----> Installing Swift DEVELOPMENT-SNAPSHOT-2016-06-20-a
        Downloaded Swift
 -----> Installing Clang 3.7.0
        Downloaded Clang
@@ -178,13 +178,13 @@ Hello from Swift on Linux!
 ```
 
 ## Using a different version of Swift on Bluemix for your application
-If you look closely at the output above returned by the `cf push` command, you will notice that `DEVELOPMENT-SNAPSHOT-2016-06-06-a` was the Swift version used for compiling and running the sample app on Bluemix.  If you have a Swift application that compiles with a different version of the Swift binaries, say `DEVELOPMENT-SNAPSHOT-2016-04-25-a`, you'd need to update the contents of the `.swift-version` file to:
+If you look closely at the output above returned by the `cf push` command, you will notice that `DEVELOPMENT-SNAPSHOT-2016-06-20-a` was the Swift version used for compiling and running the sample app on Bluemix.  If you have a Swift application that compiles with a different version of the Swift binaries, say `DEVELOPMENT-SNAPSHOT-2016-04-25-a`, you'd need to update the contents of the `.swift-version` file to:
 
 ```
 DEVELOPMENT-SNAPSHOT-2016-04-25-a
 ```
 
-After updating the `.swift-version` file, you can run the `cf push -b https://github.com/IBM-Swift/swift-buildpack` command.  Note that if using a version of the Swift binaries other than `DEVELOPMENT-SNAPSHOT-2016-06-06-a`, you'd need to add the `-b https://github.com/IBM-Swift/swift-buildpack` parameter for the execution of the `push` command.  This action should upload your application to Bluemix and use the `DEVELOPMENT-SNAPSHOT-2016-04-25-a` version of the Swift binaries for compiling and running your application as shown.
+After updating the `.swift-version` file, you can run the `cf push -b https://github.com/IBM-Swift/swift-buildpack` command.  Note that if using a version of the Swift binaries other than `DEVELOPMENT-SNAPSHOT-2016-06-20-a`, you'd need to add the `-b https://github.com/IBM-Swift/swift-buildpack` parameter for the execution of the `push` command.  This action should upload your application to Bluemix and use the `DEVELOPMENT-SNAPSHOT-2016-04-25-a` version of the Swift binaries for compiling and running your application as shown.
 
 For a complete list of the Swift versions currently supported by the Swift buildpack for Bluemix, see the buildpack's [manifest](https://github.com/IBM-Swift/swift-buildpack/blob/bluemix-buildpack/manifest.yml) file.  If you cannot find the version of the Swift binaries you are looking for in this file, then that version is not currently supported.
 
