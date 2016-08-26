@@ -14,8 +14,10 @@
 * limitations under the License.
 **/
 
+import Foundation
+
 public func parseAddress() -> (String, Int) {
-  let args = Array(Process.arguments[1..<Process.arguments.count])
+  let args = Array(ProcessInfo.processInfo.arguments[1..<ProcessInfo.processInfo.arguments.count])
   var port = 9080 // default port
   var ip = "0.0.0.0" // default ip
   if args.count == 2 && args[0] == "-bind" {

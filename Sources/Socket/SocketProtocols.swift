@@ -35,6 +35,15 @@ public protocol SocketReader {
 	func readString() throws -> String?
 	
 	///
+	/// Reads all available data into an Data object.
+	///
+	/// - Parameter data: Data object to contain read data.
+	///
+	/// - Returns: Integer representing the number of bytes read.
+	///
+	func read(into data: inout Data) throws -> Int
+	
+	///
 	/// Reads all available data into an NSMutableData object.
 	///
 	/// - Parameter data: NSMutableData object to contain read data.
@@ -52,18 +61,25 @@ public protocol SocketReader {
 public protocol SocketWriter {
 	
 	///
+	/// Writes data from Data object.
+	///
+	/// - Parameter data: Data object containing the data to be written.
+	///
+	@discardableResult func write(from data: Data) throws -> Int
+	
+	///
 	/// Writes data from NSData object.
 	///
 	/// - Parameter data: NSData object containing the data to be written.
 	///
-	func write(from data: NSData) throws
+	@discardableResult func write(from data: NSData) throws -> Int
 	
 	///
 	/// Writes a string
 	///
 	/// - Parameter string: String data to be written.
 	///
-	func write(from string: String) throws
+	@discardableResult func write(from string: String) throws -> Int
 }
 
 // MARK: SSLServiceDelegate
@@ -76,9 +92,9 @@ public protocol SSLServiceDelegate {
 	///
 	/// Initialize SSL Service
 	///
-	/// - Parameter isServer:	True for initializing a server, otherwise a client.
+	/// - Parameter asServer:	True for initializing a server, otherwise a client.
 	///
-	func initialize(isServer: Bool) throws
+	func initialize(asServer: Bool) throws
 	
 	///
 	/// Deinitialize SSL Service
@@ -100,11 +116,6 @@ public protocol SSLServiceDelegate {
 	func onConnect(socket: Socket) throws
 	
 	///
-	/// Do connection verification
-	///
-	func verifyConnection() throws
-	
-	///
 	/// Low level writer
 	///
 	/// - Parameters:
@@ -113,7 +124,7 @@ public protocol SSLServiceDelegate {
 	///
 	///	- Returns the number of bytes written. Zero indicates SSL shutdown, less than zero indicates error.
 	///
-	func send(buffer: UnsafePointer<Void>!, bufSize: Int) throws -> Int
+	func send(buffer: UnsafeRawPointer!, bufSize: Int) throws -> Int
 	
 	///
 	/// Low level reader
@@ -124,7 +135,7 @@ public protocol SSLServiceDelegate {
 	///
 	///	- Returns the number of bytes read. Zero indicates SSL shutdown, less than zero indicates error.
 	///
-	func recv(buffer: UnsafeMutablePointer<Void>!, bufSize: Int) throws -> Int
+	func recv(buffer: UnsafeMutableRawPointer, bufSize: Int) throws -> Int
 	
 }
 
@@ -133,7 +144,7 @@ public protocol SSLServiceDelegate {
 ///
 /// SSL Service Error
 ///
-public enum SSLError: ErrorProtocol, CustomStringConvertible {
+public enum SSLError: Error, CustomStringConvertible {
 	
 	/// success
 	case success

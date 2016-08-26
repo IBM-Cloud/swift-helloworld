@@ -48,7 +48,7 @@ do {
   let httpResponse = generateHttpResponse()
   // Create server/listening socket
   var socket = try Socket.create()
-  try socket.listen(on: port, maxPendingConnections: 10)
+  try socket.listen(on: port, maxBacklogSize: 10)
   print("Server is starting...")
   print("Server is listening on port: \(port).\n")
   var counter = 0

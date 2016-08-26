@@ -18,13 +18,13 @@
 // 	limitations under the License.
 //
 
-#if os(OSX) || os(iOS) || os(tvOS) || os(watchOS)
+#if os(macOS) || os(iOS) || os(tvOS) || os(watchOS)
 	import Darwin
-	import Foundation
 #elseif os(Linux)
-	import Foundation
 	import Glibc
 #endif
+
+import Foundation
 
 // MARK: Socket
 
@@ -39,7 +39,10 @@ public class Socket: SocketReader, SocketWriter {
 	
 	public static let SOCKET_MINIMUM_READ_BUFFER_SIZE		= 1024
 	public static let SOCKET_DEFAULT_READ_BUFFER_SIZE		= 4096
-	public static let SOCKET_DEFAULT_MAX_CONNECTIONS		= 5
+	public static let SOCKET_DEFAULT_MAX_BACKLOG			= 50
+	#if os(macOS)
+	public static let SOCKET_MAX_DARWIN_BACKLOG				= 128
+	#endif
 	
 	public static let SOCKET_INVALID_PORT					= Int32(0)
 	public static let SOCKET_INVALID_DESCRIPTOR 			= Int32(-1)
@@ -78,6 +81,7 @@ public class Socket: SocketReader, SocketWriter {
 	public static let SOCKET_ERR_BAD_SIGNATURE_PARAMETERS	= -9976
 	public static let SOCKET_ERR_INTERNAL					= -9975
 	public static let SOCKET_ERR_WRONG_PROTOCOL				= -9974
+	public static let SOCKET_ERR_NOT_ACTIVE					= -9973
 	
 	// MARK: Enums
 	
@@ -278,10 +282,10 @@ public class Socket: SocketReader, SocketWriter {
 			
 			switch self {
 				
-			case .ipv4(let addr):
-				return sizeofValue(addr)
-			case .ipv6(let addr):
-				return sizeofValue(addr)
+			case .ipv4( _):
+				return MemoryLayout<(sockaddr_in)>.size
+			case .ipv6( _):
+				return MemoryLayout<(sockaddr_in6)>.size
 			}
 		}
 		
@@ -312,37 +316,37 @@ public class Socket: SocketReader, SocketWriter {
 		///
 		/// Protocol Family
 		///
-		public private(set) var protocolFamily: ProtocolFamily
+		public internal(set) var protocolFamily: ProtocolFamily
 		
 		///
 		/// Socket Type
 		///
-		public private(set) var socketType: SocketType
+		public internal(set) var socketType: SocketType
 		
 		///
 		/// Socket Protocol
 		///
-		public private(set) var proto: SocketProtocol
+		public internal(set) var proto: SocketProtocol
 		
 		///
 		/// Host name for connection
 		///
-		public private(set) var hostname: String? = Socket.NO_HOSTNAME
+		public internal(set) var hostname: String? = Socket.NO_HOSTNAME
 		
 		///
 		/// Port for connection
 		///
-		public private(set) var port: Int32 = Socket.SOCKET_INVALID_PORT
+		public internal(set) var port: Int32 = Socket.SOCKET_INVALID_PORT
 		
 		///
 		/// Address info for socket.
 		///
-		public private(set) var address: Address? = nil
+		public internal(set) var address: Address? = nil
 		
 		///
 		/// Flag to indicate whether `Socket` is secure or not.
 		///
-		public private(set) var isSecure: Bool = false
+		public internal(set) var isSecure: Bool = false
 		
 		///
 		/// Returns a string description of the error.
@@ -425,7 +429,7 @@ public class Socket: SocketReader, SocketWriter {
 		///
 		/// - Returns: New Signature instance
 		///
-		private init?(protocolFamily: Int32, socketType: Int32, proto: Int32, address: Address?, hostname: String?, port: Int32?) throws {
+		internal init?(protocolFamily: Int32, socketType: Int32, proto: Int32, address: Address?, hostname: String?, port: Int32?) throws {
 			
 			// This constructor requires all items be present...
 			guard let family = ProtocolFamily.getFamily(forValue: protocolFamily),
@@ -450,7 +454,7 @@ public class Socket: SocketReader, SocketWriter {
 	
 	// MARK: -- Error
 	
-	public struct Error: ErrorProtocol, CustomStringConvertible {
+	public struct Error: Swift.Error, CustomStringConvertible {
 		
 		// MARK: -- Public Properties
 		
@@ -462,12 +466,12 @@ public class Socket: SocketReader, SocketWriter {
 		///
 		/// The error code: **see constants above for possible errors**
 		///
-		public private(set) var errorCode: Int32
+		public internal(set) var errorCode: Int32
 		
 		///
 		/// The reason for the error **(if available)**
 		///
-		public private(set) var errorReason: String?
+		public internal(set) var errorReason: String?
 		
 		///
 		/// Returns a string description of the error.
@@ -481,7 +485,7 @@ public class Socket: SocketReader, SocketWriter {
 		///
 		/// The buffer size needed to complete the read.
 		///
-		public private(set) var bufferSizeNeeded: Int32
+		public internal(set) var bufferSizeNeeded: Int32
 		
 		// MARK: -- Public Functions
 		
@@ -535,7 +539,7 @@ public class Socket: SocketReader, SocketWriter {
 	/// 	**Note:** The readBuffer is actually allocating unmanaged memory that'll
 	///			be deallocated when we're done with it.
 	///
-	var readBuffer: UnsafeMutablePointer<CChar> = UnsafeMutablePointer<CChar>(allocatingCapacity: Socket.SOCKET_DEFAULT_READ_BUFFER_SIZE)
+	var readBuffer: UnsafeMutablePointer<CChar> = UnsafeMutablePointer<CChar>.allocate(capacity: Socket.SOCKET_DEFAULT_READ_BUFFER_SIZE)
 	
 	///
 	/// Internal Storage Buffer initially created with `Socket.SOCKET_DEFAULT_READ_BUFFER_SIZE`.
@@ -573,40 +577,48 @@ public class Socket: SocketReader, SocketWriter {
 			if readBufferSize != oldValue {
 				
 				readBuffer.deinitialize()
-				readBuffer.deallocateCapacity(oldValue)
-				readBuffer = UnsafeMutablePointer<CChar>(allocatingCapacity: readBufferSize)
-				readBuffer.initialize(with:0)
+				readBuffer.deallocate(capacity: oldValue)
+				readBuffer = UnsafeMutablePointer<CChar>.allocate(capacity: readBufferSize)
+				readBuffer.initialize(to:0)
 			}
 		}
 	}
 	
 	///
-	/// Maximum number of pending connections per listening socket.
-	///		**Note:** Default value is `Socket.SOCKET_DEFAULT_MAX_CONNECTIONS`
+	/// Maximum size of the queue containing pending connections.
+	///		**Note:** Default value is `Socket.SOCKET_DEFAULT_MAX_BACKLOG`
 	///
-	public var maxPendingConnections: Int = Socket.SOCKET_DEFAULT_MAX_CONNECTIONS
+	public var maxBacklogSize: Int = Socket.SOCKET_DEFAULT_MAX_BACKLOG
 	
 	///
 	/// True if this socket is connected. False otherwise. (Readonly)
 	///
-	public private(set) var isConnected: Bool = false
+	public internal(set) var isConnected: Bool = false
 	
 	///
 	/// True if this socket is blocking. False otherwise. (Readonly)
 	///
-	public private(set) var isBlocking: Bool = true
+	public internal(set) var isBlocking: Bool = true
 	
 	///
 	/// True if this socket is listening. False otherwise. (Readonly)
 	///
-	public private(set) var isListening: Bool = false
+	public internal(set) var isListening: Bool = false
+	
+	///
+	/// True if the socket is listening or connected.
+	///
+	public var isActive: Bool {
+		
+		return isListening || isConnected
+	}
 	
 	///
 	/// Listening port (-1 if not listening)
 	///
 	public var listeningPort: Int32 {
 		
-		guard let sig = signature where isListening else {
+		guard let sig = signature, isListening else {
 			return Int32(-1)
 		}
 		return sig.port
@@ -630,7 +642,7 @@ public class Socket: SocketReader, SocketWriter {
 	///
 	public var remotePort: Int32 {
 		
-		guard let sig = signature where sig.port != Socket.SOCKET_INVALID_PORT else {
+		guard let sig = signature, sig.port != Socket.SOCKET_INVALID_PORT else {
 			return Socket.SOCKET_INVALID_PORT
 		}
 		
@@ -640,13 +652,13 @@ public class Socket: SocketReader, SocketWriter {
 	///
 	/// The file descriptor representing this socket. (Readonly)
 	///
-	public private(set) var socketfd: Int32 = SOCKET_INVALID_DESCRIPTOR
+	public internal(set) var socketfd: Int32 = SOCKET_INVALID_DESCRIPTOR
 	
 	///
 	/// The signature for the socket.
 	/// 	**Note:** See Signature above.
 	///
-	public private(set) var signature: Signature? = nil
+	public internal(set) var signature: Signature? = nil
 	
 	///
 	/// True if this a server, false otherwise.
@@ -788,11 +800,12 @@ public class Socket: SocketReader, SocketWriter {
 	///
 	/// - Parameters:
 	///		- sockets:		An array of sockets to be monitored.
-	///		- timeout:		Timeout (in msec) before returning.
+	///		- timeout:		Timeout (in msec) before returning.  A timeout value of 0 will return immediately.
+	///		- waitForever:	If true, this function will wait indefinitely regardless of timeout value. Defaults to false.
 	///
 	/// - Returns: An optional array of sockets which have data available or nil if a timeout expires.
 	///
-	public class func wait(for sockets: [Socket], timeout: UInt) throws -> [Socket]? {
+	public class func wait(for sockets: [Socket], timeout: UInt, waitForever: Bool = false) throws -> [Socket]? {
 		
 		// Validate we have sockets to look for and they are valid...
 		for socket in sockets {
@@ -801,15 +814,15 @@ public class Socket: SocketReader, SocketWriter {
 				
 				throw Error(code: Socket.SOCKET_ERR_BAD_DESCRIPTOR, reason: nil)
 			}
-			if !socket.isConnected {
+			if !socket.isActive {
 				
-				throw Error(code: Socket.SOCKET_ERR_NOT_CONNECTED, reason: nil)
+				throw Error(code: Socket.SOCKET_ERR_NOT_ACTIVE, reason: nil)
 			}
 		}
 		
 		// Setup the timeout...
 		var timer = timeval()
-		if timeout > 0 {
+		if timeout > 0  && !waitForever {
 			
 			// First get seconds...
 			let secs = Int(Double(timeout / 1000))
@@ -843,7 +856,12 @@ public class Socket: SocketReader, SocketWriter {
 		}
 		
 		// Issue the select...
-		let count = select(highSocketfd + 1, &readfds, nil, nil, &timer)
+		var count: Int32 = 0
+		if waitForever {
+			count = select(highSocketfd + 1, &readfds, nil, nil, nil)
+		} else {
+			count = select(highSocketfd + 1, &readfds, nil, nil, &timer)
+		}
 		
 		// A count of less than zero indicates select failed...
 		if count < 0 {
@@ -885,7 +903,7 @@ public class Socket: SocketReader, SocketWriter {
 	private init(family: ProtocolFamily, type: SocketType, proto: SocketProtocol) throws {
 		
 		// Initialize the read buffer...
-		self.readBuffer.initialize(with: 0)
+		self.readBuffer.initialize(to: 0)
 		
 		// Create the socket...
 		#if os(Linux)
@@ -921,7 +939,7 @@ public class Socket: SocketReader, SocketWriter {
 		
 		// Destroy and free the readBuffer...
 		self.readBuffer.deinitialize()
-		self.readBuffer.deallocateCapacity(self.readBufferSize)
+		self.readBuffer.deallocate(capacity: self.readBufferSize)
 		
 		// If we have a delegate, tell it to cleanup too...
 		self.delegate?.deinitialize()
@@ -942,7 +960,7 @@ public class Socket: SocketReader, SocketWriter {
 		
 		self.isConnected = true
 		self.isListening = false
-		self.readBuffer.initialize(with: 0)
+		self.readBuffer.initialize(to: 0)
 		
 		self.socketfd = fd
 		
@@ -1008,15 +1026,15 @@ public class Socket: SocketReader, SocketWriter {
 				
 			case .inet:
 				var acceptAddr = sockaddr_in()
-				var addrSize = socklen_t(sizeofValue(acceptAddr))
+				var addrSize = socklen_t(MemoryLayout<sockaddr_in>.size)
 				
 				#if os(Linux)
-					let fd = withUnsafeMutablePointer(&acceptAddr) {
-						Glibc.accept(self.socketfd, UnsafeMutablePointer($0), &addrSize)
+					let fd = withUnsafeMutablePointer(to: &acceptAddr) {
+						Glibc.accept(self.socketfd, UnsafeMutableRawPointer($0).assumingMemoryBound(to: sockaddr.self), &addrSize)
 					}
 				#else
-					let fd = withUnsafeMutablePointer(&acceptAddr) {
-						Darwin.accept(self.socketfd, UnsafeMutablePointer($0), &addrSize)
+					let fd = withUnsafeMutablePointer(to: &acceptAddr) {
+						Darwin.accept(self.socketfd, UnsafeMutableRawPointer($0).assumingMemoryBound(to: sockaddr.self), &addrSize)
 					}
 				#endif
 				if fd < 0 {
@@ -1032,15 +1050,15 @@ public class Socket: SocketReader, SocketWriter {
 				
 			case .inet6:
 				var acceptAddr = sockaddr_in6()
-				var addrSize = socklen_t(sizeofValue(acceptAddr))
+				var addrSize = socklen_t(MemoryLayout<sockaddr_in6>.size)
 				
 				#if os(Linux)
-					let fd = withUnsafeMutablePointer(&acceptAddr) {
-						Glibc.accept(self.socketfd, UnsafeMutablePointer($0), &addrSize)
+					let fd = withUnsafeMutablePointer(to: &acceptAddr) {
+						Glibc.accept(self.socketfd, UnsafeMutableRawPointer($0).assumingMemoryBound(to: sockaddr.self), &addrSize)
 					}
 				#else
-					let fd = withUnsafeMutablePointer(&acceptAddr) {
-						Darwin.accept(self.socketfd, UnsafeMutablePointer($0), &addrSize)
+					let fd = withUnsafeMutablePointer(to: &acceptAddr) {
+						Darwin.accept(self.socketfd, UnsafeMutableRawPointer($0).assumingMemoryBound(to: sockaddr.self), &addrSize)
 					}
 				#endif
 				if fd < 0 {
@@ -1066,9 +1084,10 @@ public class Socket: SocketReader, SocketWriter {
 		// Let the delegate do post accept handling and verification...
 		do {
 			
-			try self.delegate?.onAccept(socket: newSocket)
-			try self.delegate?.verifyConnection()
-			newSocket.signature?.isSecure = true
+			if self.delegate != nil {
+				try self.delegate?.onAccept(socket: newSocket)
+				newSocket.signature?.isSecure = true
+			}
 			
 		} catch let error {
 			
@@ -1116,15 +1135,15 @@ public class Socket: SocketReader, SocketWriter {
 				
 			case .inet:
 				var acceptAddr = sockaddr_in()
-				var addrSize = socklen_t(sizeofValue(acceptAddr))
+				var addrSize = socklen_t(MemoryLayout<sockaddr_in>.size)
 				
 				#if os(Linux)
-					let fd = withUnsafeMutablePointer(&acceptAddr) {
-						Glibc.accept(self.socketfd, UnsafeMutablePointer($0), &addrSize)
+					let fd = withUnsafeMutablePointer(to: &acceptAddr) {
+						Glibc.accept(self.socketfd, UnsafeMutableRawPointer($0).assumingMemoryBound(to: sockaddr.self), &addrSize)
 					}
 				#else
-					let fd = withUnsafeMutablePointer(&acceptAddr) {
-						Darwin.accept(self.socketfd, UnsafeMutablePointer($0), &addrSize)
+					let fd = withUnsafeMutablePointer(to: &acceptAddr) {
+						Darwin.accept(self.socketfd, UnsafeMutableRawPointer($0).assumingMemoryBound(to: sockaddr.self), &addrSize)
 					}
 				#endif
 				if fd < 0 {
@@ -1140,15 +1159,15 @@ public class Socket: SocketReader, SocketWriter {
 				
 			case .inet6:
 				var acceptAddr = sockaddr_in6()
-				var addrSize = socklen_t(sizeofValue(acceptAddr))
+				var addrSize = socklen_t(MemoryLayout<sockaddr_in6>.size)
 				
 				#if os(Linux)
-					let fd = withUnsafeMutablePointer(&acceptAddr) {
-						Glibc.accept(self.socketfd, UnsafeMutablePointer($0), &addrSize)
+					let fd = withUnsafeMutablePointer(to: &acceptAddr) {
+						Glibc.accept(self.socketfd, UnsafeMutableRawPointer($0).assumingMemoryBound(to: sockaddr.self), &addrSize)
 					}
 				#else
-					let fd = withUnsafeMutablePointer(&acceptAddr) {
-						Darwin.accept(self.socketfd, UnsafeMutablePointer($0), &addrSize)
+					let fd = withUnsafeMutablePointer(to: &acceptAddr) {
+						Darwin.accept(self.socketfd, UnsafeMutableRawPointer($0).assumingMemoryBound(to: sockaddr.self), &addrSize)
 					}
 				#endif
 				if fd < 0 {
@@ -1188,9 +1207,10 @@ public class Socket: SocketReader, SocketWriter {
 		// Let the delegate do post accept handling and verification...
 		do {
 			
-			try self.delegate?.onAccept(socket: self)
-			try self.delegate?.verifyConnection()
-			self.signature?.isSecure = true
+			if self.delegate != nil {
+				try self.delegate?.onAccept(socket: self)
+				self.signature?.isSecure = true
+			}
 			
 		} catch let error {
 			
@@ -1268,7 +1288,7 @@ public class Socket: SocketReader, SocketWriter {
 		// Tell the delegate to initialize as a client...
 		do {
 			
-			try self.delegate?.initialize(isServer: false)
+			try self.delegate?.initialize(asServer: false)
 			
 		} catch let error {
 			
@@ -1304,7 +1324,7 @@ public class Socket: SocketReader, SocketWriter {
 				ai_next: nil)
 		#endif
 		
-		var targetInfo: UnsafeMutablePointer<addrinfo>? = UnsafeMutablePointer<addrinfo>(allocatingCapacity: 1)
+		var targetInfo: UnsafeMutablePointer<addrinfo>? = UnsafeMutablePointer<addrinfo>.allocate(capacity: 1)
 		
 		// Retrieve the info on our target...
 		var status: Int32 = getaddrinfo(host, String(port), &hints, &targetInfo)
@@ -1388,13 +1408,13 @@ public class Socket: SocketReader, SocketWriter {
 		if info!.pointee.ai_family == Int32(AF_INET6) {
 			
 			var addr = sockaddr_in6()
-			memcpy(&addr, info!.pointee.ai_addr, Int(sizeofValue(addr)))
+			memcpy(&addr, info!.pointee.ai_addr, Int(MemoryLayout<sockaddr_in6>.size))
 			address = .ipv6(addr)
 			
 		} else if info!.pointee.ai_family == Int32(AF_INET) {
 			
 			var addr = sockaddr_in()
-			memcpy(&addr, info!.pointee.ai_addr, Int(sizeofValue(addr)))
+			memcpy(&addr, info!.pointee.ai_addr, Int(MemoryLayout<sockaddr_in>.size))
 			address = .ipv4(addr)
 			
 		} else {
@@ -1413,9 +1433,10 @@ public class Socket: SocketReader, SocketWriter {
 		// Let the delegate do post connect handling and verification...
 		do {
 			
-			try self.delegate?.onConnect(socket: self)
-			try self.delegate?.verifyConnection()
-			self.signature?.isSecure = true
+			if self.delegate != nil {
+				try self.delegate?.onConnect(socket: self)
+				self.signature?.isSecure = true
+			}
 			
 		} catch let error {
 			
@@ -1446,8 +1467,8 @@ public class Socket: SocketReader, SocketWriter {
 		} else {
 			
 			// Otherwise, make sure we've got a hostname and port...
-			guard let hostname = signature.hostname
-				where signature.port != Socket.SOCKET_INVALID_PORT else {
+			guard let hostname = signature.hostname,
+				signature.port != Socket.SOCKET_INVALID_PORT else {
 					
 					throw Error(code: Socket.SOCKET_ERR_MISSING_CONNECTION_DATA, reason: "Unable to access hostname and port.")
 			}
@@ -1460,7 +1481,7 @@ public class Socket: SocketReader, SocketWriter {
 		// Tell the delegate to initialize as a client...
 		do {
 			
-			try self.delegate?.initialize(isServer: false)
+			try self.delegate?.initialize(asServer: false)
 			
 		} catch let error {
 			
@@ -1476,11 +1497,11 @@ public class Socket: SocketReader, SocketWriter {
 		var remoteAddr = signature.address!.addr
 		
 		#if os(Linux)
-			let rc = withUnsafeMutablePointer(&remoteAddr) {
+			let rc = withUnsafeMutablePointer(to: &remoteAddr) {
 				Glibc.connect(self.socketfd, UnsafeMutablePointer($0), socklen_t(signature.address!.size))
 			}
 		#else
-			let rc = withUnsafeMutablePointer(&remoteAddr) {
+			let rc = withUnsafeMutablePointer(to: &remoteAddr) {
 				Darwin.connect(self.socketfd, UnsafeMutablePointer($0), socklen_t(signature.address!.size))
 			}
 		#endif
@@ -1501,9 +1522,10 @@ public class Socket: SocketReader, SocketWriter {
 		// Let the delegate do post connect handling and verification...
 		do {
 			
-			try self.delegate?.onConnect(socket: self)
-			try self.delegate?.verifyConnection()
-			self.signature?.isSecure = true
+			if self.delegate != nil {
+				try self.delegate?.onConnect(socket: self)
+				self.signature?.isSecure = true
+			}
 			
 		} catch let error {
 			
@@ -1519,37 +1541,27 @@ public class Socket: SocketReader, SocketWriter {
 	// MARK: -- Listen
 	
 	///
-	/// Listen on a port using the default for max pending connections.
-	///
-	/// - Parameter port: The port to listen on.
-	///
-	public func listen(on port: Int) throws {
-		
-		return try self.listen(on: port, maxPendingConnections: self.maxPendingConnections)
-	}
-	
-	///
 	/// Listen on a port, limiting the maximum number of pending connections.
 	///
 	/// - Parameters:
-	///		- port: 					The port to listen on.
-	/// 	- maxPendingConnections: 	The maximum number of pending connections to allow.
+	///		- port: 				The port to listen on.
+	/// 	- maxBacklogSize: 		The maximum size of the queue containing pending connections. Default is *Socket.SOCKET_DEFAULT_MAX_BACKLOG*.
 	///
-	public func listen(on port: Int, maxPendingConnections: Int) throws {
+	public func listen(on port: Int, maxBacklogSize: Int = Socket.SOCKET_DEFAULT_MAX_BACKLOG) throws {
 		
 		// Set a flag so that this address can be re-used immediately after the connection
 		// closes.  (TCP normally imposes a delay before an address can be re-used.)
 		var on: Int32 = 1
-		if setsockopt(self.socketfd, SOL_SOCKET, SO_REUSEADDR, &on, socklen_t(sizeof(Int32.self))) < 0 {
+		if setsockopt(self.socketfd, SOL_SOCKET, SO_REUSEADDR, &on, socklen_t(MemoryLayout<Int32>.size)) < 0 {
 			
 			throw Error(code: Socket.SOCKET_ERR_SETSOCKOPT_FAILED, reason: self.lastError())
 		}
 		
-		// Set the socket to ignore SIGPIPE to avoid dying on interrupted connections...
-		//	Note: Linux does not support the SO_NOSIGPIPE option. Instead, we use the
-		//		  MSG_NOSIGNAL flags passed to send.  See the writeData() functions below.
 		#if !os(Linux)
-			if setsockopt(self.socketfd, SOL_SOCKET, SO_NOSIGPIPE, &on, socklen_t(sizeof(Int32.self))) < 0 {
+			// Set the socket to ignore SIGPIPE to avoid dying on interrupted connections...
+			//	Note: Linux does not support the SO_NOSIGPIPE option. Instead, we use the
+			//		  MSG_NOSIGNAL flags passed to send.  See the writeData() functions below.
+			if setsockopt(self.socketfd, SOL_SOCKET, SO_NOSIGPIPE, &on, socklen_t(MemoryLayout<Int32>.size)) < 0 {
 				
 				throw Error(code: Socket.SOCKET_ERR_SETSOCKOPT_FAILED, reason: self.lastError())
 			}
@@ -1564,7 +1576,7 @@ public class Socket: SocketReader, SocketWriter {
 		// Tell the delegate to initialize as a server...
 		do {
 			
-			try self.delegate?.initialize(isServer: true)
+			try self.delegate?.initialize(asServer: true)
 			
 		} catch let error {
 			
@@ -1599,7 +1611,7 @@ public class Socket: SocketReader, SocketWriter {
 				ai_next: nil)
 		#endif
 		
-		var targetInfo: UnsafeMutablePointer<addrinfo>? = UnsafeMutablePointer<addrinfo>(allocatingCapacity: 1)
+		var targetInfo: UnsafeMutablePointer<addrinfo>? = UnsafeMutablePointer<addrinfo>.allocate(capacity: 1)
 		
 		// Retrieve the info on our target...
 		let status: Int32 = getaddrinfo(nil, String(port), &hints, &targetInfo)
@@ -1658,13 +1670,13 @@ public class Socket: SocketReader, SocketWriter {
 		if info!.pointee.ai_family == Int32(AF_INET6) {
 			
 			var addr = sockaddr_in6()
-			memcpy(&addr, info!.pointee.ai_addr, Int(sizeofValue(addr)))
+			memcpy(&addr, info!.pointee.ai_addr, Int(MemoryLayout<sockaddr_in6>.size))
 			address = .ipv6(addr)
 			
 		} else if info!.pointee.ai_family == Int32(AF_INET) {
 			
 			var addr = sockaddr_in()
-			memcpy(&addr, info!.pointee.ai_addr, Int(sizeofValue(addr)))
+			memcpy(&addr, info!.pointee.ai_addr, Int(MemoryLayout<sockaddr_in>.size))
 			address = .ipv4(addr)
 			
 		} else {
@@ -1682,12 +1694,12 @@ public class Socket: SocketReader, SocketWriter {
 		
 		// Now listen for connections...
 		#if os(Linux)
-			if Glibc.listen(self.socketfd, Int32(maxPendingConnections)) < 0 {
+			if Glibc.listen(self.socketfd, Int32(maxBacklogSize)) < 0 {
 				
 				throw Error(code: Socket.SOCKET_ERR_LISTEN_FAILED, reason: self.lastError())
 			}
 		#else
-			if Darwin.listen(self.socketfd, Int32(maxPendingConnections)) < 0 {
+			if Darwin.listen(self.socketfd, Int32(maxBacklogSize)) < 0 {
 				
 				throw Error(code: Socket.SOCKET_ERR_LISTEN_FAILED, reason: self.lastError())
 			}
@@ -1790,23 +1802,18 @@ public class Socket: SocketReader, SocketWriter {
 		
 		guard let data = NSMutableData(capacity: 2000) else {
 			
-			throw Error(code: Socket.SOCKET_ERR_INTERNAL, reason: "Unable to create temporary NSData...")
+			throw Error(code: Socket.SOCKET_ERR_INTERNAL, reason: "Unable to create temporary NSMutableData...")
 		}
 		
 		let rc = try self.read(into: data)
 		
-		guard let str = NSString(data: data, encoding: NSUTF8StringEncoding)
-			where rc > 0 else {
-			
-			throw Error(code: Socket.SOCKET_ERR_INTERNAL, reason: "Unable to convert data to NSString.")
+		guard let str = NSString(bytes: data.bytes, length: data.length, encoding: String.Encoding.utf8.rawValue),
+			rc > 0 else {
+				
+				throw Error(code: Socket.SOCKET_ERR_INTERNAL, reason: "Unable to convert data to NSString.")
 		}
 		
-		#if os(Linux)
-			return str.bridge()
-		#else
-			return str as String
-		#endif
-		
+		return String(describing: str)
 	}
 	
 	
@@ -1843,8 +1850,52 @@ public class Socket: SocketReader, SocketWriter {
 		var returnCount: Int = 0
 		if count > 0 {
 			
+			data.append(self.readStorage.bytes, length: self.readStorage.length)
+
+			returnCount = self.readStorage.length
+			
+			// - Reset the storage buffer...
+			self.readStorage.length = 0
+		}
+		
+		return returnCount
+	}
+	
+	///
+	/// Read data from the socket.
+	///
+	/// - Parameter data: The buffer to return the data in.
+	///
+	/// - Returns: The number of bytes returned in the buffer.
+	///
+	public func read(into data: inout Data) throws -> Int {
+		
+		// The socket must've been created and must be connected...
+		if self.socketfd == Socket.SOCKET_INVALID_DESCRIPTOR {
+			
+			throw Error(code: Socket.SOCKET_ERR_BAD_DESCRIPTOR, reason: nil)
+		}
+		
+		if !self.isConnected {
+			
+			throw Error(code: Socket.SOCKET_ERR_NOT_CONNECTED, reason: nil)
+		}
+		
+		// Read all available bytes...
+		let count = try self.readDataIntoStorage()
+		
+		// Check for disconnect...
+		if count == 0 {
+			
+			return count
+		}
+		
+		// Did we get data?
+		var returnCount: Int = 0
+		if count > 0 {
+			
 			// - Yes, move to caller's buffer...
-			data.append(self.readStorage)
+			data.append(self.readStorage.bytes.assumingMemoryBound(to: UInt8.self), count: self.readStorage.length)
 			
 			returnCount = self.readStorage.length
 			
@@ -1873,7 +1924,8 @@ public class Socket: SocketReader, SocketWriter {
 		}
 		
 		// The socket must've been created for UDP...
-		guard let sig = self.signature where sig.proto == .udp else {
+		guard let sig = self.signature,
+			sig.proto == .udp else {
 			
 			throw Error(code: Socket.SOCKET_ERR_WRONG_PROTOCOL, reason: "This is not a UDP socket.")
 		}
@@ -1910,7 +1962,8 @@ public class Socket: SocketReader, SocketWriter {
 		}
 		
 		// The socket must've been created for UDP...
-		guard let sig = self.signature where sig.proto == .udp else {
+		guard let sig = self.signature,
+			sig.proto == .udp else {
 			
 			throw Error(code: Socket.SOCKET_ERR_WRONG_PROTOCOL, reason: "This is not a UDP socket.")
 		}
@@ -1927,7 +1980,9 @@ public class Socket: SocketReader, SocketWriter {
 	///		- buffer: 	The buffer containing the data to write.
 	/// 	- bufSize: 	The size of the buffer.
 	///
-	public func write(from buffer: UnsafePointer<Void>, bufSize: Int) throws {
+	/// - Returns: Integer representing the number of bytes written.
+	///
+	@discardableResult public func write(from buffer: UnsafeRawPointer, bufSize: Int) throws -> Int {
 		
 		// Make sure the buffer is valid...
 		if bufSize == 0 {
@@ -1981,10 +2036,18 @@ public class Socket: SocketReader, SocketWriter {
 			}
 			if s <= 0 {
 				
+				if errno == EAGAIN && !isBlocking {
+					
+					// We have written out as much as we can...
+					return sent
+				}
+				
 				throw Error(code: Socket.SOCKET_ERR_WRITE_FAILED, reason: self.lastError())
 			}
 			sent += s
 		}
+		
+		return sent
 	}
 	
 	///
@@ -1992,77 +2055,51 @@ public class Socket: SocketReader, SocketWriter {
 	///
 	/// - Parameter data: The NSData object containing the data to write.
 	///
-	public func write(from data: NSData) throws {
-		
-		// The socket must've been created and must be connected...
-		if self.socketfd == Socket.SOCKET_INVALID_DESCRIPTOR {
-			
-			throw Error(code: Socket.SOCKET_ERR_BAD_DESCRIPTOR, reason: nil)
-		}
-		
-		if !self.isConnected {
-			
-			throw Error(code: Socket.SOCKET_ERR_NOT_CONNECTED, reason: nil)
-		}
+	/// - Returns: Integer representing the number of bytes written.
+	///
+	@discardableResult public func write(from data: NSData) throws -> Int {
 		
 		// If there's no data in the NSData object, why bother? Fail silently...
 		if data.length == 0 {
-			return
+			return 0
 		}
 		
-		var sent = 0
-		var sendFlags: Int32 = 0
-		#if os(Linux)
-			if self.isListening {
-				sendFlags = Int32(MSG_NOSIGNAL)
-			}
-		#endif
-		let buffer = data.bytes
-		while sent < data.length {
-			
-			var s = 0
-			if self.delegate != nil {
-				
-				do {
-
-					s = try self.delegate!.send(buffer: buffer.advanced(by: sent), bufSize: Int(data.length - sent))
-					
-				} catch let error {
-					
-					guard let err = error as? SSLError else {
-						
-						throw error
-					}
-					
-					throw Error(with: err)
-				}
-				
-			} else {
-				#if os(Linux)
-					s = Glibc.send(self.socketfd, buffer.advanced(by: sent), Int(data.length - sent), sendFlags)
-				#else
-					s = Darwin.send(self.socketfd, buffer.advanced(by: sent), Int(data.length - sent), sendFlags)
-				#endif
-			}
-			if s <= 0 {
-				
-				throw Error(code: Socket.SOCKET_ERR_WRITE_FAILED, reason: self.lastError())
-			}
-			sent += s
-		}
+		return try write(from: data.bytes.assumingMemoryBound(to: UInt8.self), bufSize: data.length)
 	}
 	
+	///
+	/// Write data to the socket.
+	///
+	/// - Parameter data: The Data object containing the data to write.
+	///
+	/// - Returns: Integer representing the number of bytes written.
+	///
+	@discardableResult public func write(from data: Data) throws -> Int {
+		
+		// If there's no data in the Data object, why bother? Fail silently...
+		if data.count == 0 {
+			return 0
+		}
+		
+		return try data.withUnsafeBytes() { [unowned self] (buffer: UnsafePointer<UInt8>) throws -> Int in
+			
+			return try self.write(from: buffer, bufSize: data.count)
+		}
+	}
+
 	///
 	/// Write a string to the socket.
 	///
 	/// - Parameter string: The string to write.
 	///
-	public func write(from string: String) throws {
+	/// - Returns: Integer representing the number of bytes written.
+	///
+	@discardableResult public func write(from string: String) throws -> Int {
 		
-		try string.nulTerminatedUTF8.withUnsafeBufferPointer() {
+		return try string.utf8CString.withUnsafeBufferPointer() {
 			
 			// The count returned by nullTerminatedUTF8 includes the null terminator...
-			try self.write(from: $0.baseAddress!, bufSize: $0.count-1)
+			return try self.write(from: $0.baseAddress!, bufSize: $0.count-1)
 		}
 	}
 	
@@ -2074,7 +2111,7 @@ public class Socket: SocketReader, SocketWriter {
 	/// 	- bufSize: 	The size of the buffer.
 	///		- address: 	Address to write data to.
 	///
-	public func write(from buffer: UnsafePointer<Void>, bufSize: Int, to addresss: Address) throws {
+	public func write(from buffer: UnsafeRawPointer, bufSize: Int, to addresss: Address) throws {
 		
 		// Make sure the buffer is valid...
 		if bufSize == 0 {
@@ -2089,7 +2126,8 @@ public class Socket: SocketReader, SocketWriter {
 		}
 		
 		// The socket must've been created for UDP...
-		guard let sig = self.signature where sig.proto == .udp else {
+		guard let sig = self.signature,
+			sig.proto == .udp else {
 			
 			throw Error(code: Socket.SOCKET_ERR_WRONG_PROTOCOL, reason: "This is not a UDP socket.")
 		}
@@ -2112,7 +2150,8 @@ public class Socket: SocketReader, SocketWriter {
 		}
 		
 		// The socket must've been created for UDP...
-		guard let sig = self.signature where sig.proto == .udp else {
+		guard let sig = self.signature,
+			sig.proto == .udp else {
 			
 			throw Error(code: Socket.SOCKET_ERR_WRONG_PROTOCOL, reason: "This is not a UDP socket.")
 		}
@@ -2210,7 +2249,7 @@ public class Socket: SocketReader, SocketWriter {
 		
 		// Clear the buffer...
 		self.readBuffer.deinitialize()
-		self.readBuffer.initialize(with: 0x0)
+		self.readBuffer.initialize(to: 0x0)
 		memset(self.readBuffer, 0x0, self.readBufferSize)
 		
 		// Read all the available data...
