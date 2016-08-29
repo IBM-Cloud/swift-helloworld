@@ -18,7 +18,7 @@ import Foundation
 
 public func parseAddress() -> (String, Int) {
   let args = Array(ProcessInfo.processInfo.arguments[1..<ProcessInfo.processInfo.arguments.count])
-  var port = 9080 // default port
+  var port = 8090 // default port
   var ip = "0.0.0.0" // default ip
   if args.count == 2 && args[0] == "-bind" {
     let tokens = args[1].components(separatedBy: ":")

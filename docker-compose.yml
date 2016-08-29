@@ -1,0 +1,7 @@
+app:
+  image: swift-08-26
+  ports:
+    - "8090:8090"
+  volumes:
+    - .:/root/swift-helloworld
+  command: bash -c "cd /root/swift-helloworld && swift build --clean && swift build && ./.build/debug/Server"
