@@ -11,6 +11,7 @@ branches:
     - master
     - develop
     - bluemix-estado
+    - bluemix-estado-08-25
 
 notifications:
   slack:
