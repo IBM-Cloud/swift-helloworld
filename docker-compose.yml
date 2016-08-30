@@ -1,5 +1,5 @@
 app:
-  image: swift-08-26
+  image: swift-08-29
   ports:
     - "8090:8090"
   volumes:
