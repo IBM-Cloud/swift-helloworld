@@ -23,8 +23,7 @@ let package = Package(
     Target(name: "Server", dependencies: [.Target(name: "Utils")])
   ],
   dependencies: [
-      .Package(url: "https://github.com/IBM-Swift/Swift-cfenv.git", majorVersion: 1, minor: 5),
-      .Package(url: "https://github.com/IBM-Swift/BlueSocket.git", majorVersion: 0, minor: 7)
-    ],
-  testDependencies: []
+      .Package(url: "https://github.com/IBM-Swift/Swift-cfenv.git", majorVersion: 1, minor: 6),
+      .Package(url: "https://github.com/IBM-Swift/BlueSocket.git", majorVersion: 0, minor: 10)
+    ]
 )

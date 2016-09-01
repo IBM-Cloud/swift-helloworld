@@ -28,7 +28,7 @@ public func generateHttpResponse(appEnv: AppEnv) -> String {
 
   // Get environment variables
   #if os(Linux)
-  let environmentVars = ProcessInfo.processInfo().environment
+  let environmentVars = ProcessInfo.processInfo.environment
   #else
   let environmentVars = ProcessInfo.processInfo.environment
   #endif
