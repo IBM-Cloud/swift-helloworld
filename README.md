@@ -6,7 +6,7 @@
 This project contains a simple Swift hello world application that can be deployed to Bluemix or run locally on your [OS X](http://www.apple.com/osx/) or [Ubuntu Linux](http://www.ubuntu.com/download) system.  This sample application creates a basic server that returns an HTML greeting to the client.  Please note that this is not a production-ready application.  Instead, it is for educational purposes to learn about the types of applications you can develop using the Swift programming language.
 
 ## Application Requirements
-To compile and run this sample application on your system, you need to install the [Swift compiler](https://swift.org/download/) for your platform. Please note that the Swift language is evolving and changing rapidly. The latest version of this Swift application works with the `DEVELOPMENT-SNAPSHOT-2016-08-29-a` version of the Swift binaries. You can download this version of the Swift binaries by following this [link](https://swift.org/download/).
+To compile and run this sample application on your system, you need to install the [Swift compiler](https://swift.org/download/) for your platform. Please note that the Swift language is evolving and changing rapidly. The latest version of this Swift application works with the `3.0` version of the Swift binaries. You can download this version of the Swift binaries by following this [link](https://swift.org/download/).
 
 If you are interested in manually deploying the application to Bluemix, you'd need to install the Cloud Foundry [command line](https://docs.cloudfoundry.org/devguide/cf-cli/install-go-cli.html) on your system.  Once it is installed, you can use it to [authenticate and access](https://www.ng.bluemix.net/docs/starters/install_cli.html) your Bluemix organization(s) and spaces.  You can find further details on how to deploy this sample application to Bluemix in the following sections.
 
@@ -85,7 +85,7 @@ liberty-for-java_v3_0-20160608-1450     19         true      false    buildpack_
 sdk-for-nodejs_v3_5-20160609-1608       20         true      false    buildpack_sdk-for-nodejs_v3.5-20160609-1608.zip   
 ```
 
-Looking at the output above, we can see that the Swift buildpack (v1.1.1) is installed on Bluemix.  This will allow a seamless deployment of the starter application to Bluemix. After you have cloned this Git repo, go to its root folder on your system and issue the following command Cloud Foundry command:
+Looking at the output above, we can see that the Swift buildpack (v2.0.0) is installed on Bluemix.  This will allow a seamless deployment of the starter application to Bluemix. After you have cloned this Git repo, go to its root folder on your system and issue the following command Cloud Foundry command:
 
 ```
 cf push
@@ -99,48 +99,46 @@ Using manifest file /Users/olivieri/git/swift-helloworld/manifest.yml
 Creating app swift-helloworld-estado in org roliv@us.ibm.com / space dev as roliv@us.ibm.com...
 OK
 
-Creating route swift-helloworld-estado-unquestioned-itinerarium.mybluemix.net...
+Creating route swift-helloworld-estado-protestable-nondilation.mybluemix.net...
 OK
 
-Binding swift-helloworld-estado-unquestioned-itinerarium.mybluemix.net to swift-helloworld-estado...
+Binding swift-helloworld-estado-protestable-nondilation.mybluemix.net to swift-helloworld-estado...
 OK
 
 Uploading swift-helloworld-estado...
 Uploading app files from: /Users/olivieri/git/swift-helloworld
-Uploading 182.3K, 32 files
+Uploading 169.3K, 62 files
 Done uploading               
 OK
 
 Starting app swift-helloworld-estado in org roliv@us.ibm.com / space dev as roliv@us.ibm.com...
------> Downloaded app package (48K)
+-----> Downloaded app package (60K)
+Cloning into '/tmp/buildpacks/swift-buildpack'...
+-----> Default supported Swift version is 3.0
 -----> Installing system level dependencies...
 -----> Installing libblocksruntime0_0.1-1_amd64.deb
 -----> Installing libblocksruntime-dev_0.1-1_amd64.deb
+-----> Installing libcurl3_7.35.0-1ubuntu2.6_amd64.deb
 -----> Installing libkqueue0_1.0.4-2ubuntu1_amd64.deb
 -----> Installing libssl-dev_1.0.1f-1ubuntu2.19_amd64.deb
 -----> Installing openssl_1.0.1f-1ubuntu2.19_amd64.deb
+-----> Installing uuid-dev_2.20.1-5.1ubuntu20_amd64.deb
+-----> No Aptfile found.
 -----> Writing profile script...
------> Buildpack version 1.1.4
------> Installing Swift DEVELOPMENT-SNAPSHOT-2016-08-29-a
-      Downloaded Swift
------> Installing Clang 3.7.0
-      Downloaded Clang
------> Adding libdispatch binaries...
+-----> Installing Swift 3.0
+       Downloaded Swift
+-----> Installing Clang 3.8.0
+       Downloaded Clang
+-----> This buildpack does not add libdispatch binaries for swift-3.0 (note: Swift binaries from 8/23 and later already include libdispatch)
 -----> Building Package...
-      Compile Swift Module 'SwiftyJSON' (2 sources)
-      Compile Swift Module 'Socket' (3 sources)
-      Compile Swift Module 'Utils' (2 sources)
-      Compile Swift Module 'CloudFoundryEnv' (7 sources)
-      Compile Swift Module 'Server' (1 sources)
-      Linking .build/release/Server
------> Copying dynamic libraries
+       Compile Swift Module 'Socket' (3 sources)
+       Compile Swift Module 'Server' (1 sources)
+       Linking ./.build/release/Server
 -----> Copying binaries to 'bin'
 -----> Cleaning up build files
 -----> Cleaning up cache folder
+-----> Uploading droplet (8.0M)
 
------> Uploading droplet (7.4M)
-
-0 of 1 instances running, 1 starting
 1 of 1 instances running
 
 App started
@@ -148,7 +146,7 @@ App started
 
 OK
 
-App swift-helloworld-estado was started using this command `Server`
+App swift-helloworld-estado was started using this command `Server -bind 0.0.0.0:$PORT`
 
 Showing health and status for app swift-helloworld-estado in org roliv@us.ibm.com / space dev as roliv@us.ibm.com...
 OK
@@ -156,13 +154,13 @@ OK
 requested state: started
 instances: 1/1
 usage: 128M x 1 instances
-urls: swift-helloworld-estado-unquestioned-itinerarium.mybluemix.net
-last uploaded: Tue Aug 2 18:58:47 UTC 2016
-stack: unknown
-buildpack: Swift
+urls: swift-helloworld-estado-protestable-nondilation.mybluemix.net
+last uploaded: Wed Sep 14 20:19:58 UTC 2016
+stack: cflinuxfs2
+buildpack: https://github.com/IBM-Swift/swift-buildpack.git#develop
 
-    state     since                    cpu    memory          disk          details   
-#0   running   2016-08-02 01:59:48 PM   0.0%   10.8M of 128M   26.7M of 1G      
+     state     since                    cpu    memory          disk          details
+#0   running   2016-09-14 03:21:24 PM   0.0%   11.8M of 128M   28.8M of 1G
 ```
 
 Once the sample application is pushed to Bluemix, you can access it using its route. You can log on to your [Bluemix account](https://console.ng.bluemix.net) to find the route of your application or you can inspect the output from the execution of the `cf push` command.  The string value (e.g. swift-helloworld.mybluemix.net) shown next to the urls should contain the route.  Use that route as the URL to access the sample server using the browser of your choice.  The browser should render an HTML page with the following message at the top:
