@@ -62,27 +62,26 @@ Executing the above command should result in output similar to the following:
 ```
 Getting buildpacks...
 
-buildpack                               position   enabled   locked   filename   
-liberty-for-java                        1          true      false    buildpack_liberty-for-java_v3.1-20160717-2254.zip   
-sdk-for-nodejs                          2          true      false    buildpack_sdk-for-nodejs_v3.6-20160715-0749.zip   
-dotnet-core                             3          true      false    buildpack_dotnet-core_v0.9-20160706-1603.zip   
-noop-buildpack                          4          true      false    noop-buildpack-20140311-1519.zip   
-java_buildpack                          5          true      false    java-buildpack-v3.6.zip   
-ruby_buildpack                          6          true      false    ruby_buildpack-cached-v1.6.16.zip   
-nodejs_buildpack                        7          true      false    nodejs_buildpack-cached-v1.5.11.zip   
-go_buildpack                            8          true      false    go_buildpack-cached-v1.7.5.zip   
-python_buildpack                        9          true      false    python_buildpack-cached-v1.5.5.zip   
-php_buildpack                           10         true      false    php_buildpack-cached-v4.3.10.zip   
-swift_buildpack                         11         true      false    swift_buildpack-cached-v1.1.4.zip   
-xpages_buildpack                        12         true      false    xpages_buildpack_v1.1.1-20160518-0936.zip   
-liberty-for-java_v2_3-20151208-1311     13         true      false    liberty-for-java_v2.3-20151208-1311.zip   
-xpages_buildpack_v1_0_0-20160310-1442   14         true      false    xpages_buildpack_v1.0.0-20160310-1442.zip   
-staticfile_buildpack                    15         true      false    staticfile_buildpack-cached-v1.3.6.zip   
-binary_buildpack                        16         true      false    binary_buildpack-cached-v1.0.1.zip   
-dotnet-core_v0_9-20160629-1646          17         true      false    buildpack_dotnet-core_v0.9-20160629-1646.zip   
-swift_buildpack-cached-v1_1_2           18         true      false    swift_buildpack-cached-v1.1.2.zip   
-liberty-for-java_v3_0-20160608-1450     19         true      false    buildpack_liberty-for-java_v3_0-20160608-1450.zip   
-sdk-for-nodejs_v3_5-20160609-1608       20         true      false    buildpack_sdk-for-nodejs_v3.5-20160609-1608.zip   
+buildpack                              position   enabled   locked   filename
+liberty-for-java                       1          true      false    buildpack_liberty-for-java_v3.3-20160912-1729.zip
+sdk-for-nodejs                         2          true      false    buildpack_sdk-for-nodejs_v3.7-20160826-1101.zip
+dotnet-core                            3          true      false    buildpack_dotnet-core_v1.0-20160826-1345.zip
+swift_buildpack                        4          true      false    buildpack_swift_v2.0.0-20160915-1220.zip
+java_buildpack                         5          true      false    java-buildpack-v3.6.zip
+ruby_buildpack                         6          true      false    ruby_buildpack-cached-v1.6.16.zip
+nodejs_buildpack                       7          true      false    nodejs_buildpack-cached-v1.5.11.zip
+go_buildpack                           8          true      false    go_buildpack-cached-v1.7.5.zip
+python_buildpack                       9          true      false    python_buildpack-cached-v1.5.5.zip
+php_buildpack                          10         true      false    php_buildpack-cached-v4.3.10.zip
+xpages_buildpack                       11         true      false    xpages_buildpack_v1.1.1-20160518-0936.zip
+staticfile_buildpack                   12         true      false    staticfile_buildpack-cached-v1.3.6.zip
+binary_buildpack                       13         true      false    binary_buildpack-cached-v1.0.1.zip
+xpages_buildpack_v1_0_0-20160310-144   14         true      false    xpages_buildpack_v1.0.0-20160310-1442.zip
+swift_buildpack_v1_1_1                 15         true      false    swift_buildpack-cached-v1.1.1.zip
+dotnet-core_v0_9-20160706-1603         16         true      false    buildpack_dotnet-core_v0.9-20160706-1603.zip
+sdk-for-nodejs_v3_7-20160823-1528      17         true      false    buildpack_sdk-for-nodejs_v3.7-20160823-1528.zip
+liberty-for-java_v3_2-20160822-2200    18         true      false    buildpack_liberty-for-java_v3.2-20160822-2200.zip
+swift_buildpack_v1_1_6-20160729-1205   19         true      false    buildpack_swift_v1.1.6-20160729-1205.zip
 ```
 
 Looking at the output above, we can see that the Swift buildpack (v2.0.0) is installed on Bluemix.  This will allow a seamless deployment of the starter application to Bluemix. After you have cloned this Git repo, go to its root folder on your system and issue the following command Cloud Foundry command:
