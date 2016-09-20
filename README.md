@@ -6,7 +6,7 @@
 This project contains a simple Swift hello world application that can be deployed to Bluemix or run locally on your [OS X](http://www.apple.com/osx/) or [Ubuntu Linux](http://www.ubuntu.com/download) system.  This sample application creates a basic server that returns an HTML greeting to the client.  Please note that this is not a production-ready application.  Instead, it is for educational purposes to learn about the types of applications you can develop using the Swift programming language.
 
 ## Application Requirements
-To compile and run this sample application on your system, you need to install the [Swift compiler](https://swift.org/download/) for your platform. Please note that the Swift language is evolving and changing rapidly. The latest version of this Swift application works with the `DEVELOPMENT-SNAPSHOT-2016-08-30-a` version of the Swift binaries. You can download this version of the Swift binaries by following this [link](https://swift.org/download/).
+To compile and run this sample application on your system, you need to install the [Swift compiler](https://swift.org/download/) for your platform. Please note that the Swift language is evolving and changing rapidly. The latest version of this Swift application works with the `3.0` version of the Swift binaries. You can download this version of the Swift binaries by following this [link](https://swift.org/download/).
 
 If you are interested in manually deploying the application to Bluemix, you'd need to install the Cloud Foundry [command line](https://docs.cloudfoundry.org/devguide/cf-cli/install-go-cli.html) on your system.  Once it is installed, you can use it to [authenticate and access](https://www.ng.bluemix.net/docs/starters/install_cli.html) your Bluemix organization(s) and spaces.  You can find further details on how to deploy this sample application to Bluemix in the following sections.
 
@@ -63,53 +63,57 @@ Executing the above command should result in output similar to the following:
 ```
 Getting buildpacks...
 
-buildpack                                 position   enabled   locked   filename   
-liberty-for-java                          1          true      false    buildpack_liberty-for-java_v2.9-20160519-1249.zip   
-sdk-for-nodejs                            2          true      false    buildpack_sdk-for-nodejs_v3.4-20160518-1653.zip   
-noop-buildpack                            3          true      false    noop-buildpack-20140311-1519.zip   
-java_buildpack                            4          true      false    java-buildpack-v3.5.1.zip   
-ruby_buildpack                            5          true      false    ruby_buildpack-cached-v1.6.9.zip   
-nodejs_buildpack                          6          true      false    nodejs_buildpack-cached-v1.5.3.zip   
-go_buildpack                              7          true      false    go_buildpack-cached-v1.7.0.zip   
-python_buildpack                          8          true      false    python_buildpack-cached-v1.5.2.zip   
-php_buildpack                             9          true      false    php_buildpack-cached-v4.3.0.zip   
-swift_buildpack                           10         true      false    swift_buildpack-cached-v1.1.1.zip   
-aspnet5-experimental                      11         true      false    buildpack_aspnet5-experimental_v0.7-20151022-1257.zip   
-xpages_buildpack                          12         true      false    xpages_buildpack_v1.1.1-20160518-0936.zip   
-aspnet5-experimental_v0_6-20150916-1220   13         true      false    buildpack_aspnet5-experimental_v0.6-20150916-1220.zip   
-liberty-for-java_v2_3-20151208-1311       14         true      false    liberty-for-java_v2.3-20151208-1311.zip   
-sdk-for-nodejs_v3_3-20160428-1409         15         true      false    buildpack_sdk-for-nodejs_v3.3-20160428-1409.zip   
-liberty_for_java_v2_8-20160430-1011       16         true      false    buildpack_liberty-for-java_v2.8-20160430-1011.zip   
-xpages_buildpack_v1_0_0-20160310-1442     17         true      false    xpages_buildpack_v1.0.0-20160310-1442.zip   
-swift_buildpack-cached-v1_0_3             18         true      false    swift_buildpack-cached-v1.0.3.zip
+buildpack                              position   enabled   locked   filename
+liberty-for-java                       1          true      false    buildpack_liberty-for-java_v3.3-20160912-1729.zip
+sdk-for-nodejs                         2          true      false    buildpack_sdk-for-nodejs_v3.7-20160826-1101.zip
+dotnet-core                            3          true      false    buildpack_dotnet-core_v1.0-20160826-1345.zip
+swift_buildpack                        4          true      false    buildpack_swift_v2.0.0-20160915-1220.zip
+java_buildpack                         5          true      false    java-buildpack-v3.6.zip
+ruby_buildpack                         6          true      false    ruby_buildpack-cached-v1.6.16.zip
+nodejs_buildpack                       7          true      false    nodejs_buildpack-cached-v1.5.11.zip
+go_buildpack                           8          true      false    go_buildpack-cached-v1.7.5.zip
+python_buildpack                       9          true      false    python_buildpack-cached-v1.5.5.zip
+php_buildpack                          10         true      false    php_buildpack-cached-v4.3.10.zip
+xpages_buildpack                       11         true      false    xpages_buildpack_v1.1.1-20160518-0936.zip
+staticfile_buildpack                   12         true      false    staticfile_buildpack-cached-v1.3.6.zip
+binary_buildpack                       13         true      false    binary_buildpack-cached-v1.0.1.zip
+xpages_buildpack_v1_0_0-20160310-144   14         true      false    xpages_buildpack_v1.0.0-20160310-1442.zip
+swift_buildpack_v1_1_1                 15         true      false    swift_buildpack-cached-v1.1.1.zip
+dotnet-core_v0_9-20160706-1603         16         true      false    buildpack_dotnet-core_v0.9-20160706-1603.zip
+sdk-for-nodejs_v3_7-20160823-1528      17         true      false    buildpack_sdk-for-nodejs_v3.7-20160823-1528.zip
+liberty-for-java_v3_2-20160822-2200    18         true      false    buildpack_liberty-for-java_v3.2-20160822-2200.zip
+swift_buildpack_v1_1_6-20160729-1205   19         true      false    buildpack_swift_v1.1.6-20160729-1205.zip
 ```
 
-Looking at the output above, we can see that the Swift buildpack (v1.1.1) is installed on Bluemix.  This will allow a seamless deployment of the starter application to Bluemix. After you have cloned this Git repo, go to its root folder on your system and issue the following command Cloud Foundry command:
+Looking at the output above, we can see that the Swift buildpack (v2.0.0) is installed on Bluemix.  This will allow a seamless deployment of the starter application to Bluemix. After you have cloned this Git repo, go to its root folder on your system and issue the following command Cloud Foundry command:
 
 ```
 cf push
 ```
 
-Executing the Cloud Foundry push command will parse the contents of the manifest.yml file and upload the application to Bluemix.  This action should generate an output similar to the following:
+Executing the Cloud Foundry push command will parse the contents of the `manifest.yml` file and upload the application to Bluemix.  This action should generate an output similar to the following:
 
 ```
 Using manifest file /Users/olivieri/git/swift-helloworld/manifest.yml
 
-Updating app swift-helloworld in org roliv@us.ibm.com / space dev as roliv@us.ibm.com...
+Creating app swift-helloworld in org roliv@us.ibm.com / space dev as roliv@us.ibm.com...
+OK
+
+Creating route swift-helloworld-nontanning-typhoon.stage1.mybluemix.net...
+OK
+
+Binding swift-helloworld-nontanning-typhoon.stage1.mybluemix.net to swift-helloworld...
 OK
 
 Uploading swift-helloworld...
 Uploading app files from: /Users/olivieri/git/swift-helloworld
-Uploading 34.8K, 14 files
+Uploading 35.3K, 17 files
 Done uploading               
-OK
-
-Stopping app swift-helloworld in org roliv@us.ibm.com / space dev as roliv@us.ibm.com...
 OK
 
 Starting app swift-helloworld in org roliv@us.ibm.com / space dev as roliv@us.ibm.com...
 -----> Downloaded app package (16K)
-Cloning into '/tmp/buildpacks/swift-buildpack'...
+-----> Default supported Swift version is 3.0
 -----> Installing system level dependencies...
 -----> Installing libblocksruntime0_0.1-1_amd64.deb
 -----> Installing libblocksruntime-dev_0.1-1_amd64.deb
@@ -117,35 +121,38 @@ Cloning into '/tmp/buildpacks/swift-buildpack'...
 -----> Installing libkqueue0_1.0.4-2ubuntu1_amd64.deb
 -----> Installing libssl-dev_1.0.1f-1ubuntu2.19_amd64.deb
 -----> Installing openssl_1.0.1f-1ubuntu2.19_amd64.deb
+-----> Installing uuid-dev_2.20.1-5.1ubuntu20_amd64.deb
+-----> No Aptfile found.
 -----> Writing profile script...
------> Buildpack version 1.1.4
------> Installing Swift DEVELOPMENT-SNAPSHOT-2016-06-20-a
+-----> Buildpack version 2.0.0
+-----> Installing Swift 3.0
        Downloaded Swift
------> Installing Clang 3.7.0
+-----> Installing Clang 3.8.0
        Downloaded Clang
------> Adding libdispatch binaries...
+-----> This buildpack does not add libdispatch binaries for swift-3.0 (note: Swift binaries from 8/23 and later already include libdispatch)
 -----> Building Package...
        Cloning https://github.com/IBM-Swift/Swift-cfenv.git
-       HEAD is now at eefdf83 Migrating code to swift 06-06.
-       Resolved version: 1.3.0
+       HEAD is now at 04d7d88 Update swift version to 3.0
+       Resolved version: 1.7.0
        Cloning https://github.com/IBM-Swift/SwiftyJSON.git
-       HEAD is now at 3dc35da IBM-Swift/Kitura#504 updates to work on linux os for 31-05 migration (#5)
-       Resolved version: 9.0.0
+       HEAD is now at 73b523a 3.0
+       Resolved version: 14.2.0
        Cloning https://github.com/IBM-Swift/BlueSocket.git
-       HEAD is now at 6e8915c Added blurb about BlueSSLService add-on.
-       Resolved version: 0.5.20
-       Compile Swift Module 'SwiftyJSON' (2 sources)
+       HEAD is now at fc56939 Update to latest (9/16) toolchain
+       Resolved version: 0.11.7
        Compile Swift Module 'Socket' (3 sources)
+       Compile Swift Module 'SwiftyJSON' (2 sources)
        Compile Swift Module 'CloudFoundryEnv' (7 sources)
        Compile Swift Module 'Utils' (3 sources)
        Compile Swift Module 'Server' (1 sources)
-       Linking .build/release/Server
+       Linking ./.build/release/Server
 -----> Copying dynamic libraries
 -----> Copying binaries to 'bin'
 -----> Cleaning up build files
 -----> Cleaning up cache folder
 
-0 of 1 instances running, 1 starting
+-----> Uploading droplet (11M)
+
 1 of 1 instances running
 
 App started
@@ -161,14 +168,13 @@ OK
 requested state: started
 instances: 1/1
 usage: 128M x 1 instances
-urls: swift-helloworld-leptophyllous-redbone.mybluemix.net
-last uploaded: Wed Jul 13 15:38:05 UTC 2016
-stack: unknown
-buildpack: Swift
+urls: swift-helloworld-nontanning-typhoon.stage1.mybluemix.net
+last uploaded: Tue Sep 20 17:49:50 UTC 2016
+stack: cflinuxfs2
+buildpack: swift_buildpack
 
-     state     since                    cpu    memory          disk          details   
-#0   running   2016-07-13 10:41:00 AM   0.0%   12.2M of 128M   30.7M of 1G      
-Ricardos-MacBook-Pro:swift-helloworld olivieri$
+     state     since                    cpu    memory          disk        details
+#0   running   2016-09-20 12:51:08 PM   0.0%   14.6M of 128M   36M of 1G
 ```
 
 Once the sample application is pushed to Bluemix, you can access it using its route. You can log on to your [Bluemix account](https://console.ng.bluemix.net) to find the route of your application or you can inspect the output from the execution of the `cf push` command.  The string value (e.g. swift-helloworld.mybluemix.net) shown next to the urls should contain the route.  Use that route as the URL to access the sample server using the browser of your choice.  The browser should render an HTML page with the following message at the top:
@@ -178,15 +184,12 @@ Hello from Swift on Linux!
 ```
 
 ## Using a different version of Swift on Bluemix for your application
-If you look closely at the output above returned by the `cf push` command, you will notice that `DEVELOPMENT-SNAPSHOT-2016-06-20-a` was the Swift version used for compiling and running the sample app on Bluemix.  If you have a Swift application that compiles with a different version of the Swift binaries, say `DEVELOPMENT-SNAPSHOT-2016-04-25-a`, you'd need to update the contents of the `.swift-version` file to:
+If you look closely at the output above returned by the `cf push` command, you will notice that `3.0` was the Swift version used for compiling and running the sample app on Bluemix.  If you have a Swift application that compiles with a different version of the Swift binaries, say `DEVELOPMENT-SNAPSHOT-2016-08-30-a`, you'd need to update the contents of the `.swift-version` file to:
 
 ```
-DEVELOPMENT-SNAPSHOT-2016-04-25-a
+DEVELOPMENT-SNAPSHOT-2016-08-30-a
 ```
 
-After updating the `.swift-version` file, you can run the `cf push -b https://github.com/IBM-Swift/swift-buildpack` command.  Note that if using a version of the Swift binaries other than `DEVELOPMENT-SNAPSHOT-2016-06-20-a`, you'd need to add the `-b https://github.com/IBM-Swift/swift-buildpack` parameter for the execution of the `push` command.  This action should upload your application to Bluemix and use the `DEVELOPMENT-SNAPSHOT-2016-04-25-a` version of the Swift binaries for compiling and running your application as shown.
+After updating the `.swift-version` file, you can run the `cf push` command to push your application to Bluemix and use the specified version of the Swift binaries for compiling and running your application.
 
 For a complete list of the Swift versions currently supported by the Swift buildpack for Bluemix, see the buildpack's [manifest](https://github.com/IBM-Swift/swift-buildpack/blob/bluemix-buildpack/manifest.yml) file.  If you cannot find the version of the Swift binaries you are looking for in this file, then that version is not currently supported.
-
-## What's next?
-As new releases of the Swift binaries are made available at (Swift.org)[https://swift.org/], our team will update the (Swift buildpack)[https://github.com/IBM-Swift/swift-buildpack] for Bluemix and this sample app.  Stay tuned for updates!
