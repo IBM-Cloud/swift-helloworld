@@ -20,11 +20,8 @@ let package = Package(
   name: "HelloWorldSwift",
   targets: [
     Target(name: "Utils", dependencies: []),
-    // Target(name: "Server", dependencies: [.Target(name: "Utils")])
     Target(name: "Socket", dependencies: []),
     Target(name: "Server", dependencies: [.Target(name: "Utils"), .Target(name: "Socket")])
   ],
-  dependencies: [
-      //.Package(url: "https://github.com/IBM-Swift/BlueSocket.git", majorVersion: 0, minor: 5)
-    ]
+  dependencies: [ ]
 )

@@ -1,4 +1,4 @@
-[![Build Status - Master](https://travis-ci.org/IBM-Bluemix/swift-helloworld.svg?branch=bluemix-estado)](https://travis-ci.org/IBM-Bluemix/swift-helloworld)
+[![Build Status - bluemix-estado](https://travis-ci.org/IBM-Bluemix/swift-helloworld.svg?branch=bluemix-estado)](https://travis-ci.org/IBM-Bluemix/swift-helloworld)
 ![macOS](https://img.shields.io/badge/os-macOS-green.svg?style=flat)
 ![Linux](https://img.shields.io/badge/os-linux-green.svg?style=flat)
 
