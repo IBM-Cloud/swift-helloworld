@@ -20,7 +20,7 @@ public func parseAddress() -> (String, Int) {
   var ip = "0.0.0.0" // default ip
   if args.count == 2 && args[0] == "-bind" {
     let tokens = args[1].components(separatedBy: ":")
-    if (tokens.count == 2) {
+    if tokens.count == 2 {
       ip = tokens[0]
       if let portNumber = Int(tokens[1]) {
         port = portNumber
