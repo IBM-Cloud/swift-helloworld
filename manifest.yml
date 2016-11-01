@@ -1,6 +1,6 @@
 ---
 applications:
-- name: swift-helloworld-estado
+- name: swift-helloworld
   random-route: true
   memory: 128M
   instances: 1
