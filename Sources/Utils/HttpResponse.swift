@@ -27,11 +27,7 @@ public func generateHttpResponse(appEnv: AppEnv) -> String {
   "<tr><th>Environment Variable</th><th>Value</th></tr>"
 
   // Get environment variables
-  #if os(Linux)
   let environmentVars = ProcessInfo.processInfo.environment
-  #else
-  let environmentVars = ProcessInfo.processInfo.environment
-  #endif
   for (variable, value) in environmentVars {
     responseBody += "<tr><td>\(variable)</td><td>\(value)</td></tr>\n"
   }
