@@ -91,7 +91,7 @@ Looking at the output above, we can see that the Swift buildpack (v2.0.0) is ins
 cf push
 ```
 
-Executing the Cloud Foundry push command will parse the contents of the `manifest.yml` file and upload the application to Bluemix. The following is example output output from executing the `cf push` command on the Swift `3.0` version of this application:
+Executing the Cloud Foundry push command will parse the contents of the `manifest.yml` file and upload the application to Bluemix. The following is example output from executing the `cf push` command on the Swift `3.0` version of this application:
 
 ```
 Using manifest file /Users/olivieri/git/swift-helloworld/manifest.yml
