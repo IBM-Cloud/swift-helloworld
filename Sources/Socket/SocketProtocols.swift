@@ -144,9 +144,9 @@ public protocol SSLServiceDelegate {
 ///
 /// SSL Service Error
 ///
-public enum SSLError: Error, CustomStringConvertible {
+public enum SSLError: Swift.Error, CustomStringConvertible {
 
-	/// success
+	/// Success
 	case success
 
 	/// Failure with error code and reason
@@ -165,6 +165,7 @@ public enum SSLError: Error, CustomStringConvertible {
 		}
 	}
 
+	/// Error description
 	public var description: String {
 
 		switch self {

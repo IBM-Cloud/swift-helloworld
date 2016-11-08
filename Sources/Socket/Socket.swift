@@ -29,7 +29,7 @@ import Foundation
 // MARK: Socket
 
 ///
-/// Low level BSD sockets wrapper.
+/// **Socket:** Low level BSD sockets wrapper.
 ///
 public class Socket: SocketReader, SocketWriter {
 
@@ -40,7 +40,7 @@ public class Socket: SocketReader, SocketWriter {
 	public static let SOCKET_MINIMUM_READ_BUFFER_SIZE		= 1024
 	public static let SOCKET_DEFAULT_READ_BUFFER_SIZE		= 4096
 	public static let SOCKET_DEFAULT_MAX_BACKLOG			= 50
-	#if os(macOS)
+	#if os(macOS) || os(iOS) || os(tvOS) || os(watchOS)
 	public static let SOCKET_MAX_DARWIN_BACKLOG				= 128
 	#endif
 
@@ -64,24 +64,31 @@ public class Socket: SocketReader, SocketWriter {
 	public static let SOCKET_ERR_SETSOCKOPT_FAILED			= -9993
 	public static let SOCKET_ERR_BIND_FAILED				= -9992
 	public static let SOCKET_ERR_INVALID_HOSTNAME			= -9991
-	public static let SOCKET_ERR_GETADDRINFO_FAILED			= -9990
-	public static let SOCKET_ERR_CONNECT_FAILED				= -9989
-	public static let SOCKET_ERR_MISSING_CONNECTION_DATA	= -9988
-	public static let SOCKET_ERR_SELECT_FAILED				= -9987
-	public static let SOCKET_ERR_LISTEN_FAILED				= -9986
-	public static let SOCKET_ERR_INVALID_BUFFER				= -9985
-	public static let SOCKET_ERR_INVALID_BUFFER_SIZE		= -9984
-	public static let SOCKET_ERR_RECV_FAILED				= -9983
-	public static let SOCKET_ERR_RECV_BUFFER_TOO_SMALL		= -9982
-	public static let SOCKET_ERR_WRITE_FAILED				= -9981
-	public static let SOCKET_ERR_GET_FCNTL_FAILED			= -9980
-	public static let SOCKET_ERR_SET_FCNTL_FAILED			= -9979
-	public static let SOCKET_ERR_NOT_IMPLEMENTED			= -9978
-	public static let SOCKET_ERR_NOT_SUPPORTED_YET			= -9977
-	public static let SOCKET_ERR_BAD_SIGNATURE_PARAMETERS	= -9976
-	public static let SOCKET_ERR_INTERNAL					= -9975
-	public static let SOCKET_ERR_WRONG_PROTOCOL				= -9974
-	public static let SOCKET_ERR_NOT_ACTIVE					= -9973
+	public static let SOCKET_ERR_INVALID_PORT				= -9990
+	public static let SOCKET_ERR_GETADDRINFO_FAILED			= -9989
+	public static let SOCKET_ERR_CONNECT_FAILED				= -9988
+	public static let SOCKET_ERR_MISSING_CONNECTION_DATA	= -9987
+	public static let SOCKET_ERR_SELECT_FAILED				= -9986
+	public static let SOCKET_ERR_LISTEN_FAILED				= -9985
+	public static let SOCKET_ERR_INVALID_BUFFER				= -9984
+	public static let SOCKET_ERR_INVALID_BUFFER_SIZE		= -9983
+	public static let SOCKET_ERR_RECV_FAILED				= -9982
+	public static let SOCKET_ERR_RECV_BUFFER_TOO_SMALL		= -9981
+	public static let SOCKET_ERR_WRITE_FAILED				= -9980
+	public static let SOCKET_ERR_GET_FCNTL_FAILED			= -9979
+	public static let SOCKET_ERR_SET_FCNTL_FAILED			= -9978
+	public static let SOCKET_ERR_NOT_IMPLEMENTED			= -9977
+	public static let SOCKET_ERR_NOT_SUPPORTED_YET			= -9976
+	public static let SOCKET_ERR_BAD_SIGNATURE_PARAMETERS	= -9975
+	public static let SOCKET_ERR_INTERNAL					= -9974
+	public static let SOCKET_ERR_WRONG_PROTOCOL				= -9973
+	public static let SOCKET_ERR_NOT_ACTIVE					= -9972
+
+
+	///
+	/// Flag to indicate the endian-ness of the host
+	///
+	public static let isLittleEndian: Bool 					= Int(littleEndian: 42) == 42
 
 	// MARK: Enums
 
@@ -309,6 +316,9 @@ public class Socket: SocketReader, SocketWriter {
 
 	// MARK: -- Signature
 
+	///
+	/// Socket signature: contains the characteristics of the socket.
+	///
 	public struct Signature: CustomStringConvertible {
 
 		// MARK: -- Public Properties
@@ -353,7 +363,7 @@ public class Socket: SocketReader, SocketWriter {
 		///
 		public var description: String {
 
-			return "Signature: family: \(protocolFamily), type: \(socketType), protocol: \(proto), address: \(address), hostname: \(hostname), port: \(port), secure: \(isSecure)"
+			return "Signature: family: \(protocolFamily), type: \(socketType), protocol: \(proto), address: \(address as Socket.Address?), hostname: \(hostname as String?), port: \(port), secure: \(isSecure)"
 		}
 
 		// MARK: -- Public Functions
@@ -454,6 +464,9 @@ public class Socket: SocketReader, SocketWriter {
 
 	// MARK: -- Error
 
+	///
+	/// `Socket` specific error structure.
+	///
 	public struct Error: Swift.Error, CustomStringConvertible {
 
 		// MARK: -- Public Properties
@@ -742,7 +755,6 @@ public class Socket: SocketReader, SocketWriter {
 	///
 	public class func hostnameAndPort(from address: Address) -> (hostname: String, port: Int32)? {
 
-
 		var port: Int32 = 0
 		var bufLen: Int = 0
 		var buf: [CChar]
@@ -755,7 +767,11 @@ public class Socket: SocketReader, SocketWriter {
 			bufLen = Int(INET_ADDRSTRLEN)
 			buf = [CChar](repeating: 0, count: bufLen)
 			inet_ntop(Int32(addr.sa_family), &addr_in.sin_addr, &buf, socklen_t(bufLen))
-			port = Int32(UInt16(addr_in.sin_port).byteSwapped)
+			if isLittleEndian {
+				port = Int32(UInt16(addr_in.sin_port).byteSwapped)
+			} else {
+				port = Int32(UInt16(addr_in.sin_port))
+			}
 
 		case .ipv6(let address_in):
 			var addr_in = address_in
@@ -763,7 +779,11 @@ public class Socket: SocketReader, SocketWriter {
 			bufLen = Int(INET6_ADDRSTRLEN)
 			buf = [CChar](repeating: 0, count: bufLen)
 			inet_ntop(Int32(addr.sa_family), &addr_in.sin6_addr, &buf, socklen_t(bufLen))
-			port = Int32(UInt16(addr_in.sin6_port).byteSwapped)
+			if isLittleEndian {
+				port = Int32(UInt16(addr_in.sin6_port).byteSwapped)
+			} else {
+				port = Int32(UInt16(addr_in.sin6_port))
+			}
 
 		}
 
@@ -1291,6 +1311,11 @@ public class Socket: SocketReader, SocketWriter {
 			throw Error(code: Socket.SOCKET_ERR_INVALID_HOSTNAME, reason: nil)
 		}
 
+		if port == 0 {
+
+			throw Error(code: Socket.SOCKET_ERR_INVALID_PORT, reason: "Connect to port cannot be zero (0).")
+		}
+
 		// Tell the delegate to initialize as a client...
 		do {
 
@@ -1356,7 +1381,7 @@ public class Socket: SocketReader, SocketWriter {
 		var socketDescriptor: Int32?
 
 		var info = targetInfo
-		while (info != nil) {
+		while info != nil {
 
 			#if os(Linux)
 				socketDescriptor = Glibc.socket(info!.pointee.ai_family, info!.pointee.ai_socktype, info!.pointee.ai_protocol)
@@ -1642,7 +1667,7 @@ public class Socket: SocketReader, SocketWriter {
 
 		var info = targetInfo
 		var bound = false
-		while (info != nil) {
+		while info != nil {
 
 			// Try to bind the socket to the address...
 			#if os(Linux)
@@ -1673,21 +1698,56 @@ public class Socket: SocketReader, SocketWriter {
 
 		// Save the address info...
 		var address: Address
-		if info!.pointee.ai_family == Int32(AF_INET6) {
 
-			var addr = sockaddr_in6()
-			memcpy(&addr, info!.pointee.ai_addr, Int(MemoryLayout<sockaddr_in6>.size))
-			address = .ipv6(addr)
+		// If the port was set to zero, we need to retrieve the port that assigned by the OS...
+		if port == 0 {
 
-		} else if info!.pointee.ai_family == Int32(AF_INET) {
+			let addr = sockaddr_storage()
+			var length = socklen_t(MemoryLayout<sockaddr_storage>.size)
+			var addrPtr = addr.asAddr()
+			if getsockname(self.socketfd, &addrPtr, &length) == 0 {
 
-			var addr = sockaddr_in()
-			memcpy(&addr, info!.pointee.ai_addr, Int(MemoryLayout<sockaddr_in>.size))
-			address = .ipv4(addr)
+				if addrPtr.sa_family == sa_family_t(AF_INET6) {
+
+					var addr = sockaddr_in6()
+					memcpy(&addr, &addrPtr, Int(MemoryLayout<sockaddr_in6>.size))
+					address = .ipv6(addr)
+
+				} else if addrPtr.sa_family == sa_family_t(AF_INET) {
+
+					var addr = sockaddr_in()
+					memcpy(&addr, &addrPtr, Int(MemoryLayout<sockaddr_in>.size))
+					address = .ipv4(addr)
+
+				} else {
+
+					throw Error(code: Socket.SOCKET_ERR_WRONG_PROTOCOL, reason: "Unable to determine listening socket protocol family.")
+				}
+
+			} else {
+
+				throw Error(code: Socket.SOCKET_ERR_BIND_FAILED, reason: "Unable to determine listening socket address after bind.")
+			}
 
 		} else {
 
-			throw Error(code: Socket.SOCKET_ERR_WRONG_PROTOCOL, reason: "Unable to determine listening socket protocol family.")
+			if info!.pointee.ai_family == Int32(AF_INET6) {
+
+				var addr = sockaddr_in6()
+				memcpy(&addr, info!.pointee.ai_addr, Int(MemoryLayout<sockaddr_in6>.size))
+				address = .ipv6(addr)
+
+			} else if info!.pointee.ai_family == Int32(AF_INET) {
+
+				var addr = sockaddr_in()
+				memcpy(&addr, info!.pointee.ai_addr, Int(MemoryLayout<sockaddr_in>.size))
+				address = .ipv4(addr)
+
+			} else {
+
+				throw Error(code: Socket.SOCKET_ERR_WRONG_PROTOCOL, reason: "Unable to determine listening socket protocol family.")
+			}
+
 		}
 
 		self.signature?.address = address
@@ -1774,7 +1834,6 @@ public class Socket: SocketReader, SocketWriter {
 		// Check for disconnect...
 		if count == 0 {
 
-			self.remoteConnectionClosed = true
 			return count
 		}
 
@@ -1851,7 +1910,6 @@ public class Socket: SocketReader, SocketWriter {
 		// Check for disconnect...
 		if count == 0 {
 
-			self.remoteConnectionClosed = true
 			return count
 		}
 
@@ -1896,7 +1954,6 @@ public class Socket: SocketReader, SocketWriter {
 		// Check for disconnect...
 		if count == 0 {
 
-			self.remoteConnectionClosed = true
 			return count
 		}
 
@@ -2302,6 +2359,12 @@ public class Socket: SocketReader, SocketWriter {
 
 				// - Something went wrong...
 				throw Error(code: Socket.SOCKET_ERR_RECV_FAILED, reason: self.lastError())
+			}
+
+			if count == 0 {
+
+				self.remoteConnectionClosed = true
+				return 0
 			}
 
 			if count > 0 {
