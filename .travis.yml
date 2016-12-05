@@ -33,5 +33,5 @@ before_install:
 script:
   - ./Package-Builder/build-package.sh $TRAVIS_BUILD_DIR
   - if [ "$TRAVIS_OS_NAME" == "linux" ]; then
-      ./ci/push_docker_image.sh
+      ./ci/push_docker_image.sh;
     fi
