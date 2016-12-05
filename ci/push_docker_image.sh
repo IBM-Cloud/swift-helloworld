@@ -18,6 +18,7 @@
 set -ev
 
 if [ "$TRAVIS_BRANCH" == "master" ]; then
+	echo "Pushing image to docker.";
 	docker login -u="$DOCKERHUB_USERNAME" -p="$DOCKERHUB_PASSWORD";
 	docker push ibmcom/swift-helloworld-ubuntu:latest;
 fi
