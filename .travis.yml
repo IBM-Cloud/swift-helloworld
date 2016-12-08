@@ -32,6 +32,7 @@ before_install:
 
 script:
   - ./Package-Builder/build-package.sh -projectDir $TRAVIS_BUILD_DIR
+  - docker build --pull -t ibmcom/swift-helloworld-ubuntu:latest .
   - if [ "$TRAVIS_OS_NAME" == "linux" ]; then
       ./ci/push_docker_image.sh;
     fi
