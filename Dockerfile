@@ -29,10 +29,9 @@ ADD Sources /root/swift-helloworld
 ADD Package.swift /root/swift-helloworld
 ADD LICENSE /root/swift-helloworld
 ADD .swift-version /root/swift-helloworld
-ADD start-swift-helloworld.sh /root
 
 # Build Swift Started App
 RUN cd /root/swift-helloworld && swift build
 
 USER root
-CMD ["/root/start-swift-helloworld.sh"]
+CMD ["/root/swift-helloworld/.build/debug/Server"]
