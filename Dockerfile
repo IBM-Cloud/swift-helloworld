@@ -31,8 +31,6 @@ ADD LICENSE /root/swift-helloworld
 ADD .swift-version /root/swift-helloworld
 ADD start-swift-helloworld.sh /root
 
-RUN ls -al /root/swift-helloworld
-
 # Build Swift Started App
 RUN cd /root/swift-helloworld && swift build
 
