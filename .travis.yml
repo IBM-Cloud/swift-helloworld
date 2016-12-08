@@ -25,8 +25,13 @@ matrix:
       osx_image: xcode8
       sudo: required
 
+services: docker
+
 before_install:
   - git clone https://github.com/IBM-Swift/Package-Builder.git
 
 script:
   - ./Package-Builder/build-package.sh -projectDir $TRAVIS_BUILD_DIR
+  - if [ "$TRAVIS_OS_NAME" == "linux" ]; then
+      ./ci/push_docker_image.sh;
+    fi
