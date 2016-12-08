@@ -23,15 +23,18 @@ LABEL Description="Image to run the swift-helloworld sample application inside a
 
 EXPOSE 8090
 
-# Clone swift-helloworld repo
-# Once master branch is merged with develop, we can then use master branch
-RUN git clone -b master https://github.com/IBM-Bluemix/swift-helloworld
+RUN mkdir /root/swift-helloworld
+
+ADD Sources /root/swift-helloworld
+ADD Package.swift /root/swift-helloworld
+ADD LICENSE /root/swift-helloworld
+ADD .swift-version /root/swift-helloworld
+ADD start-swift-helloworld.sh /root
+
+RUN ls -al /root/swift-helloworld
 
 # Build Swift Started App
 RUN cd /root/swift-helloworld && swift build
-
-# Add build files to image
-ADD start-swift-helloworld.sh /root
 
 USER root
 CMD ["/root/start-swift-helloworld.sh"]
