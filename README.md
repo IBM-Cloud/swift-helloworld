@@ -193,3 +193,9 @@ DEVELOPMENT-SNAPSHOT-2016-08-30-a
 After updating the `.swift-version` file, you can run the `cf push` command to push your application to Bluemix and use the specified version of the Swift binaries for compiling and running your application.
 
 For a complete list of the Swift versions currently supported by the Swift buildpack for Bluemix, see the buildpack's [manifest](https://github.com/IBM-Swift/swift-buildpack/blob/bluemix-buildpack/manifest.yml) file.  If you cannot find the version of the Swift binaries you are looking for in this file, then that version is not currently supported.
+
+```
+Running the application in an IBM Container on Bluemix
+```
+
+This sample application can also be run in an IBM Container in Bluemix. For details on how to do this, see the [10 Steps To Running a Swift App in an IBM Container] (https://developer.ibm.com/swift/2016/02/22/10-steps-to-running-a-swift-app-in-an-ibm-container) blog post. There, you will find the necessary steps for creating an IBM Container that executes this starter application.
