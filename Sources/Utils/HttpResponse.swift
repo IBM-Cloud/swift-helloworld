@@ -34,13 +34,13 @@ public func generateHttpResponse(appEnv: AppEnv) -> String {
   responseBody += "</table><br /><br />"
 
   // JSON object for App
-  // This conditional is indeed odd... https://github.com/SwiftyJSON/SwiftyJSON/issues/205
-  if appEnv.app.null == nil {
+  if !appEnv.app.isEmpty {
     responseBody += "<table border=\"1\">" +
     "<tr><th>App Property (JSON)</th><th>Value</th></tr>"
 
     for (variable, value) in appEnv.app {
-      responseBody += "<tr><td>\(variable)</td><td>\(value.stringValue)</td></tr>\n"
+      let value = value as? String ?? ""
+      responseBody += "<tr><td>\(variable)</td><td>\(value)</td></tr>\n"
     }
 
     responseBody += "</table>"
