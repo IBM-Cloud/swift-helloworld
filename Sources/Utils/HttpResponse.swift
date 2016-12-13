@@ -39,7 +39,7 @@ public func generateHttpResponse(appEnv: AppEnv) -> String {
     "<tr><th>App Property (JSON)</th><th>Value</th></tr>"
 
     for (variable, value) in appEnv.app {
-      let value = value as? String ?? ""
+      let value = String(describing: value) 
       responseBody += "<tr><td>\(variable)</td><td>\(value)</td></tr>\n"
     }
 
