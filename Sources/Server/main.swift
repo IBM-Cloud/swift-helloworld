@@ -30,19 +30,23 @@ import Foundation
 import Socket
 import CloudFoundryEnv
 import Utils
+import HeliumLogger
+import LoggerAPI
 
 // Disable all buffering on stdout
 setbuf(stdout, nil)
 
 // Main functionality
 do {
+  Log.logger = HeliumLogger()
+
   let appEnv = try CloudFoundryEnv.getAppEnv()
   let httpResponse = generateHttpResponse(appEnv: appEnv)
   // Create server/listening socket
   var socket = try Socket.create()
   try socket.listen(on: appEnv.port, maxBacklogSize: 10)
-  print("Server is starting on \(appEnv.url).")
-  print("Server is listening on port: \(appEnv.port).\n")
+  Log.verbose("Server is starting on \(appEnv.url).")
+  Log.verbose("Server is listening on port: \(appEnv.port).\n")
   var counter = 0
   while true {
     // Replace the listening socket with the newly accepted connection...
@@ -51,15 +55,15 @@ do {
     var data = NSMutableData()
     let numberOfBytes = try clientSocket.read(into: data)
     counter = counter + 1
-    print("<<<<<<<<<<<<<<<<<<")
-    print("Request #: \(counter).")
-    print("Accepted connection from: \(clientSocket.remoteHostname) on port \(clientSocket.remotePort).")
-    print("Number of bytes receieved from client: \(numberOfBytes)")
+    Log.verbose("<<<<<<<<<<<<<<<<<<")
+    Log.verbose("Request #: \(counter).")
+    Log.verbose("Accepted connection from: \(clientSocket.remoteHostname) on port \(clientSocket.remotePort).")
+    Log.verbose("Number of bytes receieved from client: \(numberOfBytes)")
     try clientSocket.write(from: httpResponse)
     clientSocket.close()
-    print("Sent http response to client...")
-    print(">>>>>>>>>>>>>>>>>>>")
+    Log.verbose("Sent http response to client...")
+    Log.verbose(">>>>>>>>>>>>>>>>>>>")
   }
 } catch {
-  print("Oops, something went wrong... Server did not start (or has died)!")
+  Log.error("Oops, something went wrong... Server did not start (or has died)!")
 }
