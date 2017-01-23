@@ -31,10 +31,10 @@ $ .build/debug/Server
 You should see an output similar to the following:
 
 ```
-Server is listening on port: 8090
+Server is listening on port: 8080
 ```
 
-To connect to the server, you can use the browser of your preference (e.g. Firefox, Chrome, etc.) to point to the following URL: `http://<hostname>:8090/`, where `<hostname>` is the hostname or the IP address of the system where you are running the sample app.  If the browser is running on the same system, you can use localhost as the value for the hostname.  After you access the server, the browser should render an HTML page with the following message:
+To connect to the server, you can use the browser of your preference (e.g. Firefox, Chrome, etc.) to point to the following URL: `http://<hostname>:8080/`, where `<hostname>` is the hostname or the IP address of the system where you are running the sample app.  If the browser is running on the same system, you can use localhost as the value for the hostname.  After you access the server, the browser should render an HTML page with the following message:
 
 ```
 Hello from Swift on Linux!
