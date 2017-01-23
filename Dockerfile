@@ -21,7 +21,7 @@ FROM ibmcom/swift-ubuntu:latest
 MAINTAINER IBM Swift Engineering at IBM Cloud
 LABEL Description="Image to run the swift-helloworld sample application inside an IBM Container on Bluemix."
 
-EXPOSE 8090
+EXPOSE 8080
 
 RUN mkdir /root/swift-helloworld
 
