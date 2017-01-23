@@ -16,7 +16,7 @@
 
 public func parseAddress() -> (String, Int) {
   let args = Array(CommandLine.arguments[1..<CommandLine.arguments.count])
-  var port = 8080 // default port
+  var port = 9080 // default port
   var ip = "0.0.0.0" // default ip
   if args.count == 2 && args[0] == "-bind" {
     let tokens = args[1].components(separatedBy: ":")
