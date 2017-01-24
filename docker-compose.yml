@@ -2,7 +2,7 @@
 app:
   image: ibmcom/swift-ubuntu:latest
   ports:
-    - "8090:8090"
+    - "8080:8080"
   volumes:
     - .:/root/swift-helloworld
   command: bash -c "cd /root/swift-helloworld && rm -rf Packages && swift build --clean && swift build && .build/debug/Server"
