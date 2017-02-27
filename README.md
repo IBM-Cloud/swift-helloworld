@@ -112,7 +112,7 @@ Binding swift-helloworld-nondirectional-schizogamy.eu-gb.mybluemix.net to swift-
 OK
 
 Uploading swift-helloworld...
-Uploading app files from: /Users/christian/workspace/bluemix-forks/IBM-Bluemix/swift-helloworld
+Uploading app files from: /Users/olivieri/git/swift-helloworld
 Uploading 13.3K, 15 files
 Done uploading               
 OK
