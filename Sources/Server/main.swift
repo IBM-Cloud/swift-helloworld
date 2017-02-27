@@ -28,7 +28,8 @@ import Darwin
 
 import Foundation
 import Socket
-import CloudFoundryEnv
+import Configuration
+import CloudFoundryConfig
 import Utils
 import HeliumLogger
 import LoggerAPI
@@ -40,8 +41,12 @@ setbuf(stdout, nil)
 do {
   Log.logger = HeliumLogger()
 
-  let appEnv = try CloudFoundryEnv.getAppEnv()
-  let httpResponse = generateHttpResponse(appEnv: appEnv)
+  //let appEnv = try CloudFoundryEnv.getAppEnv()
+  let manager = ConfigurationManager()
+  manager.load(file: "config.json").load(.environmentVariables)
+  //let appEnv = manager
+  //let value = manager["path:to:configuration:value"]
+  let httpResponse = generateHttpResponse(appEnv: manager)
   // Create server/listening socket
   var socket = try Socket.create()
   try socket.listen(on: appEnv.port, maxBacklogSize: 10)

@@ -15,9 +15,11 @@
 **/
 
 import Foundation
-import CloudFoundryEnv
+import Configuration
+//import CloudFoundryEnv
+import CloudFoundryConfig
 
-public func generateHttpResponse(appEnv: AppEnv) -> String {
+public func generateHttpResponse(appEnv: ConfigurationManager) -> String {
   var responseBody = "<html><body>Hello from Swift on Linux!" +
   "<br />" +
   "<br />"
@@ -34,11 +36,11 @@ public func generateHttpResponse(appEnv: AppEnv) -> String {
   responseBody += "</table><br /><br />"
 
   // JSON object for App
-  if !appEnv.app.isEmpty {
+  if let app = appEnv.getApp() {
     responseBody += "<table border=\"1\">" +
     "<tr><th>App Property (JSON)</th><th>Value</th></tr>"
 
-    for (variable, value) in appEnv.app {
+    for (variable, value) in app {
       let value = String(describing: value)
       responseBody += "<tr><td>\(variable)</td><td>\(value)</td></tr>\n"
     }
@@ -48,10 +50,9 @@ public func generateHttpResponse(appEnv: AppEnv) -> String {
   }
 
   // Get App object
-  let app = appEnv.getApp()
   responseBody += "<table border=\"1\">"
   responseBody += "<tr><th colspan=\"2\">Application Environment Object</th></tr>\n"
-  responseBody += "<tr><td>AppEnv</td><td>isLocal: \(appEnv.isLocal), port: \(appEnv.port), name: \(appEnv.name), bind: \(appEnv.bind), urls: \(appEnv.urls), app: \(appEnv.app), services: \(appEnv.services)</td></tr>\n"
+  responseBody += "<tr><td>AppEnv</td><td>isLocal: \(appEnv.isLocal), port: \(appEnv.port), name: \(appEnv.name), bind: \(appEnv.bind), urls: \(appEnv.urls), app: \(app), services: \(appEnv.services)</td></tr>\n"
   responseBody += "<tr><th colspan=\"2\">Application Object</th></tr>\n"
   responseBody += "<tr><td>App</td><td>\(app)</td></tr>\n"
 
