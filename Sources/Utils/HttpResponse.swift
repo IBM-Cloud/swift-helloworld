@@ -28,9 +28,11 @@ public func generateHttpResponse(configMgr: ConfigurationManager) -> String {
   "<tr><th>Environment Variable</th><th>Value</th></tr>"
 
   // Get environment variables
-  let environmentVars = ProcessInfo.processInfo.environment
-  for (variable, value) in environmentVars {
-    responseBody += "<tr><td>\(variable)</td><td>\(value)</td></tr>\n"
+  //let environmentVars = ProcessInfo.processInfo.environment
+  if let environmentVars = configMgr.getConfigs() as? [String : Any] {
+    for (variable, value) in environmentVars {
+      responseBody += "<tr><td>\(variable)</td><td>\(value)</td></tr>\n"
+    }
   }
   responseBody += "</table><br /><br />"
 
