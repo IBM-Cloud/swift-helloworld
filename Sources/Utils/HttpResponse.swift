@@ -1,5 +1,5 @@
 /**
-* Copyright IBM Corporation 2016
+* Copyright IBM Corporation 2016, 2017
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -16,10 +16,9 @@
 
 import Foundation
 import Configuration
-//import CloudFoundryEnv
 import CloudFoundryConfig
 
-public func generateHttpResponse(appEnv: ConfigurationManager) -> String {
+public func generateHttpResponse(configMgr: ConfigurationManager) -> String {
   var responseBody = "<html><body>Hello from Swift on Linux!" +
   "<br />" +
   "<br />"
@@ -36,11 +35,11 @@ public func generateHttpResponse(appEnv: ConfigurationManager) -> String {
   responseBody += "</table><br /><br />"
 
   // JSON object for App
-  if let app = appEnv.getApp() {
+  if !configMgr.app.isEmpty {
     responseBody += "<table border=\"1\">" +
     "<tr><th>App Property (JSON)</th><th>Value</th></tr>"
 
-    for (variable, value) in app {
+    for (variable, value) in configMgr.app {
       let value = String(describing: value)
       responseBody += "<tr><td>\(variable)</td><td>\(value)</td></tr>\n"
     }
@@ -50,14 +49,15 @@ public func generateHttpResponse(appEnv: ConfigurationManager) -> String {
   }
 
   // Get App object
+  let app = configMgr.getApp()
   responseBody += "<table border=\"1\">"
   responseBody += "<tr><th colspan=\"2\">Application Environment Object</th></tr>\n"
-  responseBody += "<tr><td>AppEnv</td><td>isLocal: \(appEnv.isLocal), port: \(appEnv.port), name: \(appEnv.name), bind: \(appEnv.bind), urls: \(appEnv.urls), app: \(app), services: \(appEnv.services)</td></tr>\n"
+  responseBody += "<tr><td>AppEnv</td><td>isLocal: \(configMgr.isLocal), port: \(configMgr.port), name: \(configMgr.name), bind: \(configMgr.bind), urls: \(configMgr.urls), app: \(app), services: \(configMgr.services)</td></tr>\n"
   responseBody += "<tr><th colspan=\"2\">Application Object</th></tr>\n"
   responseBody += "<tr><td>App</td><td>\(app)</td></tr>\n"
 
   // Service objects
-  let services = appEnv.getServices()
+  let services = configMgr.getServices()
   responseBody += "<tr><th colspan=\"2\">Service Objects</th></tr>\n"
   if services.count > 0 {
     for (name, service) in services {
