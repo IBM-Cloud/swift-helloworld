@@ -1,5 +1,5 @@
 /**
-* Copyright IBM Corporation 2016
+* Copyright IBM Corporation 2016, 2017
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -28,25 +28,27 @@ import Darwin
 
 import Foundation
 import Socket
-import CloudFoundryEnv
+import Configuration
+import CloudFoundryConfig
 import Utils
 import HeliumLogger
 import LoggerAPI
 
-// Disable all buffering on stdout
-setbuf(stdout, nil)
-
 // Main functionality
 do {
-  Log.logger = HeliumLogger()
-
-  let appEnv = try CloudFoundryEnv.getAppEnv()
-  let httpResponse = generateHttpResponse(appEnv: appEnv)
+  // Disable all buffering on stdout
+  //setbuf(stdout, nil)
+  HeliumLogger.use(LoggerMessageType.info)
+  // Load configuration
+  let configMgr = ConfigurationManager()
+  configMgr.load(.environmentVariables)
+  //let value = manager["path:to:configuration:value"]
+  let httpResponse = generateHttpResponse(configMgr: configMgr)
   // Create server/listening socket
   var socket = try Socket.create()
-  try socket.listen(on: appEnv.port, maxBacklogSize: 10)
-  Log.verbose("Server is starting on \(appEnv.url).")
-  Log.verbose("Server is listening on port: \(appEnv.port).\n")
+  try socket.listen(on: configMgr.port, maxBacklogSize: 10)
+  Log.verbose("Server is starting on \(configMgr.url).")
+  Log.verbose("Server is listening on port: \(configMgr.port).\n")
   var counter = 0
   while true {
     // Replace the listening socket with the newly accepted connection...
