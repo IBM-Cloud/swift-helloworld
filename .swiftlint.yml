@@ -1,6 +1,8 @@
 included:
     - Sources
     - Tests
+excluded:
+    - Sources/Socket
 disabled_rules:
     - cyclomatic_complexity
     - type_body_length
@@ -10,9 +12,8 @@ disabled_rules:
 custom_rules:
   double_space:
     include: "*.swift"
-    name: "Double space" 
-    regex: "([a-z,A-Z] \s+)" 
-    message: "Double space between keywords" 
-    match_kinds: keyword 
-    severity: warning 
-
+    name: "Double space"
+    regex: "([a-z,A-Z] \s+)"
+    message: "Double space between keywords"
+    match_kinds: keyword
+    severity: warning
