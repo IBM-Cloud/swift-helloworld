@@ -124,7 +124,7 @@ public protocol SSLServiceDelegate {
 	///
 	///	- Returns the number of bytes written. Zero indicates SSL shutdown, less than zero indicates error.
 	///
-	func send(buffer: UnsafeRawPointer!, bufSize: Int) throws -> Int
+	func send(buffer: UnsafeRawPointer, bufSize: Int) throws -> Int
 
 	///
 	/// Low level reader
@@ -149,6 +149,9 @@ public enum SSLError: Swift.Error, CustomStringConvertible {
 	/// Success
 	case success
 
+	/// Retry needed
+	case retryNeeded
+
 	/// Failure with error code and reason
 	case fail(Int, String)
 
@@ -159,6 +162,9 @@ public enum SSLError: Swift.Error, CustomStringConvertible {
 
 		case .success:
 			return 0
+
+		case .retryNeeded:
+			return -1
 
 		case .fail(let (code, _)):
 			return Int(code)
@@ -172,6 +178,9 @@ public enum SSLError: Swift.Error, CustomStringConvertible {
 
 		case .success:
 			return "Success"
+
+		case .retryNeeded:
+			return "Retry operation"
 
 		case .fail(let (_, reason)):
 			return reason
