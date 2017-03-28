@@ -58,7 +58,7 @@ do {
     // Read data from client before writing to the socket
     var data = NSMutableData()
     let numberOfBytes = try clientSocket.read(into: data)
-    counter = counter + 1
+    counter += 1
     print("<<<<<<<<<<<<<<<<<<")
     print("Request #: \(counter).")
     print("Accepted connection from: \(clientSocket.remoteHostname) on port \(clientSocket.remotePort).")
