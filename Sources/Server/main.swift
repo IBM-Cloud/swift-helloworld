@@ -15,7 +15,7 @@
 **/
 
 /**
-* Creates a simple HTTP server that listens for incoming connections on port 9080.
+* Creates a simple HTTP server that listens for incoming connections on port 8080.
 * For each request receieved, the server simply sends a simple hello world message
 * back to the client.
 **/
@@ -56,7 +56,7 @@ do {
     // Read data from client before writing to the socket
     var data = NSMutableData()
     let numberOfBytes = try clientSocket.read(into: data)
-    counter = counter + 1
+    counter += 1
     Log.verbose("<<<<<<<<<<<<<<<<<<")
     Log.verbose("Request #: \(counter).")
     Log.verbose("Accepted connection from: \(clientSocket.remoteHostname) on port \(clientSocket.remotePort).")
@@ -67,5 +67,5 @@ do {
     Log.verbose(">>>>>>>>>>>>>>>>>>>")
   }
 } catch {
-  Log.error("Oops, something went wrong... Server did not start (or has died)!")
+  Log.error("Oops, something went wrong... Server did not start (or died)!")
 }

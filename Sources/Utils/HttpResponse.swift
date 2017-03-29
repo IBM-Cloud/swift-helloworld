@@ -54,9 +54,9 @@ public func generateHttpResponse(configMgr: ConfigurationManager) -> String {
   let app = configMgr.getApp()
   responseBody += "<table border=\"1\">"
   responseBody += "<tr><th colspan=\"2\">Application Environment Object</th></tr>\n"
-  responseBody += "<tr><td>AppEnv</td><td>isLocal: \(configMgr.isLocal), port: \(configMgr.port), name: \(configMgr.name), bind: \(configMgr.bind), urls: \(configMgr.urls), app: \(app), services: \(configMgr.services)</td></tr>\n"
+  responseBody += "<tr><td>AppEnv</td><td>isLocal: \(configMgr.isLocal), port: \(configMgr.port), name: \(configMgr.name ??? "[N/A]"), bind: \(configMgr.bind), urls: \(configMgr.urls), app: \(app ??? "[N/A]"), services: \(configMgr.services)</td></tr>\n"
   responseBody += "<tr><th colspan=\"2\">Application Object</th></tr>\n"
-  responseBody += "<tr><td>App</td><td>\(app)</td></tr>\n"
+  responseBody += "<tr><td>App</td><td>\(app ??? "[N/A]")</td></tr>\n"
 
   // Service objects
   let services = configMgr.getServices()
@@ -66,7 +66,7 @@ public func generateHttpResponse(configMgr: ConfigurationManager) -> String {
       responseBody += "<tr><td>\(name)</td><td>\(service)</td></tr>\n"
     }
   } else {
-    responseBody += "<tr><td colspan=\"2\">[None]</td></tr>\n"
+    responseBody += "<tr><td colspan=\"2\">[N/A]</td></tr>\n"
   }
 
   responseBody += "</table>"

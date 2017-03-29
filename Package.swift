@@ -1,5 +1,5 @@
 /**
- * Copyright IBM Corporation 2016, 2017
+ * Copyright IBM Corporation 2016,2017
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,7 +23,7 @@ let package = Package(
     Target(name: "Server", dependencies: [.Target(name: "Utils")])
   ],
   dependencies: [
-      .Package(url: "https://github.com/IBM-Swift/CloudConfiguration.git", majorVersion: 1),
+      .Package(url: "https://github.com/IBM-Swift/CloudConfiguration.git", majorVersion: 2),
       .Package(url: "https://github.com/IBM-Swift/BlueSocket.git", majorVersion: 0),
       .Package(url: "https://github.com/IBM-Swift/HeliumLogger.git", majorVersion: 1)
     ]
