@@ -15,7 +15,7 @@
 **/
 
 /**
-* Creates a simple HTTP server that listens for incoming connections on port 9080.
+* Creates a simple HTTP server that listens for incoming connections on port 8080.
 * For each request receieved, the server simply sends a simple hello world message
 * back to the client.
 **/
