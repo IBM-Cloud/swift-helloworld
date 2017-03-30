@@ -47,8 +47,8 @@ do {
   // Create server/listening socket
   var socket = try Socket.create()
   try socket.listen(on: configMgr.port, maxBacklogSize: 10)
-  Log.verbose("Server is starting on \(configMgr.url).")
-  Log.verbose("Server is listening on port: \(configMgr.port).\n")
+  Log.info("Server is starting on \(configMgr.url).")
+  Log.info("Server is listening on port: \(configMgr.port).\n")
   var counter = 0
   while true {
     // Replace the listening socket with the newly accepted connection...

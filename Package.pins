@@ -35,7 +35,7 @@
       "package": "Socket",
       "reason": null,
       "repositoryURL": "https://github.com/IBM-Swift/BlueSocket.git",
-      "version": "0.12.41"
+      "version": "0.12.42"
     }
   ],
   "version": 1
