@@ -5,4 +5,4 @@ app:
     - "8080:8080"
   volumes:
     - .:/root/swift-helloworld
-  command: bash -c "cd /root/swift-helloworld && rm -rf Packages && swift package clean && swift build && .build/debug/Server"
+  command: bash -c "cd /root/swift-helloworld && swift package clean && swift build && .build/debug/Server"
