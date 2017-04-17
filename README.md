@@ -8,7 +8,7 @@ This project contains a simple Swift hello world application that can be deploye
 ## Application Requirements
 To compile and run this sample application on your system, you need to install the [Swift compiler](https://swift.org/download/) for your platform. Please note that the Swift language is evolving and changing rapidly. The latest version of this Swift application works with the `3.1` version of the Swift binaries. You can download this version of the Swift binaries by following this [link](https://swift.org/download/).
 
-If you are interested in manually deploying the application to Bluemix, you'd need to install the Cloud Foundry [command line](https://docs.cloudfoundry.org/devguide/cf-cli/install-go-cli.html) on your system.  Once it is installed, you can use it to [authenticate and access](https://www.ng.bluemix.net/docs/starters/install_cli.html) your Bluemix organization(s) and spaces.  You can find further details on how to deploy this sample application to Bluemix in the following sections.
+If you are interested in manually deploying the application to Bluemix, you'd need to install the Cloud Foundry [command line](https://docs.cloudfoundry.org/devguide/cf-cli/install-go-cli.html) and Bluemix [command line](http://clis.stage1.ng.bluemix.net/ui/home.html) on your system.  Once it is installed, you can use it to [authenticate and access](https://console.ng.bluemix.net/docs/cli/reference/bluemix_cli/index.html#getting-started) your Bluemix organization(s) and spaces.  You can find further details on how to deploy this sample application to Bluemix in the following sections.
 
 ## Run the app locally
 Once you have installed the Swift compiler and cloned this Git repo, you can now compile and run the application. Go to the root folder of this repo on your system and issue the following command:
@@ -55,13 +55,13 @@ Click the magical button below to automatically deploy this sample application t
 
 When automatically deploying to Bluemix, the manifest.yml file [included in the repo] is parsed to obtain the name of the application.  For further details on the structure of the manifest.yml file, see the [Cloud Foundry documentation](https://docs.cloudfoundry.org/devguide/deploy-apps/manifest.html#minimal-manifest).
 
-### Using the Cloud Foundry command line
-You can also manually deploy the app to Bluemix.  Though not as magical as using the Bluemix button above, manually deploying the app gives you some insights about what is happening behind the scenes.  Remember that you'd need the Cloud Foundry [command line](https://www.ng.bluemix.net/docs/starters/install_cli.html) installed on your system to deploy the app to Bluemix.
+### Using the Bluemix command line
+You can also manually deploy the app to Bluemix.  Though not as magical as using the Bluemix button above, manually deploying the app gives you some insights about what is happening behind the scenes.  Remember that you'd need the Cloud Foundry [command line](https://www.ng.bluemix.net/docs/starters/install_cli.html) and Bluemix [command line](http://clis.stage1.ng.bluemix.net/ui/home.html) installed on your system to deploy the app to Bluemix.
 
-Using the Cloud Foundry command line you can get a list of the buildpacks (along with their versions) that are installed on Bluemix.
+Using the Bluemix and Cloud Foundry command line you can get a list of the buildpacks (along with their versions) that are installed on Bluemix.
 
 ```
-cf buildpacks
+bluemix cf buildpacks
 ```
 
 Executing the above command should result in output similar to the following:
@@ -94,10 +94,10 @@ swift_buildpack_v2_0_3-20161217-1748    19         true      false    buildpack_
 Looking at the output above, we can see that the Swift buildpack (v2.0.0) is installed on Bluemix.  This will allow a seamless deployment of the starter application to Bluemix. After you have cloned this Git repo, go to its root folder on your system and issue the following command Cloud Foundry command:
 
 ```
-cf push
+bluemix app push
 ```
 
-Executing the Cloud Foundry push command will parse the contents of the `manifest.yml` file and upload the application to Bluemix. The following is example output from executing the `cf push` command on the Swift `3.0.2` version of this application:
+Executing the Bluemix push command will parse the contents of the `manifest.yml` file and upload the application to Bluemix. The following is example output from executing the `bluemix app push` or `bx app push` command on the Swift `3.0.2` version of this application:
 
 ```
 Using manifest file /Users/olivieri/git/swift-helloworld/manifest.yml
@@ -223,22 +223,22 @@ buildpack: swift_buildpack
 #0   running   2017-02-27 11:31:38 AM   0.0%   1M of 128M   1.3M of 1G
 ```
 
-Once the sample application is pushed to Bluemix, you can access it using its route. You can log on to your [Bluemix account](https://console.ng.bluemix.net) to find the route of your application or you can inspect the output from the execution of the `cf push` command.  The string value (e.g. swift-helloworld.mybluemix.net) shown next to the urls should contain the route.  Use that route as the URL to access the sample server using the browser of your choice.  The browser should render an HTML page with the following message at the top:
+Once the sample application is pushed to Bluemix, you can access it using its route. You can log on to your [Bluemix account](https://console.ng.bluemix.net) to find the route of your application or you can inspect the output from the execution of the `bx app push` command.  The string value (e.g. swift-helloworld.mybluemix.net) shown next to the urls should contain the route.  Use that route as the URL to access the sample server using the browser of your choice.  The browser should render an HTML page with the following message at the top:
 
 ```
 Hello from Swift on Linux!
 ```
 
 ## Using a different version of Swift on Bluemix for your application
-If you look closely at the output above returned by the `cf push` command, you will notice that `3.0.2` was the Swift version used for compiling and running the sample app on Bluemix.  If you have a Swift application that compiles with a different version of the Swift binaries, say `DEVELOPMENT-SNAPSHOT-2016-08-30-a`, you'd need to update the contents of the `.swift-version` file to:
+If you look closely at the output above returned by the `bx app push` command, you will notice that `3.0.2` was the Swift version used for compiling and running the sample app on Bluemix.  If you have a Swift application that compiles with a different version of the Swift binaries, say `DEVELOPMENT-SNAPSHOT-2016-08-30-a`, you'd need to update the contents of the `.swift-version` file to:
 
 ```
 DEVELOPMENT-SNAPSHOT-2016-08-30-a
 ```
 
-After updating the `.swift-version` file, you can run the `cf push` command to push your application to Bluemix and use the specified version of the Swift binaries for compiling and running your application.
+After updating the `.swift-version` file, you can run the `bx app push` command to push your application to Bluemix and use the specified version of the Swift binaries for compiling and running your application.
 
-For a complete list of the Swift versions currently supported by the Swift buildpack for Bluemix, see the buildpack's [manifest](https://github.com/IBM-Swift/swift-buildpack/blob/bluemix-buildpack/manifest.yml) file.  If you cannot find the version of the Swift binaries you are looking for in this file, then that version is not currently supported.
+For a complete list of the Swift versions currently supported and cached by the Swift buildpack for Bluemix, see the buildpack's [manifest](https://github.com/IBM-Swift/swift-buildpack/blob/master/manifest.yml) file.  If you cannot find the version of the Swift binaries you are looking for in this file, then that version is not currently supported in the cache.
 
 ## Running the application in an IBM Container on Bluemix
-This sample application can also be run in an IBM Container in Bluemix. For details on how to do this, see [10 Steps To Running a Swift App in an IBM Container] (https://developer.ibm.com/swift/2016/02/22/10-steps-to-running-a-swift-app-in-an-ibm-container). In this blog post, you will find the necessary steps for creating an IBM Container that executes this starter application.
+This sample application can also be run in an IBM Container in Bluemix. For details on how to do this, see [10 Steps To Running a Swift App in an IBM Container](https://developer.ibm.com/swift/2016/02/22/10-steps-to-running-a-swift-app-in-an-ibm-container). In this blog post, you will find the necessary steps for creating an IBM Container that executes this starter application.
