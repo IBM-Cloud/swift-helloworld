@@ -25,8 +25,9 @@ EXPOSE 8080
 
 RUN mkdir /root/swift-helloworld
 
-ADD Sources /root/swift-helloworld
+ADD Sources /root/swift-helloworld/Sources
 ADD Package.swift /root/swift-helloworld
+ADD Package.pins /root/swift-helloworld
 ADD LICENSE /root/swift-helloworld
 ADD .swift-version /root/swift-helloworld
 
