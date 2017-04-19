@@ -91,7 +91,7 @@ sdk-for-nodejs_v3_9-20161128-1327       18         true      false    buildpack_
 swift_buildpack_v2_0_3-20161217-1748    19         true      false    buildpack_swift_v2.0.3-20161217-1748.zip
 ```
 
-Looking at the output above, we can see that the Swift buildpack (v2.0.0) is installed on Bluemix.  This will allow a seamless deployment of the starter application to Bluemix. After you have cloned this Git repo, go to its root folder on your system and issue the following command:
+Looking at the output above, we can see that the Swift buildpack (v2.0.4) is installed on Bluemix.  This will allow a seamless deployment of the starter application to Bluemix. After you have cloned this Git repo, go to its root folder on your system and issue the following command:
 
 ```
 bluemix app push
