@@ -1,3 +1,4 @@
+// swift-tools-version:4.0
 /**
  * Copyright IBM Corporation 2016
  *
@@ -18,10 +19,16 @@ import PackageDescription
 
 let package = Package(
   name: "HelloWorldSwift",
-  targets: [
-    Target(name: "Utils", dependencies: []),
-    Target(name: "Socket", dependencies: []),
-    Target(name: "Server", dependencies: [.Target(name: "Utils"), .Target(name: "Socket")])
+  products: [
+    .executable(
+      name: "server",
+      targets: ["Server"]
+    )
   ],
-  dependencies: [ ]
+  dependencies: [ ],
+  targets: [
+    .target(name: "Utils", dependencies: []),
+    .target(name: "Socket", dependencies: []),
+    .target(name: "Server", dependencies: [.target(name: "Utils"), .target(name: "Socket")])
+  ]
 )
