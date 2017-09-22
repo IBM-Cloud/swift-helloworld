@@ -44,10 +44,10 @@ func generateHttpResponse() -> String {
 
 // Main functionality
 do {
-  let (ip, port) = parseAddress()
+  let (_, port) = parseAddress()
   let httpResponse = generateHttpResponse()
   // Create server/listening socket
-  var socket = try Socket.create()
+  let socket = try Socket.create()
   try socket.listen(on: port, maxBacklogSize: 10)
   print("Server is starting...")
   print("Server is listening on port: \(port).\n")
@@ -56,7 +56,7 @@ do {
     // Replace the listening socket with the newly accepted connection...
     let clientSocket = try socket.acceptClientConnection()
     // Read data from client before writing to the socket
-    var data = NSMutableData()
+    let data = NSMutableData()
     let numberOfBytes = try clientSocket.read(into: data)
     counter += 1
     print("<<<<<<<<<<<<<<<<<<")

@@ -1,7 +1,7 @@
 app:
-  image: ibmcom/swift-ubuntu:3.1.1
+  image: ibmcom/swift-ubuntu:4.0
   ports:
     - "8080:8080"
   volumes:
-    - .:/root/swift-helloworld
-  command: bash -c "cd /root/swift-helloworld && swift package clean && swift build && ./.build/debug/Server"
+    - .:/swift-helloworld
+  command: bash -c "cd /swift-helloworld && swift package --build-path .build-ubuntu clean && swift build --build-path .build-ubuntu && .build-ubuntu/x86_64-unknown-linux/debug/Server"
