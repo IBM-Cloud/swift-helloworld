@@ -16,7 +16,7 @@
 
 import Foundation
 import Configuration
-import CloudFoundryConfig
+import CloudFoundryEnv
 
 public func generateHttpResponse(configMgr: ConfigurationManager) -> String {
   var responseBody = "<html><body>Hello from Swift on Linux!" +
