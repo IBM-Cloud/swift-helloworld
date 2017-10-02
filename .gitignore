@@ -1,3 +1,4 @@
 .build/*
-Packages/*
-HelloWorldSwift.xcodeproj/*
+.build-ubuntu/*
+Package.resolved
+*.xcodeproj/*
