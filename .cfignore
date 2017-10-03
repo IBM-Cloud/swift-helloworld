@@ -1,6 +1,5 @@
 .build/*
-Packages/*
 .travis.yml
 docker-compose.yml
 Dockerfile
-HelloWorldSwift.xcodeproj/*
+*.xcodeproj/*
