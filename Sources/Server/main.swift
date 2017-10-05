@@ -29,7 +29,7 @@ import Darwin
 import Foundation
 import Socket
 import Configuration
-import CloudFoundryConfig
+import CloudFoundryEnv
 import Utils
 import HeliumLogger
 import LoggerAPI
@@ -45,7 +45,7 @@ do {
   //let value = manager["path:to:configuration:value"]
   let httpResponse = generateHttpResponse(configMgr: configMgr)
   // Create server/listening socket
-  var socket = try Socket.create()
+  let socket = try Socket.create()
   try socket.listen(on: configMgr.port, maxBacklogSize: 10)
   Log.info("Server is starting on \(configMgr.url).")
   Log.info("Server is listening on port: \(configMgr.port).\n")
@@ -54,7 +54,7 @@ do {
     // Replace the listening socket with the newly accepted connection...
     let clientSocket = try socket.acceptClientConnection()
     // Read data from client before writing to the socket
-    var data = NSMutableData()
+    let data = NSMutableData()
     let numberOfBytes = try clientSocket.read(into: data)
     counter += 1
     Log.verbose("<<<<<<<<<<<<<<<<<<")

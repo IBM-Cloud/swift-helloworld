@@ -1,3 +1,6 @@
+// swift-tools-version:4.0
+// The swift-tools-version declares the minimum version of Swift required to build this package.
+
 /**
  * Copyright IBM Corporation 2016,2017
  *
@@ -17,14 +20,23 @@
 import PackageDescription
 
 let package = Package(
-  name: "HelloWorldSwift",
-  targets: [
-    Target(name: "Utils", dependencies: []),
-    Target(name: "Server", dependencies: [.Target(name: "Utils")])
-  ],
-  dependencies: [
-      .Package(url: "https://github.com/IBM-Swift/CloudConfiguration.git", majorVersion: 2),
-      .Package(url: "https://github.com/IBM-Swift/BlueSocket.git", majorVersion: 0),
-      .Package(url: "https://github.com/IBM-Swift/HeliumLogger.git", majorVersion: 1)
+    name: "HelloWorldSwift",
+    products: [
+        .library(
+            name: "HelloWorldSwift",
+            targets: ["Server", "Utils"])
+    ],
+    dependencies: [
+        .package(url: "https://github.com/IBM-Swift/CloudEnvironment.git", .upToNextMajor(from: "4.0.0")),
+        .package(url: "https://github.com/IBM-Swift/BlueSocket.git", .upToNextMajor(from: "0.0.0")),
+        .package(url: "https://github.com/IBM-Swift/HeliumLogger.git", .upToNextMajor(from: "1.0.0"))
+    ],
+    targets: [
+        .target(
+            name: "Server",
+            dependencies: ["Utils", "CloudEnvironment", "Socket", "HeliumLogger"]),
+        .target(
+            name: "Utils",
+            dependencies: ["CloudEnvironment"])
     ]
 )
