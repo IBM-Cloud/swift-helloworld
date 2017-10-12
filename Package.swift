@@ -22,7 +22,7 @@ import PackageDescription
 let package = Package(
     name: "HelloWorldSwift",
     products: [
-        .library(
+        .executable(
             name: "HelloWorldSwift",
             targets: ["Server", "Utils"])
     ],
