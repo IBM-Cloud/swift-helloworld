@@ -31,9 +31,3 @@ public extension NSString {
 }
 
 #endif
-
-public extension String {
-    var length: Int {
-        return characters.count
-    }
-}
