@@ -70,11 +70,11 @@ public func generateHttpResponse(configMgr: ConfigurationManager) -> String {
   }
 
   responseBody += "</table>"
-  responseBody += "</html>"
+  responseBody += "</body></html>"
 
   let httpResponse = "HTTP/1.0 200 OK\n" +
   "Content-Type: text/html; charset=UTF-8\n" +
-  "Content-Length: \(responseBody.length) \n\n" +
+  "Content-Length: \(responseBody.count) \n\n" +
   responseBody
 
   return httpResponse
