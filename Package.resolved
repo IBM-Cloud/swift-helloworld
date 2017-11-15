@@ -6,8 +6,8 @@
         "repositoryURL": "https://github.com/IBM-Swift/CloudEnvironment.git",
         "state": {
           "branch": null,
-          "revision": "6589f0a507dd1ce47cda256ea1280bb5aeecde4b",
-          "version": "5.1.0"
+          "revision": "490c8ea1c7dfcba1401aef04b331961122f5d8e7",
+          "version": "5.1.1"
         }
       },
       {
@@ -15,8 +15,8 @@
         "repositoryURL": "https://github.com/IBM-Swift/Swift-cfenv.git",
         "state": {
           "branch": null,
-          "revision": "b58de4a3158dde0c81912e774cb92a38f8d9368a",
-          "version": "5.0.0"
+          "revision": "a87a057209b420c4167137f87ecfc91b1fe8afc4",
+          "version": "5.0.1"
         }
       },
       {
