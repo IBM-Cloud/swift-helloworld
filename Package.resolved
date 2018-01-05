@@ -6,8 +6,8 @@
         "repositoryURL": "https://github.com/IBM-Swift/CloudEnvironment.git",
         "state": {
           "branch": null,
-          "revision": "490c8ea1c7dfcba1401aef04b331961122f5d8e7",
-          "version": "5.1.1"
+          "revision": "d6eda5c4b8b541a8f2e1baeeb3e4722fdaf3dc2d",
+          "version": "6.0.1"
         }
       },
       {
@@ -15,8 +15,8 @@
         "repositoryURL": "https://github.com/IBM-Swift/Swift-cfenv.git",
         "state": {
           "branch": null,
-          "revision": "a87a057209b420c4167137f87ecfc91b1fe8afc4",
-          "version": "5.0.1"
+          "revision": "1cd6067d1f711674d2f277814ef920f3b23ce4cb",
+          "version": "6.0.1"
         }
       },
       {
@@ -24,8 +24,17 @@
         "repositoryURL": "https://github.com/IBM-Swift/Configuration.git",
         "state": {
           "branch": null,
-          "revision": "20e2167fc80a039e3ee75ff3940c19c71084395e",
-          "version": "2.0.0"
+          "revision": "a5e3ce4619089069697bbef5abfe3687f6830b9d",
+          "version": "3.0.1"
+        }
+      },
+      {
+        "package": "FileKit",
+        "repositoryURL": "https://github.com/IBM-Swift/FileKit.git",
+        "state": {
+          "branch": null,
+          "revision": "319016dbf4b3ce04589265c23c9cac0016fe8096",
+          "version": "0.0.1"
         }
       },
       {
@@ -51,8 +60,8 @@
         "repositoryURL": "https://github.com/IBM-Swift/BlueSocket.git",
         "state": {
           "branch": null,
-          "revision": "00b126a2c19520bbf51cd26e8c0cc41dacbc5a05",
-          "version": "0.12.76"
+          "revision": "b8d6e21de0caba7a3fbe284d9dec5059d208f661",
+          "version": "0.12.80"
         }
       }
     ]
