@@ -1,4 +1,4 @@
-[![Build Status - Master](https://travis-ci.org/IBM-Bluemix/swift-helloworld.svg?branch=master)](https://travis-ci.org/IBM-Bluemix/swift-helloworld)
+[![Build Status - Cloud](https://travis-ci.org/IBM-Bluemix/swift-helloworld.svg?branch=master)](https://travis-ci.org/IBM-Cloud/swift-helloworld)
 ![macOS](https://img.shields.io/badge/os-macOS-green.svg?style=flat)
 ![Linux](https://img.shields.io/badge/os-linux-green.svg?style=flat)
 
@@ -6,7 +6,7 @@
 This project contains a simple Swift hello world application that can be deployed to the IBM Cloud or run locally on your [macOS](http://www.apple.com/osx/) or [Ubuntu Linux](http://www.ubuntu.com/download) system.  This sample application creates a basic server that returns an HTML greeting to the client.  Please note that this is not a production-ready application.  Instead, it is for educational purposes to learn about the types of applications you can develop using the Swift programming language.
 
 ## Application Requirements
-To compile and run this sample application on your system, you need to install the [Swift compiler](https://swift.org/download/) for your platform. Please note that the Swift language is evolving and changing rapidly. The latest version of this Swift application works with the `4.0.2` version of the Swift binaries. You can download this version of the Swift binaries by following this [link](https://swift.org/download/).
+To compile and run this sample application on your system, you need to install the [Swift compiler](https://swift.org/download/) for your platform. Please note that the Swift language is evolving and changing rapidly. The latest version of this Swift application works with the `4.0.2` and newer version of the Swift binaries. You can download this version of the Swift binaries by following this [link](https://swift.org/download/).
 
 If you are interested in manually deploying the application to the IBM Cloud, you'd need to install the IBM Cloud [command line](http://clis.ng.bluemix.net/ui/home.html) on your system.  Once it is installed, you can use it to [authenticate and access](https://console.ng.bluemix.net/docs/cli/reference/bluemix_cli/index.html#getting-started) your IBM Cloud organization(s) and spaces.  You can find further details on how to deploy this sample application to the IBM Cloud in the following sections.
 
