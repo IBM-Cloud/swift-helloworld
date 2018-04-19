@@ -6,7 +6,7 @@
 This project contains a simple Swift hello world application that can be deployed to the IBM Cloud or run locally on your [macOS](http://www.apple.com/osx/) or [Ubuntu Linux](http://www.ubuntu.com/download) system.  This sample application creates a basic server that returns an HTML greeting to the client.  Please note that this is not a production-ready application.  Instead, it is for educational purposes to learn about the types of applications you can develop using the Swift programming language.
 
 ## Application Requirements
-To compile and run this sample application on your system, you need to install the [Swift compiler](https://swift.org/download/) for your platform. Please note that the Swift language is evolving and changing rapidly. The latest version of this Swift application works with the `4.0.3` version of the Swift binaries. You can download this version of the Swift binaries by following this [link](https://swift.org/download/).
+To compile and run this sample application on your system, you need to install the [Swift compiler](https://swift.org/download/) for your platform. Please note that the Swift language is evolving and changing rapidly. The latest version of this Swift application works with the `4.1` version of the Swift binaries. You can download this version of the Swift binaries by following this [link](https://swift.org/download/).
 
 If you are interested in manually deploying the application to the IBM Cloud, you'd need to install the IBM Cloud [command line](http://clis.ng.bluemix.net/ui/home.html) on your system.  Once it is installed, you can use it to [authenticate and access](https://console.ng.bluemix.net/docs/cli/reference/bluemix_cli/index.html#getting-started) your IBM Cloud organization(s) and spaces.  You can find further details on how to deploy this sample application to the IBM Cloud in the following sections.
 
@@ -73,7 +73,7 @@ buildpack                               position   enabled   locked   filename
 liberty-for-java                        1          true      false    buildpack_liberty-for-java_v3.7-20170118-2046.zip
 sdk-for-nodejs                          2          true      false    buildpack_sdk-for-nodejs_v3.10-20170119-1146.zip
 dotnet-core                             3          true      false    buildpack_dotnet-core_v1.0.10-20170124-1145.zip
-swift_buildpack                         4          true      false    buildpack_swift_v2.0.4-20170125-2344.zip
+swift_buildpack                         4          true      false    buildpack_swift_v2.0.11-20170125-2344.zip
 java_buildpack                          5          true      false    java-buildpack-v3.6.zip
 ruby_buildpack                          6          true      false    ruby_buildpack-cached-v1.6.16.zip
 nodejs_buildpack                        7          true      false    nodejs_buildpack-cached-v1.5.11.zip
