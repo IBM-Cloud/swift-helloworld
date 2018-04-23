@@ -549,7 +549,8 @@ public class Socket: SocketReader, SocketWriter {
 				throw Error(code: Socket.SOCKET_ERR_BAD_SIGNATURE_PARAMETERS, reason: "Pathname supplied is too long.")
 			}
 
-			_ = withUnsafeMutablePointer(to: &remoteAddr.sun_path.0) { ptr in
+			var remote = remoteAddr.sun_path.0
+			_ = withUnsafeMutablePointer(to: &remote) { ptr in
 
 				let buf = UnsafeMutableBufferPointer(start: ptr, count: MemoryLayout.size(ofValue: remoteAddr.sun_path))
 				for (i, b) in path.utf8.enumerated() {
@@ -761,7 +762,7 @@ public class Socket: SocketReader, SocketWriter {
 	/// Internal Storage Buffer initially created with `Socket.SOCKET_DEFAULT_READ_BUFFER_SIZE`.
 	///
 	var readStorage: NSMutableData = NSMutableData(capacity: Socket.SOCKET_DEFAULT_READ_BUFFER_SIZE)!
-	
+
 	///
 	/// True if a delegate accept is pending.
 	///
@@ -816,8 +817,8 @@ public class Socket: SocketReader, SocketWriter {
 
 			if readBufferSize != oldValue {
 
-				readBuffer.deinitialize()
-				readBuffer.deallocate(capacity: oldValue)
+				readBuffer.deinitialize(count: readBufferSize)
+				readBuffer.deallocate()
 				readBuffer = UnsafeMutablePointer<CChar>.allocate(capacity: readBufferSize)
 				readBuffer.initialize(to:0)
 			}
@@ -1335,8 +1336,8 @@ public class Socket: SocketReader, SocketWriter {
         }
 
         // Destroy and free the readBuffer...
-        self.readBuffer.deinitialize()
-        self.readBuffer.deallocate(capacity: self.readBufferSize)
+        self.readBuffer.deinitialize(count: readBufferSize)
+        self.readBuffer.deallocate()
     }
 
 	// MARK: Public Functions
@@ -1466,7 +1467,7 @@ public class Socket: SocketReader, SocketWriter {
 		// Create the new socket...
 		//	Note: The current socket continues to listen.
 		let newSocket = try Socket(fd: socketfd2, remoteAddress: address!, path: self.signature?.path)
-		
+
 		// If there's a delegate, turn on the needs accept flag...
 		if self.delegate != nil {
 			newSocket.needsAcceptDelegateCall = true
@@ -1476,11 +1477,11 @@ public class Socket: SocketReader, SocketWriter {
         if invokeDelegate, self.delegate != nil {
             try invokeDelegateOnAccept(for: newSocket)
         }
-		
+
         // Return the new socket...
         return newSocket
     }
-	
+
 	///
     /// Invokes the delegate's `onAccept()` function for a client socket. This should be performed
     /// only with a Socket obtained by calling `acceptClientConnection(invokeDelegate: false)`.
@@ -1489,27 +1490,27 @@ public class Socket: SocketReader, SocketWriter {
     ///		- newSocket: 		The newly accepted Socket that requires further processing by our delegate
     ///
     public func invokeDelegateOnAccept(for newSocket: Socket) throws {
-		
+
 		// Only allow this if the socket needs it, otherwise it's a error...
 		if !newSocket.needsAcceptDelegateCall {
-			
+
 			throw Error(code: Socket.SOCKET_ERR_INVALID_DELEGATE_CALL, reason: nil)
 		}
-		
+
 		do {
-			
+
 			if self.delegate != nil {
 				try self.delegate?.onAccept(socket: newSocket)
 				newSocket.signature?.isSecure = true
 				self.needsAcceptDelegateCall = false
             }
-			
+
         } catch let error {
-			
+
 			guard let sslError = error as? SSLError else {
 				throw error
 			}
-			
+
 			throw Error(with: sslError)
 		}
 	}
@@ -1710,7 +1711,7 @@ public class Socket: SocketReader, SocketWriter {
 
 			throw Error(code: Socket.SOCKET_ERR_INVALID_PORT, reason: "The port specified is invalid. Must be in the range of 1-65535.")
 		}
-		
+
 		// Tell the delegate to initialize as a client...
 		do {
 
@@ -1786,20 +1787,20 @@ public class Socket: SocketReader, SocketWriter {
 			if socketDescriptor == -1 {
 				continue
 			}
-			
+
 			// Check to see if the socket is in non-blocking mode or if a timeout is provided
 			// 	If either is the case, set our trial socket to be non-blocking as well...
 			if !self.isBlocking || timeout > 0 {
-				
+
 				let flags = fcntl(socketDescriptor!, F_GETFL)
 				if flags < 0 {
-					
+
 					throw Error(code: Socket.SOCKET_ERR_GET_FCNTL_FAILED, reason: self.lastError())
 				}
-				
+
 				let result = fcntl(socketDescriptor!, F_SETFL, flags | O_NONBLOCK)
 				if result < 0 {
-					
+
 					throw Error(code: Socket.SOCKET_ERR_SET_FCNTL_FAILED, reason: self.lastError())
 				}
 			}
@@ -1815,64 +1816,64 @@ public class Socket: SocketReader, SocketWriter {
 			if status == 0 {
 				break
 			}
-			
+
 			// If this is a non-blocking socket, check errno for EINPROGRESS and if set we've got a timeout, wait the appropriate time...
 			if errno == EINPROGRESS {
-				
+
 				if timeout > 0 {
-					
+
 					// Set up for the select call...
 					var writefds = fd_set()
 					FD.ZERO(set: &writefds)
 					FD.SET(fd: socketDescriptor!, set: &writefds)
-					
+
 					var timer = timeval()
-					
+
 					// First get seconds...
 					let secs = Int(Double(timeout / 1000))
 					timer.tv_sec = secs
-					
+
 					// Now get the leftover millisecs...
 					let msecs = Int32(Double(timeout % 1000))
-					
+
 					// Note: timeval expects microseconds, convert now...
 					let uSecs = msecs * 1000
-					
+
 					// Now the leftover microseconds...
 					#if os(Linux)
 						timer.tv_usec = Int(uSecs)
 					#else
 						timer.tv_usec = Int32(uSecs)
 					#endif
-					
+
 					let count = select(socketDescriptor! + Int32(1), nil, &writefds, nil, &timer)
 					if count < 0 {
-						
+
 						throw Error(code: Socket.SOCKET_ERR_SELECT_FAILED, reason: self.lastError())
 					}
-					
+
 					// If the socket is writable, we're probably connected, but check anyway to be sure...
 					//	Otherwise, we've timed out waiting to connect.
 					if FD.ISSET(fd: socketDescriptor!, set: &writefds) {
-						
+
 						// Check the socket...
 						var result: Int = 0
 						var resultLength = socklen_t(MemoryLayout<Int>.size)
 						if getsockopt(socketDescriptor!, SOL_SOCKET, SO_ERROR, &result, &resultLength) < 0 {
-							
+
 							throw Error(code: Socket.SOCKET_ERR_GETSOCKOPT_FAILED, reason: self.lastError())
 						}
-						
+
 						// Check the result of the socket connect...
 						if result == 0 {
-							
+
 							// Success, we're connected, clear status and break out of the loop...
 							status = 0
 							break
 						}
-					
+
 					} else {
-						
+
 						throw Error(code: Socket.SOCKET_ERR_CONNECT_TIMEOUT, reason: self.lastError())
 					}
 				}
@@ -1934,21 +1935,21 @@ public class Socket: SocketReader, SocketWriter {
 			address: address,
 			hostname: host,
 			port: port)
-		
+
 		// Check to see if the socket is supposed to be blocking or non-blocking and adjust the new socket...
 		if self.isBlocking && timeout > 0 {
-			
+
 			// Socket supposed to be blocking but we've changed it to non-blocking because
 			//	a timeout was requested...  Got to change it back before proceeding...
 			let flags = fcntl(socketDescriptor!, F_GETFL)
 			if flags < 0 {
-				
+
 				throw Error(code: Socket.SOCKET_ERR_GET_FCNTL_FAILED, reason: self.lastError())
 			}
-			
+
 			let result = fcntl(self.socketfd, F_SETFL, flags & ~O_NONBLOCK)
 			if result < 0 {
-				
+
 				throw Error(code: Socket.SOCKET_ERR_SET_FCNTL_FAILED, reason: self.lastError())
 			}
 		}
@@ -2006,11 +2007,11 @@ public class Socket: SocketReader, SocketWriter {
 		// Now, do the connection using the supplied address...
 		let (addrPtr, addrLen) = try signature.unixAddress()
 		defer {
-			addrPtr.deallocate(capacity: addrLen)
+			addrPtr.deallocate()
 		}
 
 		let rc = addrPtr.withMemoryRebound(to: sockaddr.self, capacity: 1) {
-			
+
 			(p: UnsafeMutablePointer<sockaddr>) -> Int32 in
 
 			#if os(Linux)
@@ -2161,7 +2162,7 @@ public class Socket: SocketReader, SocketWriter {
         // instances of a program to each receive UDP/IP multicast or broadcast datagrams
         // destined for the bound port.
         if setsockopt(self.socketfd, SOL_SOCKET, SO_REUSEPORT, &on, socklen_t(MemoryLayout<Int32>.size)) < 0 {
-			
+
 			// Setting of this option on WSL (Windows Subsytem for Linux) is not supported.  Check for
 			// the appropriate errno value and if set, ignore the error...
 			if errno != ENOPROTOOPT {
@@ -2413,11 +2414,11 @@ public class Socket: SocketReader, SocketWriter {
 		// Now, do the connection using the supplied address from the signature...
 		let (addrPtr, addrLen) = try signature.unixAddress()
 		defer {
-			addrPtr.deallocate(capacity: addrLen)
+			addrPtr.deallocate()
 		}
 
 		let rc = addrPtr.withMemoryRebound(to: sockaddr.self, capacity: 1) {
-			
+
 			(p: UnsafeMutablePointer<sockaddr>) -> Int32 in
 
 			#if os(Linux)
@@ -3443,7 +3444,7 @@ public class Socket: SocketReader, SocketWriter {
 			throw Error(code: Socket.SOCKET_ERR_SET_WRITE_TIMEOUT_FAILED, reason: self.lastError())
 		}
 	}
-	
+
 	///
 	/// Enable/disable broadcast on a UDP socket.
 	///
@@ -3451,20 +3452,20 @@ public class Socket: SocketReader, SocketWriter {
 	///		- enable:		`true` to enable broadcast, `false` otherwise.
 	///
 	public func udpBroadcast(enable: Bool) throws {
-		
+
 		// The socket must've been created and valid...
 		if self.socketfd == Socket.SOCKET_INVALID_DESCRIPTOR {
-			
+
 			throw Error(code: Socket.SOCKET_ERR_BAD_DESCRIPTOR, reason: nil)
 		}
-		
+
 		// The socket must've been created for UDP...
 		guard let sig = self.signature,
 			sig.socketType == .datagram else {
-				
+
 				throw Error(code: Socket.SOCKET_ERR_WRONG_PROTOCOL, reason: "This is not a UDP socket.")
 		}
-		
+
 		// Turn on or off UDP broadcasting...
 		var on: Int32 = enable ? 1 : 0
 		if setsockopt(self.socketfd, SOL_SOCKET, SO_BROADCAST, &on, socklen_t(MemoryLayout<Int32>.size)) < 0 {
