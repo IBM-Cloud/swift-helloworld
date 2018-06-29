@@ -6,7 +6,7 @@
 This project contains a simple Swift hello world application that can be deployed to the IBM Cloud or run locally on your [macOS](http://www.apple.com/osx/) or [Ubuntu Linux](http://www.ubuntu.com/download) system.  This sample application creates a basic server that returns an HTML greeting to the client.  Please note that this is not a production-ready application.  Instead, it is for educational purposes to learn about the types of applications you can develop using the Swift programming language.
 
 ## Application Requirements
-To compile and run this sample application on your system, you need to install the [Swift compiler](https://swift.org/download/) for your platform. Please note that the Swift language is evolving and changing rapidly. The latest version of this Swift application works with the `4.1.1` version of the Swift binaries. You can download this version of the Swift binaries by following this [link](https://swift.org/download/).
+To compile and run this sample application on your system, you need to install the [Swift compiler](https://swift.org/download/) for your platform. Please note that the Swift language is evolving and changing rapidly. The latest version of this Swift application works with the `4.1.2` version of the Swift binaries. You can download this version of the Swift binaries by following this [link](https://swift.org/download/).
 
 If you are interested in manually deploying the application to the IBM Cloud, you'd need to install the IBM Cloud [command line](http://clis.ng.bluemix.net/ui/home.html) on your system.  Once it is installed, you can use it to [authenticate and access](https://console.ng.bluemix.net/docs/cli/reference/bluemix_cli/index.html#getting-started) your IBM Cloud organization(s) and spaces.  You can find further details on how to deploy this sample application to the IBM Cloud in the following sections.
 
@@ -125,18 +125,18 @@ Successfully created container
 Downloading app package...
 Downloaded app package (12.9K)
 Staging...
------> Buildpack version 2.0.4
------> Default supported Swift version is 3.0.2
+-----> Buildpack version 2.0.13
+-----> Default supported Swift version is 4.1.2
 -----> Configure for apt-get installs...
 -----> Writing profile script...
 -----> Copying deb files to installation folder...
 -----> No Aptfile found.
------> Getting swift-3.0.2
-       Cached swift-3.0.2
------> Unpacking swift-3.0.2.tar.gz
------> Getting clang-3.8.0
-       Cached clang-3.8.0
------> Unpacking clang-3.8.0.tar.xz
+-----> Getting swift-4.1.2
+       Cached swift-4.1.2
+-----> Unpacking swift-4.1.2.tar.gz
+-----> Getting clang-4.0
+       Cached clang-4.0
+-----> Unpacking clang-4.0.tar.xz
 -----> .ssh directory and config file not found.
 -----> Skipping cache restore (new swift signature)
 -----> Fetching Swift packages and parsing Package.swift files...
