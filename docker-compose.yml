@@ -1,6 +1,6 @@
 # docker-compose up
 app:
-  image: ibmcom/swift-ubuntu:4.1.1
+  image: ibmcom/swift-ubuntu:4.1.2
   ports:
     - "8080:8080"
   volumes:
