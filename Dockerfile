@@ -1,5 +1,5 @@
 ##
-# Copyright IBM Corporation 2016,2017
+# Copyright IBM Corporation 2016,2017,2018
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -17,7 +17,7 @@
 # Dockerfile to build a Docker image for running the Swift Sample Starter App
 # inside an IBM Container on Bluemix.
 
-FROM ibmcom/swift-ubuntu:4.1.2
+FROM ibmcom/swift-ubuntu:4.1.3
 MAINTAINER IBM Swift Engineering at IBM Cloud
 LABEL Description="Image to run the swift-helloworld sample application inside an IBM Container on Bluemix."
 

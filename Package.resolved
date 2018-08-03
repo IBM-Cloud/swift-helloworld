@@ -2,21 +2,21 @@
   "object": {
     "pins": [
       {
+        "package": "Socket",
+        "repositoryURL": "https://github.com/IBM-Swift/BlueSocket.git",
+        "state": {
+          "branch": null,
+          "revision": "a75d816e175eb6094295e17bb6ad81f99189a398",
+          "version": "1.0.14"
+        }
+      },
+      {
         "package": "CloudEnvironment",
         "repositoryURL": "https://github.com/IBM-Swift/CloudEnvironment.git",
         "state": {
           "branch": null,
-          "revision": "d6eda5c4b8b541a8f2e1baeeb3e4722fdaf3dc2d",
-          "version": "6.0.1"
-        }
-      },
-      {
-        "package": "CloudFoundryEnv",
-        "repositoryURL": "https://github.com/IBM-Swift/Swift-cfenv.git",
-        "state": {
-          "branch": null,
-          "revision": "1cd6067d1f711674d2f277814ef920f3b23ce4cb",
-          "version": "6.0.1"
+          "revision": "b37c1c69e6a0d4b191eca7c064afcedfd2a1803b",
+          "version": "8.0.0"
         }
       },
       {
@@ -56,12 +56,12 @@
         }
       },
       {
-        "package": "Socket",
-        "repositoryURL": "https://github.com/IBM-Swift/BlueSocket.git",
+        "package": "CloudFoundryEnv",
+        "repositoryURL": "https://github.com/IBM-Swift/Swift-cfenv.git",
         "state": {
           "branch": null,
-          "revision": "b8d6e21de0caba7a3fbe284d9dec5059d208f661",
-          "version": "0.12.80"
+          "revision": "1cd6067d1f711674d2f277814ef920f3b23ce4cb",
+          "version": "6.0.1"
         }
       }
     ]
