@@ -73,7 +73,7 @@ buildpack                               position   enabled   locked   filename
 liberty-for-java                        1          true      false    buildpack_liberty-for-java_v3.7-20170118-2046.zip
 sdk-for-nodejs                          2          true      false    buildpack_sdk-for-nodejs_v3.10-20170119-1146.zip
 dotnet-core                             3          true      false    buildpack_dotnet-core_v1.0.10-20170124-1145.zip
-swift_buildpack                         4          true      false    buildpack_swift_v2.0.14-20180802-1844.zip
+swift_buildpack                         4          true      false    buildpack_swift_v2.0.15-20180920-0051.zip
 java_buildpack                          5          true      false    java-buildpack-v3.6.zip
 ruby_buildpack                          6          true      false    ruby_buildpack-cached-v1.6.16.zip
 nodejs_buildpack                        7          true      false    nodejs_buildpack-cached-v1.5.11.zip
@@ -97,7 +97,7 @@ Looking at the output above, we can see that the Swift buildpack (v2.0.4) is ins
 ibmcloud app push
 ```
 
-Executing the IBM Cloud push command will parse the contents of the `manifest.yml` file and upload the application to the IBM Cloud. The following is example output from executing the `ibmcloud app push` command on the Swift `4.1.3` version of this application:
+Executing the IBM Cloud push command will parse the contents of the `manifest.yml` file and upload the application to the IBM Cloud. The following is example output from executing the `ibmcloud app push` command on the Swift `4.2` version of this application:
 
 ```
 Using manifest file /Users/olivieri/git/swift-helloworld/manifest.yml
@@ -125,15 +125,15 @@ Successfully created container
 Downloading app package...
 Downloaded app package (12.9K)
 Staging...
------> Buildpack version 2.0.14
------> Default supported Swift version is 4.1.3
+-----> Buildpack version 2.0.15
+-----> Default supported Swift version is 4.2
 -----> Configure for apt-get installs...
 -----> Writing profile script...
 -----> Copying deb files to installation folder...
 -----> No Aptfile found.
------> Getting swift-4.1.3
-       Cached swift-4.1.3
------> Unpacking swift-4.1.3.tar.gz
+-----> Getting swift-4.2
+       Cached swift-4.2
+-----> Unpacking swift-4.2.tar.gz
 -----> Getting clang-4.0
        Cached clang-4.0
 -----> Unpacking clang-4.0.tar.xz
@@ -230,7 +230,7 @@ Hello from Swift on Linux!
 ```
 
 ## Using a different version of Swift on IBM Cloud for your application
-If you look closely at the output above returned by the `ibmcloud app push` command, you will notice that `4.1.3` was the Swift version used for compiling and running the sample app on the IBM Cloud.  If you have a Swift application that compiles with a different version of the Swift binaries, say `DEVELOPMENT-SNAPSHOT-2016-08-30-a`, you'd need to update the contents of the `.swift-version` file to:
+If you look closely at the output above returned by the `ibmcloud app push` command, you will notice that `4.2` was the Swift version used for compiling and running the sample app on the IBM Cloud.  If you have a Swift application that compiles with a different version of the Swift binaries, say `DEVELOPMENT-SNAPSHOT-2016-08-30-a`, you'd need to update the contents of the `.swift-version` file to:
 
 ```
 DEVELOPMENT-SNAPSHOT-2016-08-30-a
