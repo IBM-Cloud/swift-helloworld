@@ -53,7 +53,7 @@ You can also manually deploy the app to IBM Cloud.  Though not as magical as usi
 Using the Cloud Foundry command line you can get a list of the buildpacks (along with their versions) that are installed on IBM Cloud.
 
 ```
-cf buildpacks
+ibmcloud cf buildpacks
 ```
 
 Executing the above command should result in output similar to the following:
@@ -65,7 +65,7 @@ buildpack                              position   enabled   locked   filename
 liberty-for-java                       1          true      false    buildpack_liberty-for-java_v3.3-20160912-1729.zip
 sdk-for-nodejs                         2          true      false    buildpack_sdk-for-nodejs_v3.7-20160826-1101.zip
 dotnet-core                            3          true      false    buildpack_dotnet-core_v1.0-20160826-1345.zip
-swift_buildpack                        4          true      false    buildpack_swift_v2.0.0-20160915-1220.zip
+swift_buildpack                        4          true      false    buildpack_swift_v2.0.15-20180915-1220.zip
 java_buildpack                         5          true      false    java-buildpack-v3.6.zip
 ruby_buildpack                         6          true      false    ruby_buildpack-cached-v1.6.16.zip
 nodejs_buildpack                       7          true      false    nodejs_buildpack-cached-v1.5.11.zip
@@ -86,7 +86,7 @@ swift_buildpack_v1_1_6-20160729-1205   19         true      false    buildpack_s
 Looking at the output above, we can see that the Swift buildpack is installed on IBM Cloud.  This will allow a seamless deployment of the starter application to IBM Cloud. After you have cloned this Git repo, go to its root folder on your system and issue the following command Cloud Foundry command:
 
 ```
-cf push
+ibmcloud app push
 ```
 
 Executing the Cloud Foundry push command will parse the contents of the manifest.yml file and upload the application to IBM Cloud.  This action should generate an output similar to the following:
@@ -112,7 +112,7 @@ OK
 Starting app swift-helloworld-estado in org roliv@us.ibm.com / space dev as roliv@us.ibm.com...
 -----> Downloaded app package (60K)
 Cloning into '/tmp/buildpacks/swift-buildpack'...
------> Default supported Swift version is 4.1.3
+-----> Default supported Swift version is 4.2
 -----> Installing system level dependencies...
 -----> Installing libblocksruntime0_0.1-1_amd64.deb
 -----> Installing libblocksruntime-dev_0.1-1_amd64.deb
@@ -123,7 +123,7 @@ Cloning into '/tmp/buildpacks/swift-buildpack'...
 -----> Installing uuid-dev_2.20.1-5.1ubuntu20_amd64.deb
 -----> No Aptfile found.
 -----> Writing profile script...
------> Installing Swift 4.1.3
+-----> Installing Swift 4.2
        Downloaded Swift
 -----> Installing Clang 4.0
        Downloaded Clang
@@ -161,7 +161,7 @@ buildpack: https://github.com/IBM-Swift/swift-buildpack.git#develop
 #0   running   2016-09-14 03:21:24 PM   0.0%   11.8M of 128M   28.8M of 1G
 ```
 
-Once the sample application is pushed to IBM Cloud, you can access it using its route. You can log on to your [IBM Cloud account](https://console.ng.bluemix.net) to find the route of your application or you can inspect the output from the execution of the `cf push` command.  The string value (e.g. swift-helloworld.mybluemix.net) shown next to the urls should contain the route.  Use that route as the URL to access the sample server using the browser of your choice.  The browser should render an HTML page with the following message at the top:
+Once the sample application is pushed to IBM Cloud, you can access it using its route. You can log on to your [IBM Cloud account](https://console.ng.bluemix.net) to find the route of your application or you can inspect the output from the execution of the `ibmcloud app push` command.  The string value (e.g. swift-helloworld.mybluemix.net) shown next to the urls should contain the route.  Use that route as the URL to access the sample server using the browser of your choice.  The browser should render an HTML page with the following message at the top:
 
 ```
 Hello from Swift on Linux!
