@@ -31,7 +31,7 @@ ADD Package.resolved /swift-helloworld
 ADD LICENSE /swift-helloworld
 ADD .swift-version /swift-helloworld
 
-# Build Swift Started App
+# Build Swift Starter App
 RUN cd /swift-helloworld && swift build
 
 USER root
