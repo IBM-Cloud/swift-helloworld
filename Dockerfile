@@ -17,7 +17,7 @@
 # Dockerfile to build a Docker image for running the Swift Sample Starter App
 # inside an IBM Container on Bluemix.
 
-FROM ibmcom/swift-ubuntu:4.2
+FROM ibmcom/swift-ubuntu:4.2.1
 MAINTAINER IBM Swift Engineering at IBM Cloud
 LABEL Description="Image to run the swift-helloworld sample application inside an IBM Container on Bluemix."
 
@@ -31,7 +31,7 @@ ADD Package.resolved /swift-helloworld
 ADD LICENSE /swift-helloworld
 ADD .swift-version /swift-helloworld
 
-# Build Swift Started App
+# Build Swift Starter App
 RUN cd /swift-helloworld && swift build
 
 USER root
