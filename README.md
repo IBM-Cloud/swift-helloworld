@@ -112,7 +112,7 @@ OK
 Starting app swift-helloworld-estado in org roliv@us.ibm.com / space dev as roliv@us.ibm.com...
 -----> Downloaded app package (60K)
 Cloning into '/tmp/buildpacks/swift-buildpack'...
------> Default supported Swift version is 4.2
+-----> Default supported Swift version is 4.2.1
 -----> Installing system level dependencies...
 -----> Installing libblocksruntime0_0.1-1_amd64.deb
 -----> Installing libblocksruntime-dev_0.1-1_amd64.deb
@@ -123,7 +123,7 @@ Cloning into '/tmp/buildpacks/swift-buildpack'...
 -----> Installing uuid-dev_2.20.1-5.1ubuntu20_amd64.deb
 -----> No Aptfile found.
 -----> Writing profile script...
------> Installing Swift 4.2
+-----> Installing Swift 4.2.1
        Downloaded Swift
 -----> Installing Clang 4.0
        Downloaded Clang
