@@ -8,7 +8,7 @@ This project contains a simple Swift hello world application that can be deploye
 ## Application Requirements
 To compile and run this sample application on your system, you need to install the [Swift compiler](https://swift.org/download/) for your platform. Please note that the Swift language is evolving and changing rapidly. The latest version of this Swift application works with the `4.1.2+` version of the Swift binaries. You can download this version of the Swift binaries by following this [link](https://swift.org/download/).
 
-If you are interested in manually deploying the application to the IBM Cloud, you'd need to install the IBM Cloud [command line](http://clis.ng.bluemix.net/ui/home.html) on your system.  Once it is installed, you can use it to [authenticate and access](https://console.ng.bluemix.net/docs/cli/reference/bluemix_cli/index.html#getting-started) your IBM Cloud organization(s) and spaces.  You can find further details on how to deploy this sample application to the IBM Cloud in the following sections.
+If you are interested in manually deploying the application to the IBM Cloud, you'd need to install the IBM Cloud [command line](https://cloud.ibm.com/docs/cli/reference/ibmcloud/download_cli.html#install_use) on your system.  Once it is installed, you can use it to [authenticate and access](https://cloud.ibm.com/docs/cli/index.html#overview) your IBM Cloud organizations and spaces.  You can find further details on how to deploy this sample application to the IBM Cloud in the following sections.
 
 ## Run the app locally
 Once you have installed the Swift compiler and cloned this Git repo, you can now compile and run the application. Go to the root folder of this repo on your system and issue the following command:
@@ -51,12 +51,12 @@ Below the greeting message, you should also see an HTML table that displays the 
 ### Using the magical button
 Click the magical button below to automatically deploy this sample application to the IBM Cloud.
 
-[![Deploy to IBM Cloud](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy)
+[![Deploy to IBM Cloud](https://cloud.ibm.com/devops/setup/deploy/button.png)](https://cloud.ibm.com/devops/getting-started)
 
-When automatically deploying to the IBM Cloud, the manifest.yml file [included in the repo] is parsed to obtain the name of the application.  For further details on the structure of the manifest.yml file, see the [Cloud Foundry documentation](https://docs.cloudfoundry.org/devguide/deploy-apps/manifest.html#minimal-manifest).
+When automatically deploying to the IBM Cloud, the `manifest.yml` file [included in the repo] is parsed to obtain the name of the application.  For further details on the structure of the `manifest.yml` file, see the [Cloud Foundry documentation](https://docs.cloudfoundry.org/devguide/deploy-apps/manifest.html#minimal-manifest).
 
 ### Using the IBM Cloud command line
-You can also manually deploy the app to the IBM Cloud.  Though not as magical as using the IBM Cloud button above, manually deploying the app gives you some insights about what is happening behind the scenes.  Remember that you'd need the IBM Cloud [command line](http://clis.ng.bluemix.net/ui/home.html) installed on your system to deploy the app to the IBM Cloud.
+You can also manually deploy the app to the IBM Cloud.  Though not as magical as using the IBM Cloud button above, manually deploying the app gives you some insights about what is happening behind the scenes.  Remember that you'd need the IBM Cloud [command line](https://cloud.ibm.com/docs/cli/index.html#overview) installed on your system to deploy the app to the IBM Cloud.
 
 Using the IBM Cloud command line you can get a list of the buildpacks (along with their versions) that are installed on the IBM Cloud.
 
@@ -97,7 +97,7 @@ Looking at the output above, we can see that the Swift buildpack (v2.0.4) is ins
 ibmcloud app push
 ```
 
-Executing the IBM Cloud push command will parse the contents of the `manifest.yml` file and upload the application to the IBM Cloud. The following is example output from executing the `ibmcloud app push` command on the Swift `4.2.1` version of this application:
+Executing the IBM Cloud push command will parse the contents of the `manifest.yml` file and upload the application to the IBM Cloud. The following is example output from executing the `ibmcloud app push` command on the Swift `4.2.2` version of this application:
 
 ```
 Using manifest file /Users/olivieri/git/swift-helloworld/manifest.yml
@@ -126,14 +126,14 @@ Downloading app package...
 Downloaded app package (12.9K)
 Staging...
 -----> Buildpack version 2.0.15
------> Default supported Swift version is 4.2.1
+-----> Default supported Swift version is 4.2.2
 -----> Configure for apt-get installs...
 -----> Writing profile script...
 -----> Copying deb files to installation folder...
 -----> No Aptfile found.
------> Getting swift-4.2.1
-       Cached swift-4.2.1
------> Unpacking swift-4.2.1.tar.gz
+-----> Getting swift-4.2.2
+       Cached swift-4.2.2
+-----> Unpacking swift-4.2.2.tar.gz
 -----> Getting clang-4.0
        Cached clang-4.0
 -----> Unpacking clang-4.0.tar.xz
@@ -223,14 +223,14 @@ buildpack: swift_buildpack
 #0   running   2017-02-27 11:31:38 AM   0.0%   1M of 128M   1.3M of 1G
 ```
 
-Once the sample application is pushed to the IBM Cloud, you can access it using its route. You can log on to your [IBM Cloud account](https://console.ng.bluemix.net) to find the route of your application or you can inspect the output from the execution of the `ibmcloud app push` command.  The string value (e.g. swift-helloworld.mybluemix.net) shown next to the urls should contain the route.  Use that route as the URL to access the sample server using the browser of your choice.  The browser should render an HTML page with the following message at the top:
+Once the sample application is pushed to the IBM Cloud, you can access it using its route. You can log on to your [IBM Cloud account](cloud.ibm.com) to find the route of your application or you can inspect the output from the execution of the `ibmcloud app push` command.  The string value (e.g. swift-helloworld.mybluemix.net) shown next to the urls should contain the route.  Use that route as the URL to access the sample server using the browser of your choice.  The browser should render an HTML page with the following message at the top:
 
 ```
 Hello from Swift on Linux!
 ```
 
 ## Using a different version of Swift on IBM Cloud for your application
-If you look closely at the output above returned by the `ibmcloud app push` command, you will notice that `4.2.1` was the Swift version used for compiling and running the sample app on the IBM Cloud.  If you have a Swift application that compiles with a different version of the Swift binaries, say `DEVELOPMENT-SNAPSHOT-2016-08-30-a`, you'd need to update the contents of the `.swift-version` file to:
+If you look closely at the output above returned by the `ibmcloud app push` command, you will notice that `4.2.2` was the Swift version used for compiling and running the sample app on the IBM Cloud.  If you have a Swift application that compiles with a different version of the Swift binaries, say `DEVELOPMENT-SNAPSHOT-2016-08-30-a`, you'd need to update the contents of the `.swift-version` file to:
 
 ```
 DEVELOPMENT-SNAPSHOT-2016-08-30-a
