@@ -1,4 +1,4 @@
-IBM Cloud##
+##
 # Copyright IBM Corporation 2016,2017,2018
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
