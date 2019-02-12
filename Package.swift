@@ -27,9 +27,9 @@ let package = Package(
             targets: ["Server", "Utils"])
     ],
     dependencies: [
-        .package(url: "https://github.com/IBM-Swift/CloudEnvironment.git", .upToNextMajor(from: "9.0.0")),
-        .package(url: "https://github.com/IBM-Swift/BlueSocket.git", .upToNextMajor(from: "1.0.0")),
-        .package(url: "https://github.com/IBM-Swift/HeliumLogger.git", .upToNextMajor(from: "1.0.0"))
+        .package(url: "https://github.com/IBM-Swift/CloudEnvironment.git", from: "9.0.0"),
+        .package(url: "https://github.com/IBM-Swift/BlueSocket.git", from: "1.0.0"),
+        .package(url: "https://github.com/IBM-Swift/HeliumLogger.git", from: "1.8.0")
     ],
     targets: [
         .target(
