@@ -6,7 +6,7 @@
 This project contains a simple Swift hello world application that can be deployed to IBM Cloud or run locally on your [macOS](http://www.apple.com/osx/) or [Ubuntu Linux](http://www.ubuntu.com/download) system.  This sample application creates a basic server that returns an HTML greeting to the client.  Please note that this is not a production-ready application.  Instead, it is for educational purposes to learn about the types of applications you can develop using the Swift programming language.
 
 ## Application Requirements
-To compile and run this sample application on your system, you need to install the [Swift compiler](https://swift.org/download/) for your platform. Please note that the Swift language is evolving and changing rapidly. The latest version of this Swift application works with the `4.2.2` and newer versions of the Swift binaries. You can download this version of the Swift binaries by following this [link](https://swift.org/download/).
+To compile and run this sample application on your system, you need to install the [Swift compiler](https://swift.org/download/) for your platform. Please note that the Swift language is evolving and changing rapidly. The latest version of this Swift application works with the `4.2.3` and newer versions of the Swift binaries. You can download this version of the Swift binaries by following this [link](https://swift.org/download/).
 
 If you are interested in manually deploying the application to IBM Cloud, you'd need to install the Cloud Foundry [command line](https://docs.cloudfoundry.org/devguide/cf-cli/install-go-cli.html) on your system.  Once it is installed, you can use it to [authenticate and access](https://www.ng.bluemix.net/docs/starters/install_cli.html) your IBM Cloud organization(s) and spaces.  You can find further details on how to deploy this sample application to IBM Cloud in the following sections.
 
@@ -65,7 +65,7 @@ buildpack                              position   enabled   locked   filename
 liberty-for-java                       1          true      false    buildpack_liberty-for-java_v3.3-20160912-1729.zip
 sdk-for-nodejs                         2          true      false    buildpack_sdk-for-nodejs_v3.7-20160826-1101.zip
 dotnet-core                            3          true      false    buildpack_dotnet-core_v1.0-20160826-1345.zip
-swift_buildpack                        4          true      false    buildpack_swift_v2.0.15-20180915-1220.zip
+swift_buildpack                        4          true      false    buildpack_swift_v2.0.18-20180915-1220.zip
 java_buildpack                         5          true      false    java-buildpack-v3.6.zip
 ruby_buildpack                         6          true      false    ruby_buildpack-cached-v1.6.16.zip
 nodejs_buildpack                       7          true      false    nodejs_buildpack-cached-v1.5.11.zip
@@ -112,7 +112,7 @@ OK
 Starting app swift-helloworld-estado in org roliv@us.ibm.com / space dev as roliv@us.ibm.com...
 -----> Downloaded app package (60K)
 Cloning into '/tmp/buildpacks/swift-buildpack'...
------> Default supported Swift version is 4.2.2
+-----> Default supported Swift version is 4.2.3
 -----> Installing system level dependencies...
 -----> Installing libblocksruntime0_0.1-1_amd64.deb
 -----> Installing libblocksruntime-dev_0.1-1_amd64.deb
@@ -123,7 +123,7 @@ Cloning into '/tmp/buildpacks/swift-buildpack'...
 -----> Installing uuid-dev_2.20.1-5.1ubuntu20_amd64.deb
 -----> No Aptfile found.
 -----> Writing profile script...
------> Installing Swift 4.2.2
+-----> Installing Swift 4.2.3
        Downloaded Swift
 -----> Installing Clang 4.0
        Downloaded Clang
