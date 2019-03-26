@@ -97,7 +97,7 @@ Looking at the output above, we can see that the Swift buildpack (v2.0.4) is ins
 ibmcloud app push
 ```
 
-Executing the IBM Cloud push command will parse the contents of the `manifest.yml` file and upload the application to the IBM Cloud. The following is example output from executing the `ibmcloud app push` command on the Swift `4.2.3` version of this application:
+Executing the IBM Cloud push command will parse the contents of the `manifest.yml` file and upload the application to the IBM Cloud. The following is example output from executing the `ibmcloud app push` command on the Swift `5.0` version of this application:
 
 ```
 Using manifest file /Users/olivieri/git/swift-helloworld/manifest.yml
@@ -126,14 +126,14 @@ Downloading app package...
 Downloaded app package (12.9K)
 Staging...
 -----> Buildpack version 2.0.18
------> Default supported Swift version is 4.2.3
+-----> Default supported Swift version is 5.0
 -----> Configure for apt-get installs...
 -----> Writing profile script...
 -----> Copying deb files to installation folder...
 -----> No Aptfile found.
------> Getting swift-4.2.3
-       Cached swift-4.2.3
------> Unpacking swift-4.2.3.tar.gz
+-----> Getting swift-5.0
+       Cached swift-5.0
+-----> Unpacking swift-5.0.tar.gz
 -----> Getting clang-4.0
        Cached clang-4.0
 -----> Unpacking clang-4.0.tar.xz
@@ -230,7 +230,7 @@ Hello from Swift on Linux!
 ```
 
 ## Using a different version of Swift on IBM Cloud for your application
-If you look closely at the output above returned by the `ibmcloud app push` command, you will notice that `4.2.3` was the Swift version used for compiling and running the sample app on the IBM Cloud.  If you have a Swift application that compiles with a different version of the Swift binaries, say `DEVELOPMENT-SNAPSHOT-2016-08-30-a`, you'd need to update the contents of the `.swift-version` file to:
+If you look closely at the output above returned by the `ibmcloud app push` command, you will notice that `5.0` was the Swift version used for compiling and running the sample app on the IBM Cloud.  If you have a Swift application that compiles with a different version of the Swift binaries, say `DEVELOPMENT-SNAPSHOT-2016-08-30-a`, you'd need to update the contents of the `.swift-version` file to:
 
 ```
 DEVELOPMENT-SNAPSHOT-2016-08-30-a
