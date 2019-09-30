@@ -17,9 +17,11 @@
 # Dockerfile to build a Docker image for running the Swift Sample Starter App
 # inside an IBM Container on IBM Cloud.
 
-FROM ibmcom/swift-ubuntu:5.0
+FROM swift:5.1
 MAINTAINER IBM Swift Engineering at IBM Cloud
 LABEL Description="Image to run the swift-helloworld sample application inside an IBM Container on IBM Cloud."
+
+RUN apt-get update && apt-get install -y sudo openssl libssl-dev libcurl4-openssl-dev
 
 EXPOSE 8080
 

@@ -4,4 +4,5 @@ applications:
   random-route: true
   memory: 128M
   instances: 1
-  buildpack: swift_buildpack
+  buildpacks:
+    - swift_buildpack
