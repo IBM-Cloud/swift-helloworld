@@ -6,7 +6,7 @@
 This project contains a simple Swift hello world application that can be deployed to the IBM Cloud or run locally on your [macOS](http://www.apple.com/osx/) or [Ubuntu Linux](http://www.ubuntu.com/download) system.  This sample application creates a basic server that returns an HTML greeting to the client.  Please note that this is not a production-ready application.  Instead, it is for educational purposes to learn about the types of applications you can develop using the Swift programming language.
 
 ## Application Requirements
-To compile and run this sample application on your system, you need to install the [Swift compiler](https://swift.org/download/) for your platform. Please note that the Swift language is evolving and changing rapidly. The latest version of this Swift application works with the `4.1.2+` version of the Swift binaries. You can download this version of the Swift binaries by following this [link](https://swift.org/download/).
+To compile and run this sample application on your system, you need to install the [Swift compiler](https://swift.org/download/) for your platform. Please note that the Swift language is evolving and changing rapidly. The latest version of this Swift application works with the `5.1+` version of the Swift binaries. You can download this version of the Swift binaries by following this [link](https://swift.org/download/).
 
 If you are interested in manually deploying the application to the IBM Cloud, you'd need to install the IBM Cloud [command line](https://cloud.ibm.com/docs/cli/reference/ibmcloud/download_cli.html#install_use) on your system.  Once it is installed, you can use it to [authenticate and access](https://cloud.ibm.com/docs/cli/index.html#overview) your IBM Cloud organizations and spaces.  You can find further details on how to deploy this sample application to the IBM Cloud in the following sections.
 
@@ -69,29 +69,35 @@ Executing the above command should result in output similar to the following:
 ```
 Getting buildpacks...
 
-buildpack                               position   enabled   locked   filename
-liberty-for-java                        1          true      false    buildpack_liberty-for-java_v3.7-20170118-2046.zip
-sdk-for-nodejs                          2          true      false    buildpack_sdk-for-nodejs_v3.10-20170119-1146.zip
-dotnet-core                             3          true      false    buildpack_dotnet-core_v1.0.10-20170124-1145.zip
-swift_buildpack                         4          true      false    buildpack_swift_v2.0.18-20180920-0051.zip
-java_buildpack                          5          true      false    java-buildpack-v3.6.zip
-ruby_buildpack                          6          true      false    ruby_buildpack-cached-v1.6.16.zip
-nodejs_buildpack                        7          true      false    nodejs_buildpack-cached-v1.5.11.zip
-go_buildpack                            8          true      false    go_buildpack-cached-v1.7.5.zip
-python_buildpack                        9          true      false    python_buildpack-cached-v1.5.5.zip
-php_buildpack                           10         true      false    php_buildpack-cached-v4.3.10.zip
-xpages_buildpack                        11         true      false    xpages_buildpack_v1.2.2-20170112-1328.zip
-staticfile_buildpack                    12         true      false    staticfile_buildpack-cached-v1.3.6.zip
-binary_buildpack                        13         true      false    binary_buildpack-cached-v1.0.1.zip
-liberty-for-java_v3_4_1-20161030-2241   14         true      false    buildpack_liberty-for-java_v3.4.1-20161030-2241.zip
-liberty-for-java_v3_6-20161209-1351     15         true      false    buildpack_liberty-for-java_v3.6-20161209-1351.zip
-xpages_buildpack_v1_2_1-20160913-103    16         true      false    xpages_buildpack_v1.2.1-20160913-1038.zip
-dotnet-core_v1_0_1-20161005-1225        17         true      false    buildpack_dotnet-core_v1.0.1-20161005-1225.zip
-sdk-for-nodejs_v3_9-20161128-1327       18         true      false    buildpack_sdk-for-nodejs_v3.9-20161128-1327.zip
-swift_buildpack_v2_0_3-20161217-1748    19         true      false    buildpack_swift_v2.0.3-20161217-1748.zip
+buildpack                                         position   enabled   locked   filename                                               stack
+liberty-for-java                                  1          true      false    buildpack_liberty-for-java_v3.36-20190905-1704.zip
+sdk-for-nodejs                                    2          true      false    buildpack_sdk-for-nodejs_v4.0-20190912-1615.zip
+dotnet-core                                       3          true      false    buildpack_dotnet-core_v2.4-20190912-1554.zip
+swift_buildpack                                   4          true      false    buildpack_swift_v2.1.1-20190821-1903.zip
+noop-buildpack                                    5          true      false    noop-buildpack-20140311-1519.zip
+xpages_buildpack                                  6          true      false    xpages_buildpack_v1.2.2-20170112-1328.zip
+liberty-for-java_v3_17_1-20180131-1532            7          true      false    buildpack_liberty-for-java_v3.17.1-20180131-1532.zip
+liberty_v3_14-20171013-1023                       8          true      false    buildpack_liberty_v3.14-20171013-1023.zip
+swift_buildpack_v2_0_18-20190303-1915             9          true      false    buildpack_swift_v2.0.18-20190303-1915.zip
+swift_buildpack_v2_0_20-20190401-2122             10         true      false    buildpack_swift_v2.0.20-20190401-2122.zip
+staticfile_buildpack                              11         true      false    staticfile-buildpack-cflinuxfs3-v1.4.35.zip            cflinuxfs3
+java_buildpack                                    12         true      false    java-buildpack-cflinuxfs3-v4.16.1.zip                  cflinuxfs3
+ruby_buildpack                                    13         true      false    ruby-buildpack-cflinuxfs3-v1.7.27.zip                  cflinuxfs3
+nodejs_buildpack                                  14         true      false    nodejs-buildpack-cflinuxfs3-v1.6.34.zip                cflinuxfs3
+go_buildpack                                      15         true      false    go-buildpack-cflinuxfs3-v1.8.29.zip                    cflinuxfs3
+python_buildpack                                  16         true      false    python-buildpack-cflinuxfs3-v1.6.23.zip                cflinuxfs3
+php_buildpack                                     17         true      false    php-buildpack-cflinuxfs3-v4.3.64.zip                   cflinuxfs3
+binary_buildpack                                  18         true      false    binary-buildpack-cflinuxfs3-v1.0.27.zip                cflinuxfs3
+swift_buildpack_cflinuxfs3_v2_1_0-20190404-1206   19         true      false    buildpack_swift_cflinuxfs3_v2.1.0-20190404-1206.zip    cflinuxfs3
+liberty-for-java_v3_35-20190813-1755              20         true      false    buildpack_liberty-for-java_v3.35-20190813-1755.zip
+liberty-for-java_v3_36-20190905-1704              21         true      false    buildpack_liberty-for-java_v3.36-20190905-1704.zip
+dotnet-core_v2_3-20190609-2145                    22         true      false    buildpack_dotnet-core_v2.3-20190609-2145.zip
+dotnet-core_v2_4-20190912-1554                    23         true      false    buildpack_dotnet-core_v2.4-20190912-1554.zip
+sdk-for-nodejs_v3_28-20190722-1336                24         true      false    buildpack_sdk-for-nodejs_v3.28-20190722-1336.zip
+sdk-for-nodejs_v4_0-20190912-1615                 25         true      false    buildpack_sdk-for-nodejs_v4.0-20190912-1615.zip
 ```
 
-Looking at the output above, we can see that the Swift buildpack (v2.0.4) is installed on the IBM Cloud.  This will allow a seamless deployment of the starter application to the IBM Cloud. After you have cloned this Git repo, go to its root folder on your system and issue the following command:
+Looking at the output above, we can see that the Swift buildpack (v2.1.0) is installed on the IBM Cloud.  This will allow a seamless deployment of the starter application to the IBM Cloud. After you have cloned this Git repo, go to its root folder on your system and issue the following command:
 
 ```
 ibmcloud app push
@@ -100,127 +106,120 @@ ibmcloud app push
 Executing the IBM Cloud push command will parse the contents of the `manifest.yml` file and upload the application to the IBM Cloud. The following is example output from executing the `ibmcloud app push` command on the Swift `5.0` version of this application:
 
 ```
-Using manifest file /Users/olivieri/git/swift-helloworld/manifest.yml
+Using manifest file /Users/gvalenc/git/DevX/swift-helloworld/manifest.yml
+Getting app info...
+Creating app with these attributes...
++ name:         swift-helloworld-swift51
+  path:         /Users/gvalenc/git/DevX/swift-helloworld
+  buildpacks:
++   https://github.com/IBM-Swift/swift-buildpack#2.2.0
++ instances:    1
++ memory:       128M
+  routes:
++   swift-helloworld-swift51-shiny-lemur.mybluemix.net
 
-Creating app swift-helloworld in org roliv@us.ibm.com / space dev as roliv@us.ibm.com...
-OK
+Creating app swift-helloworld-swift51...
+Mapping routes...
+Comparing local files to remote cache...
+Packaging files to upload...
+Uploading files...
+ 14.73 KiB / 14.73 KiB [==================================================================================] 100.00% 1s
 
-Creating route swift-helloworld-nontanning-typhoon.stage1.mybluemix.net...
-OK
+Waiting for API to complete processing files...
 
-Binding swift-helloworld-nondirectional-schizogamy.eu-gb.mybluemix.net to swift-helloworld...
-OK
+Staging app and tracing logs...
+   Cell ca3309ff-c7c4-4aaf-b47e-3ef8e1e2e07f creating container for instance 880e2117-2039-4b9d-9eb2-00c5a0f1689f
+   Cell ca3309ff-c7c4-4aaf-b47e-3ef8e1e2e07f successfully created container for instance 880e2117-2039-4b9d-9eb2-00c5a0f1689f
+   Downloading app package...
+   Downloaded app package (14.7K)
+   -----> Buildpack version 2.2.0
+   -----> Default supported Swift version is 5.1
+   -----> Configure for apt-get installs...
+   -----> Writing profile script...
+   -----> Copying deb files to installation folder...
+   -----> No Aptfile found.
+   -----> Getting swift-5.1
+          Downloaded swift-5.1
+   -----> Unpacking swift-5.1.tar.gz
+   -----> Getting clang-8.0.0
+          Downloaded clang-8.0.0
+   -----> Unpacking clang-8.0.0.tar.xz
+   -----> .ssh directory and config file not found.
+   -----> Skipping cache restore (new swift signature)
+   -----> Fetching Swift packages and parsing Package.swift files...
+          Fetching https://github.com/apple/swift-log.git
+          Fetching https://github.com/IBM-Swift/CloudEnvironment.git
+          Fetching https://github.com/IBM-Swift/LoggerAPI.git
+          Fetching https://github.com/IBM-Swift/Configuration.git
+          Fetching https://github.com/IBM-Swift/BlueSocket.git
+          Fetching https://github.com/IBM-Swift/HeliumLogger.git
+          Fetching https://github.com/IBM-Swift/Swift-cfenv.git
+          Fetching https://github.com/IBM-Swift/FileKit.git
+   Completed resolution in 19.21s
+          Cloning https://github.com/IBM-Swift/Swift-cfenv.git
+          Resolving https://github.com/IBM-Swift/Swift-cfenv.git at 6.0.3
+          Cloning https://github.com/IBM-Swift/BlueSocket.git
+          Resolving https://github.com/IBM-Swift/BlueSocket.git at 1.0.49
+          Cloning https://github.com/apple/swift-log.git
+          Resolving https://github.com/apple/swift-log.git at 1.1.1
+          Cloning https://github.com/IBM-Swift/FileKit.git
+          Resolving https://github.com/IBM-Swift/FileKit.git at 0.0.2
+          Cloning https://github.com/IBM-Swift/LoggerAPI.git
+          Resolving https://github.com/IBM-Swift/LoggerAPI.git at 1.9.0
+          Cloning https://github.com/IBM-Swift/CloudEnvironment.git
+          Resolving https://github.com/IBM-Swift/CloudEnvironment.git at 9.1.0
+          Cloning https://github.com/IBM-Swift/HeliumLogger.git
+          Resolving https://github.com/IBM-Swift/HeliumLogger.git at 1.9.0
+          Cloning https://github.com/IBM-Swift/Configuration.git
+          Resolving https://github.com/IBM-Swift/Configuration.git at 3.0.4
+   -----> No additional packages to download.
+   -----> Skipping installation of App Management (debug)
+   -----> Installing system level dependencies...
+   -----> Building Package...
+   -----> Build config: release
+          [1/3] Compiling Logging Locks.swift
+          [2/4] Compiling LoggerAPI Logger.swift
+          [3/6] Compiling FileKit FileKit.swift
+          [4/7] Compiling HeliumLogger HeliumLogHandler.swift
+          [5/7] Compiling Configuration ConfigurationManager.swift
+          [6/8] Compiling Socket Socket.swift
+          [7/8] Compiling CloudFoundryEnv App.swift
+          [8/9] Compiling CloudEnvironment AlertNotificationCredentials.swift
+          [9/10] Compiling Utils HttpResponse.swift
+          [10/11] Compiling Server main.swift
+          [11/11] Linking Server
+   -----> Bin path: /tmp/app/.build/x86_64-unknown-linux/release
+   -----> Copying dynamic libraries
+   -----> Copying binaries to 'bin'
+   -----> Clearing previous swift cache
+   -----> Skipping cache save (disabled by default)
+   -----> Optimizing contents of cache folder...
+   Exit status 0
+   Uploading droplet, build artifacts cache...
+   Uploading droplet...
+   Uploading build artifacts cache...
+   Uploaded build artifacts cache (1.6K)
+   Uploaded droplet (221.5M)
+   Uploading complete
+   Cell ca3309ff-c7c4-4aaf-b47e-3ef8e1e2e07f stopping instance 880e2117-2039-4b9d-9eb2-00c5a0f1689f
+   Cell ca3309ff-c7c4-4aaf-b47e-3ef8e1e2e07f destroying container for instance 880e2117-2039-4b9d-9eb2-00c5a0f1689f
+   Cell ca3309ff-c7c4-4aaf-b47e-3ef8e1e2e07f successfully destroyed container for instance 880e2117-2039-4b9d-9eb2-00c5a0f1689f
 
-Uploading swift-helloworld...
-Uploading app files from: /Users/olivieri/git/swift-helloworld
-Uploading 13.3K, 15 files
-Done uploading               
-OK
+Waiting for app to start...
 
-Starting app swift-helloworld in org roliv@us.ibm.com / space dev as roliv@us.ibm.com...
-Downloading swift_buildpack...
-Downloaded swift_buildpack
-Creating container
-Successfully created container
-Downloading app package...
-Downloaded app package (12.9K)
-Staging...
------> Buildpack version 2.0.18
------> Default supported Swift version is 5.0
------> Configure for apt-get installs...
------> Writing profile script...
------> Copying deb files to installation folder...
------> No Aptfile found.
------> Getting swift-5.0
-       Cached swift-5.0
------> Unpacking swift-5.0.tar.gz
------> Getting clang-4.0
-       Cached clang-4.0
------> Unpacking clang-4.0.tar.xz
------> .ssh directory and config file not found.
------> Skipping cache restore (new swift signature)
------> Fetching Swift packages and parsing Package.swift files...
-       Cloning https://github.com/IBM-Swift/CloudConfiguration
-       HEAD is now at ccaedb3 Merge pull request #13 from IBM-Swift/scaling
-       Resolved version: 1.1.2
-       Cloning https://github.com/IBM-Swift/Swift-cfenv.git
-       HEAD is now at dff3a5d Updated visibility modifiers for certain properties.
-       Resolved version: 3.0.0
-       Cloning https://github.com/IBM-Swift/LoggerAPI.git
-       HEAD is now at 1e6f08e Perf: Use autoclosures to prevent String construction (#18)
-       Resolved version: 1.6.0
-       Cloning https://github.com/IBM-Swift/Configuration
-       HEAD is now at 0b41b36 Change load functions to log errors instead of throwing
-       Resolved version: 0.2.0
-       Cloning https://github.com/IBM-Swift/BlueSocket.git
-       HEAD is now at b0dcf15 Merge pull request #54 from skreutzberger/master
-       Resolved version: 0.12.31
-       Cloning https://github.com/IBM-Swift/HeliumLogger.git
-       HEAD is now at a6ea950 Regenerated API documentation
-       Resolved version: 1.6.0
------> Skipping installation of App Management (debug)
------> Installing system level dependencies...
------> Installing curl_7.35.0-1ubuntu2.10_amd64.deb
------> Installing libcurl3_7.35.0-1ubuntu2.10_amd64.deb
------> Installing libcurl4-openssl-dev_7.35.0-1ubuntu2.10_amd64.deb
------> Installing libicu-dev_52.1-3ubuntu0.4_amd64.deb
------> Installing libssl1.0.0_1.0.1f-1ubuntu2.21_amd64.deb
------> Installing libssl-dev_1.0.1f-1ubuntu2.21_amd64.deb
------> Installing openssl_1.0.1f-1ubuntu2.21_amd64.deb
------> Building Package...
------> Build config: release
-       Compile Swift Module 'LoggerAPI' (1 sources)
-       Compile Swift Module 'Socket' (3 sources)
-       Compile Swift Module 'HeliumLogger' (2 sources)
-       Compile Swift Module 'Configuration' (7 sources)
-       Compile Swift Module 'CloudFoundryEnv' (5 sources)
-       Compile Swift Module 'HerokuConfig' (1 sources)
-       Compile Swift Module 'AmazonConfig' (1 sources)
-       Compile Swift Module 'CloudFoundryConfig' (2 sources)
-       Compile Swift Module 'Utils' (2 sources)
-       Compile Swift Module 'Server' (1 sources)
-       Linking ./.build/release/Server
------> Copying dynamic libraries
------> Copying binaries to 'bin'
------> Cleaning up build files
------> Clearing previous swift cache
------> Saving cache (default):
------> - Packages
------> Optimizing contents of cache folder...
-Exit status 0
-Staging complete
-Uploading droplet, build artifacts cache...
-Uploading droplet...
-Uploading build artifacts cache...
-Uploaded build artifacts cache (2.8M)
-Uploaded droplet (82.5M)
-Uploading complete
-Destroying container
-Successfully destroyed container
+name:              swift-helloworld-swift51
+requested state:   started
+routes:            swift-helloworld-swift51-shiny-lemur.mybluemix.net
+last uploaded:     Mon 30 Sep 09:24:42 CDT 2019
+stack:             cflinuxfs3
+buildpacks:        https://github.com/IBM-Swift/swift-buildpack#2.2.0
 
-0 of 1 instances running, 1 starting
-1 of 1 instances running
-
-App started
-
-
-OK
-
-App swift-helloworld was started using this command `Server`
-
-Showing health and status for app swift-helloworld in org roliv@us.ibm.com / space dev as roliv@us.ibm.com...
-OK
-
-requested state: started
-instances: 1/1
-usage: 128M x 1 instances
-urls: swift-helloworld-nondirectional-schizogamy.eu-gb.mybluemix.net
-last uploaded: Mon Feb 27 17:29:14 UTC 2017
-stack: cflinuxfs2
-buildpack: swift_buildpack
-
-     state     since                    cpu    memory       disk         details
-#0   running   2017-02-27 11:31:38 AM   0.0%   1M of 128M   1.3M of 1G
+type:            web
+instances:       1/1
+memory usage:    128M
+start command:   Server
+     state     since                  cpu    memory        disk       details
+#0   running   2019-09-30T14:25:23Z   1.5%   36K of 128M   8K of 1G
 ```
 
 Once the sample application is pushed to the IBM Cloud, you can access it using its route. You can log on to your [IBM Cloud account](cloud.ibm.com) to find the route of your application or you can inspect the output from the execution of the `ibmcloud app push` command.  The string value (e.g. swift-helloworld.mybluemix.net) shown next to the urls should contain the route.  Use that route as the URL to access the sample server using the browser of your choice.  The browser should render an HTML page with the following message at the top:
@@ -230,7 +229,7 @@ Hello from Swift on Linux!
 ```
 
 ## Using a different version of Swift on IBM Cloud for your application
-If you look closely at the output above returned by the `ibmcloud app push` command, you will notice that `5.0` was the Swift version used for compiling and running the sample app on the IBM Cloud.  If you have a Swift application that compiles with a different version of the Swift binaries, say `DEVELOPMENT-SNAPSHOT-2016-08-30-a`, you'd need to update the contents of the `.swift-version` file to:
+If you look closely at the output above returned by the `ibmcloud app push` command, you will notice that `5.1` was the Swift version used for compiling and running the sample app on the IBM Cloud.  If you have a Swift application that compiles with a different version of the Swift binaries, say `DEVELOPMENT-SNAPSHOT-2016-08-30-a`, you'd need to update the contents of the `.swift-version` file to:
 
 ```
 DEVELOPMENT-SNAPSHOT-2016-08-30-a
