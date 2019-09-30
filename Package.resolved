@@ -6,8 +6,8 @@
         "repositoryURL": "https://github.com/IBM-Swift/BlueSocket.git",
         "state": {
           "branch": null,
-          "revision": "a40b405bdf32bc853307dd5dee8d00636e394013",
-          "version": "1.0.44"
+          "revision": "49cab699e9f151eeb870ab93d14642425e824c19",
+          "version": "1.0.49"
         }
       },
       {
@@ -15,8 +15,8 @@
         "repositoryURL": "https://github.com/IBM-Swift/CloudEnvironment.git",
         "state": {
           "branch": null,
-          "revision": "541344ce09aaa43ee3896a56c4a300f002c3819c",
-          "version": "9.0.0"
+          "revision": "91f4da3c5d24804bb7bbba98705f1c722d453ad8",
+          "version": "9.1.0"
         }
       },
       {
@@ -24,8 +24,8 @@
         "repositoryURL": "https://github.com/IBM-Swift/Configuration.git",
         "state": {
           "branch": null,
-          "revision": "4278530545d69b99e7e391e3980c740c9371b457",
-          "version": "3.0.2"
+          "revision": "da98da148509a3d7bd61fe01e7ade8926b52026b",
+          "version": "3.0.4"
         }
       },
       {
@@ -33,8 +33,8 @@
         "repositoryURL": "https://github.com/IBM-Swift/FileKit.git",
         "state": {
           "branch": null,
-          "revision": "319016dbf4b3ce04589265c23c9cac0016fe8096",
-          "version": "0.0.1"
+          "revision": "26911acde61a3556b7583f84180048ea6a03973c",
+          "version": "0.0.2"
         }
       },
       {
@@ -42,8 +42,8 @@
         "repositoryURL": "https://github.com/IBM-Swift/HeliumLogger.git",
         "state": {
           "branch": null,
-          "revision": "5ad546a39376b911a6cd4b06e8cadf60aa9e9472",
-          "version": "1.8.0"
+          "revision": "146a36c2a91270e4213fa7d7e8192cd2e55d0ace",
+          "version": "1.9.0"
         }
       },
       {
@@ -51,8 +51,8 @@
         "repositoryURL": "https://github.com/IBM-Swift/LoggerAPI.git",
         "state": {
           "branch": null,
-          "revision": "d0ccb4158b83f8692531892a9c894bb757593c6f",
-          "version": "1.8.0"
+          "revision": "3357dd9526cdf9436fa63bb792b669e6efdc43da",
+          "version": "1.9.0"
         }
       },
       {
@@ -60,8 +60,17 @@
         "repositoryURL": "https://github.com/IBM-Swift/Swift-cfenv.git",
         "state": {
           "branch": null,
-          "revision": "ec441a9af1b2995dcc697db75686ae76a034b33f",
-          "version": "6.0.2"
+          "revision": "b6625a49d65f83036f0e9922b7e9f2fa66cb623e",
+          "version": "6.0.3"
+        }
+      },
+      {
+        "package": "swift-log",
+        "repositoryURL": "https://github.com/apple/swift-log.git",
+        "state": {
+          "branch": null,
+          "revision": "e8aabbe95db22e064ad42f1a4a9f8982664c70ed",
+          "version": "1.1.1"
         }
       }
     ]
